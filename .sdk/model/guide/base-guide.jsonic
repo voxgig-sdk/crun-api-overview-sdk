@@ -1,0 +1,24 @@
+# Guide
+
+guide: {
+  metrics: count: entity: 2
+  metrics: count: path: 3
+  metrics: count: method: 3
+
+  entity: generate: {
+    path: "/image/generate": {
+      op: create: method: *POST
+    }
+    path: "/video/generate": {
+      op: create: method: *POST
+    }
+  }
+
+  entity: task: {
+    path: "/tasks/{task_id}": {
+      rename: param: "task_id": *"id"
+      op: load: method: *GET
+    }
+  }
+
+}

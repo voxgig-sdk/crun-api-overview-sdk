@@ -1,0 +1,54 @@
+{
+  "existing": {
+    "task": {
+      "TASK00": {
+        "completed_at": "s5a",
+        "created_at": "s5b",
+        "credit_consumption": 92,
+        "error": {},
+        "input_parameter": {},
+        "model": "s5f",
+        "result": [],
+        "status": "s61",
+        "task_id": "TASK01"
+      },
+      "TASK01": {
+        "completed_at": "sb4",
+        "created_at": "sb5",
+        "credit_consumption": 182,
+        "error": {},
+        "input_parameter": {},
+        "model": "sb9",
+        "result": [],
+        "status": "sbb",
+        "task_id": "TASK01"
+      },
+      "TASK02": {
+        "completed_at": "s10e",
+        "created_at": "s10f",
+        "credit_consumption": 272,
+        "error": {},
+        "input_parameter": {},
+        "model": "s113",
+        "result": [],
+        "status": "s115",
+        "task_id": "TASK01"
+      }
+    }
+  },
+  "new": {
+    "task": {
+      "task_ref01": {
+        "completed_at": "s168",
+        "created_at": "s169",
+        "credit_consumption": 362,
+        "error": {},
+        "input_parameter": {},
+        "model": "s16d",
+        "result": [],
+        "status": "s16f",
+        "task_id": "TASK01"
+      }
+    }
+  }
+}

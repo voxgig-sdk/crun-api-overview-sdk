@@ -1,0 +1,32 @@
+# BasicTaskFlow
+
+main: kit: flow: BasicTaskFlow:
+{
+  entity: "task",
+  kind: "basic",
+  name: "BasicTaskFlow",
+  step: [
+    {
+      input: {
+        ref: "task_ref01",
+        srcdatavar: "task_ref01_data",
+        suffix: "_dt0"
+      }
+
+      match: {
+        id: "task01"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-task_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicTaskFlow"
+}

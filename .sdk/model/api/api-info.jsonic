@@ -1,0 +1,25 @@
+# API Information
+
+
+main: {
+  kit: {
+    info: {
+      contact: {
+        name: "Crun Support"
+        url: "https://crun.ai"
+      }
+      description: "The Crun API provides access to a wide range of AI models for tasks such as image generation, video creation, and audio processing through a unified platform. Developers can easily integrate these capabilities into their applications while benefiting from competitive pricing and robust support."
+      servers: [
+        {
+          description: "Production server"
+          url: "https://api.crun.ai"
+        }
+      ]
+      termsOfService: "https://crun.ai/terms"
+      title: "Crun API"
+      version: "1.0.0"
+    }
+  }
+}
+
+}

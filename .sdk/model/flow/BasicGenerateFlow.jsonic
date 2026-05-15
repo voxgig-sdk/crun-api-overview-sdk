@@ -1,0 +1,18 @@
+# BasicGenerateFlow
+
+main: kit: flow: BasicGenerateFlow:
+{
+  entity: "generate",
+  kind: "basic",
+  name: "BasicGenerateFlow",
+  step: [
+    {
+      input: {
+        ref: "generate_ref01"
+      }
+
+      op: "create"
+    }
+  ],
+  "key$": "BasicGenerateFlow"
+}

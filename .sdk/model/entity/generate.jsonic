@@ -1,0 +1,105 @@
+# Entity: generate
+
+main: kit: entity: generate: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "aspect_ratio"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "callback_url"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "duration"
+      req: false
+      type: "`$NUMBER`"
+    }
+    {
+      name: "height"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "image_url"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "model"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "negative_prompt"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "num_image"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "prompt"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "status"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "task_id"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "width"
+      req: false
+      type: "`$INTEGER`"
+    }
+  ]
+
+  name: "generate"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          method: "POST"
+          orig: "/image/generate"
+          parts: [
+            "image"
+            "generate"
+          ]
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          method: "POST"
+          orig: "/video/generate"
+          parts: [
+            "video"
+            "generate"
+          ]
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

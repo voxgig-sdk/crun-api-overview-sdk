@@ -1,0 +1,99 @@
+# Entity: task
+
+main: kit: entity: task: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "completed_at"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "created_at"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "credit_consumption"
+      req: false
+      type: "`$NUMBER`"
+    }
+    {
+      name: "error"
+      req: false
+      type: "`$OBJECT`"
+    }
+    {
+      name: "input_parameter"
+      req: false
+      type: "`$OBJECT`"
+    }
+    {
+      name: "model"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "result"
+      req: false
+      type: "`$ARRAY`"
+    }
+    {
+      name: "status"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "task_id"
+      req: true
+      type: "`$STRING`"
+    }
+  ]
+
+  name: "task"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "id"
+                orig: "task_id"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/tasks/{task_id}"
+          parts: [
+            "tasks"
+            "{id}"
+          ]
+          rename: {
+            param: {
+              task_id: "id"
+            }
+          }
+          select: {
+            exist: [
+              "id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

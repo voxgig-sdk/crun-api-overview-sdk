@@ -1,0 +1,430 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Crun API",
+    "description": "The Crun API provides access to a wide range of AI models for tasks such as image generation, video creation, and audio processing through a unified platform. Developers can easily integrate these capabilities into their applications while benefiting from competitive pricing and robust support.",
+    "version": "1.0.0",
+    "contact": {
+      "name": "Crun Support",
+      "url": "https://crun.ai"
+    },
+    "termsOfService": "https://crun.ai/terms"
+  },
+  "servers": [
+    {
+      "url": "https://api.crun.ai",
+      "description": "Production server"
+    }
+  ],
+  "security": [
+    {
+      "ApiKeyAuth": []
+    }
+  ],
+  "paths": {
+    "/tasks/{task_id}": {
+      "get": {
+        "summary": "Get Task Info",
+        "description": "Retrieves the status and details of an asynchronous task by its task ID. Use this endpoint to poll for task completion and retrieve generated results.",
+        "operationId": "getTaskInfo",
+        "tags": [
+          "Task"
+        ],
+        "parameters": [
+          {
+            "name": "task_id",
+            "in": "path",
+            "required": true,
+            "description": "The unique identifier of the task to retrieve",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response with task details",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TaskResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Authentication failed - API key missing or invalid",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "code": 401,
+                  "msg": "API key missing"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Task not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limit exceeded",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/image/generate": {
+      "post": {
+        "summary": "Generate Image",
+        "description": "Creates an asynchronous task to generate images using various AI models including Google Seedream, Flux, Qwen, Z-image, Wan, OpenAI, Grok, and Imagine.",
+        "operationId": "generateImage",
+        "tags": [
+          "Image"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ImageGenerationRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Task created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TaskCreatedResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Authentication failed",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limit exceeded - more than 20 requests per 10 seconds",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/video/generate": {
+      "post": {
+        "summary": "Generate Video",
+        "description": "Creates an asynchronous task to generate videos using various AI models including Google, Grok, Imagine, Kling, Bytedance, Sora2, Wan, Vidu, Hailuo, and Runway.",
+        "operationId": "generateVideo",
+        "tags": [
+          "Video"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/VideoGenerationRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Task created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TaskCreatedResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Authentication failed",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limit exceeded",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "ApiKeyAuth": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "X-API-KEY",
+        "description": "API key for authentication. Create and manage your API keys at https://crun.ai/user-api-key"
+      }
+    },
+    "schemas": {
+      "TaskCreatedResponse": {
+        "type": "object",
+        "properties": {
+          "task_id": {
+            "type": "string",
+            "description": "Unique identifier for the created task. Use this to poll for task status and results."
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "pending",
+              "processing"
+            ],
+            "description": "Initial status of the task"
+          }
+        },
+        "required": [
+          "task_id",
+          "status"
+        ]
+      },
+      "TaskResponse": {
+        "type": "object",
+        "properties": {
+          "task_id": {
+            "type": "string",
+            "description": "Unique identifier of the task"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "pending",
+              "processing",
+              "completed",
+              "failed"
+            ],
+            "description": "Current status of the task"
+          },
+          "model": {
+            "type": "string",
+            "description": "Name of the AI model used for this task"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Timestamp when the task was created"
+          },
+          "completed_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Timestamp when the task was completed (if applicable)",
+            "nullable": true
+          },
+          "input_parameters": {
+            "type": "object",
+            "description": "The input parameters used to create the task"
+          },
+          "credit_consumption": {
+            "type": "number",
+            "description": "Number of credits consumed by this task"
+          },
+          "results": {
+            "type": "array",
+            "description": "Generated media files or output data. Available only when status is 'completed'. Files are stored for 14 days.",
+            "items": {
+              "type": "object",
+              "properties": {
+                "url": {
+                  "type": "string",
+                  "format": "uri",
+                  "description": "URL to the generated media file"
+                },
+                "type": {
+                  "type": "string",
+                  "description": "Type of the generated file (e.g., image, video)"
+                }
+              }
+            }
+          },
+          "error": {
+            "type": "object",
+            "description": "Error details if the task failed",
+            "nullable": true,
+            "properties": {
+              "code": {
+                "type": "integer"
+              },
+              "message": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "required": [
+          "task_id",
+          "status",
+          "model",
+          "created_at"
+        ]
+      },
+      "ImageGenerationRequest": {
+        "type": "object",
+        "properties": {
+          "model": {
+            "type": "string",
+            "description": "Name of the image generation model to use (e.g., google-seedream, flux, qwen, z-image, wan, openai, grok, imagine)",
+            "example": "flux"
+          },
+          "prompt": {
+            "type": "string",
+            "description": "Text description of the image to generate"
+          },
+          "negative_prompt": {
+            "type": "string",
+            "description": "Text description of what to avoid in the generated image",
+            "nullable": true
+          },
+          "width": {
+            "type": "integer",
+            "description": "Width of the generated image in pixels",
+            "nullable": true
+          },
+          "height": {
+            "type": "integer",
+            "description": "Height of the generated image in pixels",
+            "nullable": true
+          },
+          "num_images": {
+            "type": "integer",
+            "description": "Number of images to generate",
+            "default": 1,
+            "minimum": 1,
+            "nullable": true
+          },
+          "callback_url": {
+            "type": "string",
+            "format": "uri",
+            "description": "Optional webhook URL to receive task completion notification",
+            "nullable": true
+          }
+        },
+        "required": [
+          "model",
+          "prompt"
+        ]
+      },
+      "VideoGenerationRequest": {
+        "type": "object",
+        "properties": {
+          "model": {
+            "type": "string",
+            "description": "Name of the video generation model to use (e.g., google, grok, imagine, kling, bytedance, sora2, wan, vidu, hailuo, runway)",
+            "example": "kling"
+          },
+          "prompt": {
+            "type": "string",
+            "description": "Text description of the video to generate"
+          },
+          "duration": {
+            "type": "number",
+            "description": "Duration of the video in seconds",
+            "nullable": true
+          },
+          "image_url": {
+            "type": "string",
+            "format": "uri",
+            "description": "Optional reference image URL for image-to-video generation",
+            "nullable": true
+          },
+          "aspect_ratio": {
+            "type": "string",
+            "description": "Aspect ratio of the video (e.g., 16:9, 9:16, 1:1)",
+            "nullable": true
+          },
+          "callback_url": {
+            "type": "string",
+            "format": "uri",
+            "description": "Optional webhook URL to receive task completion notification",
+            "nullable": true
+          }
+        },
+        "required": [
+          "model",
+          "prompt"
+        ]
+      },
+      "Error": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "integer",
+            "description": "Error code"
+          },
+          "msg": {
+            "type": "string",
+            "description": "Error message"
+          }
+        },
+        "required": [
+          "code",
+          "msg"
+        ]
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "Task",
+      "description": "Operations for managing and querying asynchronous tasks"
+    },
+    {
+      "name": "Image",
+      "description": "Image generation using various AI models"
+    },
+    {
+      "name": "Video",
+      "description": "Video generation using various AI models"
+    }
+  ],
+  "externalDocs": {
+    "description": "Complete API Documentation",
+    "url": "https://docs.crun.ai/"
+  }
+}

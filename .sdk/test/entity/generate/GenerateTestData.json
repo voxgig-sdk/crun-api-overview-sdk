@@ -1,0 +1,66 @@
+{
+  "existing": {
+    "generate": {
+      "GENERATE00": {
+        "aspect_ratio": "s78",
+        "callback_url": "s79",
+        "duration": 122,
+        "height": "s7b",
+        "image_url": "s7c",
+        "model": "s7d",
+        "negative_prompt": "s7e",
+        "num_image": "s7f",
+        "prompt": "s80",
+        "status": "s81",
+        "task_id": "TASK01",
+        "width": "s83"
+      },
+      "GENERATE01": {
+        "aspect_ratio": "sf0",
+        "callback_url": "sf1",
+        "duration": 242,
+        "height": "sf3",
+        "image_url": "sf4",
+        "model": "sf5",
+        "negative_prompt": "sf6",
+        "num_image": "sf7",
+        "prompt": "sf8",
+        "status": "sf9",
+        "task_id": "TASK01",
+        "width": "sfb"
+      },
+      "GENERATE02": {
+        "aspect_ratio": "s168",
+        "callback_url": "s169",
+        "duration": 362,
+        "height": "s16b",
+        "image_url": "s16c",
+        "model": "s16d",
+        "negative_prompt": "s16e",
+        "num_image": "s16f",
+        "prompt": "s170",
+        "status": "s171",
+        "task_id": "TASK01",
+        "width": "s173"
+      }
+    }
+  },
+  "new": {
+    "generate": {
+      "generate_ref01": {
+        "aspect_ratio": "s1e0",
+        "callback_url": "s1e1",
+        "duration": 482,
+        "height": "s1e3",
+        "image_url": "s1e4",
+        "model": "s1e5",
+        "negative_prompt": "s1e6",
+        "num_image": "s1e7",
+        "prompt": "s1e8",
+        "status": "s1e9",
+        "task_id": "TASK01",
+        "width": "s1eb"
+      }
+    }
+  }
+}
