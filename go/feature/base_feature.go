@@ -1,7 +1,7 @@
 package feature
 
 import (
-	"github.com/voxgig-sdk/crun-api-overview-sdk/core"
+	"github.com/voxgig-sdk/crun-api-overview-sdk/go/core"
 )
 
 type BaseFeature struct {

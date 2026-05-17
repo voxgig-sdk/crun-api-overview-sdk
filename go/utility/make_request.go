@@ -1,6 +1,6 @@
 package utility
 
-import "github.com/voxgig-sdk/crun-api-overview-sdk/core"
+import "github.com/voxgig-sdk/crun-api-overview-sdk/go/core"
 
 func makeRequestUtil(ctx *core.Context) (*core.Response, error) {
 	if ctx.Out["request"] != nil {

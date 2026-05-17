@@ -13,7 +13,8 @@
         "prompt": "s80",
         "status": "s81",
         "task_id": "TASK01",
-        "width": "s83"
+        "width": "s83",
+        "id": "GENERATE00"
       },
       "GENERATE01": {
         "aspect_ratio": "sf0",
@@ -27,7 +28,8 @@
         "prompt": "sf8",
         "status": "sf9",
         "task_id": "TASK01",
-        "width": "sfb"
+        "width": "sfb",
+        "id": "GENERATE01"
       },
       "GENERATE02": {
         "aspect_ratio": "s168",
@@ -41,7 +43,8 @@
         "prompt": "s170",
         "status": "s171",
         "task_id": "TASK01",
-        "width": "s173"
+        "width": "s173",
+        "id": "GENERATE02"
       }
     }
   },

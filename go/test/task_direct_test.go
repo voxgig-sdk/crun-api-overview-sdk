@@ -6,8 +6,8 @@ import (
 	"strings"
 	"testing"
 
-	sdk "github.com/voxgig-sdk/crun-api-overview-sdk"
-	"github.com/voxgig-sdk/crun-api-overview-sdk/core"
+	sdk "github.com/voxgig-sdk/crun-api-overview-sdk/go"
+	"github.com/voxgig-sdk/crun-api-overview-sdk/go/core"
 )
 
 func TestTaskDirect(t *testing.T) {

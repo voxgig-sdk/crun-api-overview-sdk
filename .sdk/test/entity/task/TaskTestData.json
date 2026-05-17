@@ -10,7 +10,8 @@
         "model": "s5f",
         "result": [],
         "status": "s61",
-        "task_id": "TASK01"
+        "task_id": "TASK01",
+        "id": "TASK00"
       },
       "TASK01": {
         "completed_at": "sb4",
@@ -21,7 +22,8 @@
         "model": "sb9",
         "result": [],
         "status": "sbb",
-        "task_id": "TASK01"
+        "task_id": "TASK01",
+        "id": "TASK01"
       },
       "TASK02": {
         "completed_at": "s10e",
@@ -32,7 +34,8 @@
         "model": "s113",
         "result": [],
         "status": "s115",
-        "task_id": "TASK01"
+        "task_id": "TASK01",
+        "id": "TASK02"
       }
     }
   },

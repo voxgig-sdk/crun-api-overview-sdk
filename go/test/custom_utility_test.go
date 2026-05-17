@@ -3,7 +3,7 @@ package sdktest
 import (
 	"testing"
 
-	sdk "github.com/voxgig-sdk/crun-api-overview-sdk"
+	sdk "github.com/voxgig-sdk/crun-api-overview-sdk/go"
 )
 
 func TestCustomUtility(t *testing.T) {

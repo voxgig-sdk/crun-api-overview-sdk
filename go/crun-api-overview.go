@@ -1,10 +1,10 @@
 package voxgigcrunapioverviewsdk
 
 import (
-	"github.com/voxgig-sdk/crun-api-overview-sdk/core"
-	"github.com/voxgig-sdk/crun-api-overview-sdk/entity"
-	"github.com/voxgig-sdk/crun-api-overview-sdk/feature"
-	_ "github.com/voxgig-sdk/crun-api-overview-sdk/utility"
+	"github.com/voxgig-sdk/crun-api-overview-sdk/go/core"
+	"github.com/voxgig-sdk/crun-api-overview-sdk/go/entity"
+	"github.com/voxgig-sdk/crun-api-overview-sdk/go/feature"
+	_ "github.com/voxgig-sdk/crun-api-overview-sdk/go/utility"
 )
 
 // Type aliases preserve external API.
