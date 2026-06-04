@@ -69,14 +69,12 @@ def _task_direct_setup(mockres):
     env = runner.env_override({
         "CRUNAPIOVERVIEW_TEST_TASK_ENTID": {},
         "CRUNAPIOVERVIEW_TEST_LIVE": "FALSE",
-        "CRUNAPIOVERVIEW_APIKEY": "NONE",
     })
 
     live = env.get("CRUNAPIOVERVIEW_TEST_LIVE") == "TRUE"
 
     if live:
         merged_opts = {
-            "apikey": env.get("CRUNAPIOVERVIEW_APIKEY"),
         }
         client = CrunApiOverviewSDK(merged_opts)
         return {

@@ -117,7 +117,6 @@ func taskBasicSetup(extra map[string]any) *entityTestSetup {
 		"CRUNAPIOVERVIEW_TEST_TASK_ENTID": idmap,
 		"CRUNAPIOVERVIEW_TEST_LIVE":      "FALSE",
 		"CRUNAPIOVERVIEW_TEST_EXPLAIN":   "FALSE",
-		"CRUNAPIOVERVIEW_APIKEY":         "NONE",
 	})
 
 	idmapResolved := core.ToMapAny(env["CRUNAPIOVERVIEW_TEST_TASK_ENTID"])
@@ -128,7 +127,6 @@ func taskBasicSetup(extra map[string]any) *entityTestSetup {
 	if env["CRUNAPIOVERVIEW_TEST_LIVE"] == "TRUE" {
 		mergedOpts := vs.Merge([]any{
 			map[string]any{
-				"apikey": env["CRUNAPIOVERVIEW_APIKEY"],
 			},
 			extra,
 		})

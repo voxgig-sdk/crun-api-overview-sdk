@@ -72,14 +72,12 @@ function task_direct_setup(mockres)
   local env = runner.env_override({
     ["CRUNAPIOVERVIEW_TEST_TASK_ENTID"] = {},
     ["CRUNAPIOVERVIEW_TEST_LIVE"] = "FALSE",
-    ["CRUNAPIOVERVIEW_APIKEY"] = "NONE",
   })
 
   local live = env["CRUNAPIOVERVIEW_TEST_LIVE"] == "TRUE"
 
   if live then
     local merged_opts = {
-      apikey = env["CRUNAPIOVERVIEW_APIKEY"],
     }
     local client = sdk.new(merged_opts)
     return {

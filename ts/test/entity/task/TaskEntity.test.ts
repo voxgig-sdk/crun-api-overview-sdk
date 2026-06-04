@@ -111,7 +111,6 @@ function basicSetup(extra?: any) {
     'CRUN_API_OVERVIEW_TEST_TASK_ENTID': idmap,
     'CRUN_API_OVERVIEW_TEST_LIVE': 'FALSE',
     'CRUN_API_OVERVIEW_TEST_EXPLAIN': 'FALSE',
-    'CRUN_API_OVERVIEW_APIKEY': 'NONE',
   })
 
   idmap = env['CRUN_API_OVERVIEW_TEST_TASK_ENTID']
@@ -121,7 +120,6 @@ function basicSetup(extra?: any) {
   if (live) {
     client = new CrunApiOverviewSDK(merge([
       {
-        apikey: env.CRUN_API_OVERVIEW_APIKEY,
       },
       extra
     ]))

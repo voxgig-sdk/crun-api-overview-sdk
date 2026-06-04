@@ -80,7 +80,6 @@ function generate_basic_setup($extra)
         "CRUNAPIOVERVIEW_TEST_GENERATE_ENTID" => $idmap,
         "CRUNAPIOVERVIEW_TEST_LIVE" => "FALSE",
         "CRUNAPIOVERVIEW_TEST_EXPLAIN" => "FALSE",
-        "CRUNAPIOVERVIEW_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -92,7 +91,6 @@ function generate_basic_setup($extra)
     if ($env["CRUNAPIOVERVIEW_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
-                "apikey" => $env["CRUNAPIOVERVIEW_APIKEY"],
             ],
             $extra ?? [],
         ]);

@@ -38,10 +38,6 @@ class Config {
   options = {
     base: 'https://api.crun.ai',
 
-    auth: {
-      prefix: 'Bearer',
-    },
-
     headers: {
       "content-type": "application/json"
     },

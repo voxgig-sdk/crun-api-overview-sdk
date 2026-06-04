@@ -18,7 +18,16 @@
         ],
         "termsOfService": "https://crun.ai/terms",
         "title": "Crun API",
-        "version": "1.0.0"
+        "version": "1.0.0",
+        "tagline": "Unified API access to AI models for image generation, video creation, and audio processing",
+        "homepage": "https://crun.ai",
+        "docs_url": "https://docs.crun.ai",
+        "about_md": "The [Crun API](https://api.crun.ai) provides a single interface to a catalogue of third-party generative AI models, covering image generation, video creation, and audio processing. It is run by [Crun](https://crun.ai), with developer documentation hosted at [docs.crun.ai](https://docs.crun.ai).\n\nWhat you get from the API:\n\n- Access to multiple model families (image, video, audio) through one unified endpoint surface\n- Generation requests that return a task you can poll for status and results\n- Support for capabilities such as text-to-video, image-to-video, and synchronised audio (for example via Google's Veo 3.1 model)\n\nThe community catalogue notes that CORS is disabled, so calls are expected from server-side or proxied contexts. Authentication, pricing, and rate limit details are published on the Crun documentation site.",
+        "entity_desc": {
+          "generate": "Generation requests that submit a prompt (and optional inputs such as images) to a selected AI model to produce image, video, or audio output.",
+          "task": "A job record representing an in-flight or completed generation, used to poll status and retrieve the resulting media."
+        },
+        "auth": false
       },
       "config": {
         "auth": {
@@ -26,7 +35,15 @@
         },
         "headers": {
           "content-type": "application/json"
-        }
+        },
+        "docs_order": [
+          "ts",
+          "py",
+          "php",
+          "go",
+          "rb",
+          "lua"
+        ]
       },
       "entity": {
         "generate": {
