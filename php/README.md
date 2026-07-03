@@ -1,6 +1,11 @@
 # CrunApiOverview PHP SDK
 
-The PHP SDK for the CrunApiOverview API. Provides an entity-oriented interface using PHP conventions.
+
+
+The PHP SDK for the CrunApiOverview API — an entity-oriented client using PHP conventions.
+
+> Other languages, the CLI, and MCP server live alongside this one — see
+> the [top-level README](../README.md).
 
 
 ## Install
@@ -20,14 +25,16 @@ loading a specific record.
 <?php
 require_once 'crunapioverview_sdk.php';
 
-$client = new CrunApiOverviewSDK([]);
+$client = new CrunApiOverviewSDK([
+    "apikey" => getenv("CRUN-API-OVERVIEW_APIKEY"),
+]);
 ```
 
 ### 4. Create, update, and remove
 
 ```php
 // Create
-[$created, $_] = $client->Generate(null)->create(["name" => "Example"], null);
+[$created, $_] = $client->Generate()->create(["name" => "Example"]);
 
 ```
 
@@ -72,11 +79,9 @@ print_r($fetchdef["headers"]);
 Create a mock client for unit testing — no server required:
 
 ```php
-$client = CrunApiOverviewSDK::test(null, null);
+$client = CrunApiOverviewSDK::test();
 
-[$result, $err] = $client->CrunApiOverview(null)->load(
-    ["id" => "test01"], null
-);
+[$result, $err] = $client->CrunApiOverview()->load(["id" => "test01"]);
 // $result contains mock response data
 ```
 
@@ -111,6 +116,7 @@ Create a `.env.local` file at the project root:
 
 ```
 CRUN-API-OVERVIEW_TEST_LIVE=TRUE
+CRUN-API-OVERVIEW_APIKEY=<your-key>
 ```
 
 Then run:
@@ -133,6 +139,7 @@ Creates a new SDK client.
 
 | Option | Type | Description |
 | --- | --- | --- |
+| `apikey` | `string` | API key for authentication. |
 | `base` | `string` | Base URL of the API server. |
 | `prefix` | `string` | URL path prefix prepended to all requests. |
 | `suffix` | `string` | URL path suffix appended to all requests. |

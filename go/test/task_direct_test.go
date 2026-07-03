@@ -117,12 +117,14 @@ func taskDirectSetup(mockres any) *taskDirectSetupResult {
 	env := envOverride(map[string]any{
 		"CRUNAPIOVERVIEW_TEST_TASK_ENTID": map[string]any{},
 		"CRUNAPIOVERVIEW_TEST_LIVE":    "FALSE",
+		"CRUNAPIOVERVIEW_APIKEY":       "NONE",
 	})
 
 	live := env["CRUNAPIOVERVIEW_TEST_LIVE"] == "TRUE"
 
 	if live {
 		mergedOpts := map[string]any{
+			"apikey": env["CRUNAPIOVERVIEW_APIKEY"],
 		}
 		client := sdk.NewCrunApiOverviewSDK(mergedOpts)
 

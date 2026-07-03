@@ -80,12 +80,14 @@ function directSetup(mockres?: any) {
   const env = envOverride({
     'CRUNAPIOVERVIEW_TEST_TASK_ENTID': {},
     'CRUNAPIOVERVIEW_TEST_LIVE': 'FALSE',
+    'CRUNAPIOVERVIEW_APIKEY': 'NONE',
   })
 
   const live = 'TRUE' === env.CRUNAPIOVERVIEW_TEST_LIVE
 
   if (live) {
     const client = new CrunApiOverviewSDK({
+      apikey: env.CRUNAPIOVERVIEW_APIKEY,
     })
 
     let idmap: any = env['CRUNAPIOVERVIEW_TEST_TASK_ENTID']

@@ -91,6 +91,7 @@ def _task_basic_setup(extra):
         "CRUNAPIOVERVIEW_TEST_TASK_ENTID": idmap,
         "CRUNAPIOVERVIEW_TEST_LIVE": "FALSE",
         "CRUNAPIOVERVIEW_TEST_EXPLAIN": "FALSE",
+        "CRUNAPIOVERVIEW_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -101,6 +102,7 @@ def _task_basic_setup(extra):
     if env.get("CRUNAPIOVERVIEW_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
+                "apikey": env.get("CRUNAPIOVERVIEW_APIKEY"),
             },
             extra or {},
         ])

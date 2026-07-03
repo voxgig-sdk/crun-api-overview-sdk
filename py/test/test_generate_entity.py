@@ -87,6 +87,7 @@ def _generate_basic_setup(extra):
         "CRUNAPIOVERVIEW_TEST_GENERATE_ENTID": idmap,
         "CRUNAPIOVERVIEW_TEST_LIVE": "FALSE",
         "CRUNAPIOVERVIEW_TEST_EXPLAIN": "FALSE",
+        "CRUNAPIOVERVIEW_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -97,6 +98,7 @@ def _generate_basic_setup(extra):
     if env.get("CRUNAPIOVERVIEW_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
+                "apikey": env.get("CRUNAPIOVERVIEW_APIKEY"),
             },
             extra or {},
         ])

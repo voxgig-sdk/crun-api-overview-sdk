@@ -1,20 +1,8 @@
 # CrunApiOverview SDK
 
-Unified API access to AI models for image generation, video creation, and audio processing
+Crun API client, generated from the OpenAPI spec.
 
 > TypeScript, Python, PHP, Golang, Ruby, Lua SDKs, a CLI, an interactive REPL, and an MCP server for AI agents — all generated from one OpenAPI spec by [@voxgig/sdkgen](https://github.com/voxgig/sdkgen).
-
-## About Crun API
-
-The [Crun API](https://api.crun.ai) provides a single interface to a catalogue of third-party generative AI models, covering image generation, video creation, and audio processing. It is run by [Crun](https://crun.ai), with developer documentation hosted at [docs.crun.ai](https://docs.crun.ai).
-
-What you get from the API:
-
-- Access to multiple model families (image, video, audio) through one unified endpoint surface
-- Generation requests that return a task you can poll for status and results
-- Support for capabilities such as text-to-video, image-to-video, and synchronised audio (for example via Google's Veo 3.1 model)
-
-The community catalogue notes that CORS is disabled, so calls are expected from server-side or proxied contexts. Authentication, pricing, and rate limit details are published on the Crun documentation site.
 
 ## Try it
 
@@ -48,27 +36,28 @@ gem install crun-api-overview-sdk
 luarocks install crun-api-overview-sdk
 ```
 
-## 30-second quickstart
+## Quickstart
 
 ### TypeScript
 
 ```ts
 import { CrunApiOverviewSDK } from 'crun-api-overview'
 
-const client = new CrunApiOverviewSDK({})
+const client = new CrunApiOverviewSDK({
+  apikey: process.env.CRUN-API-OVERVIEW_APIKEY,
+})
 
 ```
 
-See the [TypeScript README](ts/README.md) for the
-full guide, or scroll down for the same example in other languages.
+See the [TypeScript README](ts/README.md) for the full guide.
 
-## What's in the box
+## Surfaces
 
-| Surface | Use it for | Path |
-| --- | --- | --- |
-| **SDK** (TypeScript, Python, PHP, Golang, Ruby, Lua) | App integration | `ts/` `py/` `php/` `go/` `rb/` `lua/` |
-| **CLI** | Scripts, CI, ops, one-off API calls | `go-cli/` |
-| **MCP server** | AI agents (Claude, Cursor, Cline) | `go-mcp/` |
+| Surface | Path |
+| --- | --- |
+| **SDK** (TypeScript, Python, PHP, Golang, Ruby, Lua) | `ts/` `py/` `php/` `go/` `rb/` `lua/` |
+| **CLI** | `go-cli/` |
+| **MCP server** | `go-mcp/` |
 
 ## Use it from an AI agent (MCP)
 
@@ -98,8 +87,8 @@ The API exposes 2 entities:
 
 | Entity | Description | API path |
 | --- | --- | --- |
-| **Generate** | Generation requests that submit a prompt (and optional inputs such as images) to a selected AI model to produce image, video, or audio output. | `/image/generate` |
-| **Task** | A job record representing an in-flight or completed generation, used to poll status and retrieve the resulting media. | `/tasks/{task_id}` |
+| **Generate** |  | `/image/generate` |
+| **Task** |  | `/tasks/{task_id}` |
 
 Each entity supports the following operations where available: **load**,
 **list**, **create**, **update**, and **remove**.
@@ -109,9 +98,12 @@ Each entity supports the following operations where available: **load**,
 ### Python
 
 ```python
+import os
 from crunapioverview_sdk import CrunApiOverviewSDK
 
-client = CrunApiOverviewSDK({})
+client = CrunApiOverviewSDK({
+    "apikey": os.environ.get("CRUN-API-OVERVIEW_APIKEY"),
+})
 
 ```
 
@@ -121,7 +113,9 @@ client = CrunApiOverviewSDK({})
 <?php
 require_once 'crunapioverview_sdk.php';
 
-$client = new CrunApiOverviewSDK([]);
+$client = new CrunApiOverviewSDK([
+    "apikey" => getenv("CRUN-API-OVERVIEW_APIKEY"),
+]);
 
 ```
 
@@ -130,7 +124,9 @@ $client = new CrunApiOverviewSDK([]);
 ```go
 import sdk "github.com/voxgig-sdk/crun-api-overview-sdk/go"
 
-client := sdk.NewCrunApiOverviewSDK(map[string]any{})
+client := sdk.NewCrunApiOverviewSDK(map[string]any{
+    "apikey": os.Getenv("CRUN-API-OVERVIEW_APIKEY"),
+})
 
 ```
 
@@ -139,7 +135,9 @@ client := sdk.NewCrunApiOverviewSDK(map[string]any{})
 ```ruby
 require_relative "CrunApiOverview_sdk"
 
-client = CrunApiOverviewSDK.new({})
+client = CrunApiOverviewSDK.new({
+  "apikey" => ENV["CRUN-API-OVERVIEW_APIKEY"],
+})
 
 ```
 
@@ -148,7 +146,9 @@ client = CrunApiOverviewSDK.new({})
 ```lua
 local sdk = require("crun-api-overview_sdk")
 
-local client = sdk.new({})
+local client = sdk.new({
+  apikey = os.getenv("CRUN-API-OVERVIEW_APIKEY"),
+})
 
 ```
 
@@ -168,25 +168,21 @@ const result = await client.Generate().load({ id: 'test01' })
 ### Python
 
 ```python
-client = CrunApiOverviewSDK.test(None, None)
-result, err = client.Generate(None).load(
-    {"id": "test01"}, None
-)
+client = CrunApiOverviewSDK.test()
+result, err = client.Generate().load({"id": "test01"})
 ```
 
 ### PHP
 
 ```php
-$client = CrunApiOverviewSDK::test(null, null);
-[$result, $err] = $client->Generate(null)->load(
-    ["id" => "test01"], null
-);
+$client = CrunApiOverviewSDK::test();
+[$result, $err] = $client->Generate()->load(["id" => "test01"]);
 ```
 
 ### Golang
 
 ```go
-client := sdk.TestSDK(nil, nil)
+client := sdk.Test()
 result, err := client.Generate(nil).Load(
     map[string]any{"id": "test01"}, nil,
 )
@@ -195,19 +191,15 @@ result, err := client.Generate(nil).Load(
 ### Ruby
 
 ```ruby
-client = CrunApiOverviewSDK.test(nil, nil)
-result, err = client.Generate(nil).load(
-  { "id" => "test01" }, nil
-)
+client = CrunApiOverviewSDK.test
+result, err = client.Generate().load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
-local client = sdk.test(nil, nil)
-local result, err = client:Generate(nil):load(
-  { id = "test01" }, nil
-)
+local client = sdk.test()
+local result, err = client:Generate():load({ id = "test01" })
 ```
 
 ## How it works
@@ -311,11 +303,6 @@ local result, err = client:direct({
 - [Golang](go/README.md)
 - [Ruby](rb/README.md)
 - [Lua](lua/README.md)
-
-## Using the Crun API
-
-- Upstream: [https://crun.ai](https://crun.ai)
-- API docs: [https://docs.crun.ai](https://docs.crun.ai)
 
 ---
 
