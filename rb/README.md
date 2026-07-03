@@ -10,13 +10,13 @@ The Ruby SDK for the CrunApiOverview API — an entity-oriented client using idi
 
 ## Install
 ```bash
-gem install crun-api-overview-sdk
+gem install voxgig-sdk-crun-api-overview
 ```
 
 Or add to your `Gemfile`:
 
 ```ruby
-gem "crun-api-overview-sdk"
+gem "voxgig-sdk-crun-api-overview"
 ```
 
 Then run:

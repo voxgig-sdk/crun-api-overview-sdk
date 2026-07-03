@@ -10,7 +10,7 @@ The Python SDK for the CrunApiOverview API — an entity-oriented client followi
 
 ## Install
 ```bash
-pip install crun-api-overview-sdk
+pip install voxgig-sdk-crun-api-overview
 ```
 
 Or install from source:

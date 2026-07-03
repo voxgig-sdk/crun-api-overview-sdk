@@ -10,7 +10,7 @@ The PHP SDK for the CrunApiOverview API — an entity-oriented client using PHP 
 
 ## Install
 ```bash
-composer require voxgig/crun-api-overview-sdk
+composer require voxgig-sdk/crun-api-overview
 ```
 
 

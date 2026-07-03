@@ -10,7 +10,7 @@ The TypeScript SDK for the CrunApiOverview API — a type-safe, entity-oriented 
 
 ## Install
 ```bash
-npm install crun-api-overview
+npm install @voxgig-sdk/crun-api-overview
 ```
 ## Tutorial: your first API call
 

@@ -10,7 +10,7 @@ The Lua SDK for the CrunApiOverview API — an entity-oriented client using Lua 
 
 ## Install
 ```bash
-luarocks install crun-api-overview-sdk
+luarocks install voxgig-sdk-crun-api-overview
 ```
 
 If the module is not yet published, add the source directory to
