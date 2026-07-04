@@ -90,7 +90,7 @@ Prepare a fetch definition without sending the request. Returns the
 ## GenerateEntity
 
 ```php
-$generate = $client->generate();
+$generate = $client->Generate();
 ```
 
 ### Fields
@@ -117,7 +117,7 @@ $generate = $client->generate();
 Create a new entity with the given data. Throws on error.
 
 ```php
-$result = $client->generate()->create([
+$result = $client->Generate()->create([
   "model" => /* `$STRING` */,
   "prompt" => /* `$STRING` */,
   "status" => /* `$STRING` */,
@@ -158,7 +158,7 @@ Return the entity name.
 ## TaskEntity
 
 ```php
-$task = $client->task();
+$task = $client->Task();
 ```
 
 ### Fields
@@ -182,7 +182,7 @@ $task = $client->task();
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->task()->load(["id" => "task_id"]);
+$result = $client->Task()->load(["id" => "task_id"]);
 ```
 
 ### Common Methods

@@ -37,7 +37,8 @@ local client = sdk.new({
 
 ```lua
 -- Create
-local created, _ = client:generate():create({ name = "Example" })
+local created, err = client:Generate():create({ name = "Example" })
+if err then error(err) end
 
 ```
 
@@ -84,8 +85,8 @@ Create a mock client for unit testing — no server required:
 ```lua
 local client = sdk.test()
 
-local result, err = client:generate():load({ id = "test01" })
--- result contains mock response data
+local result, err = client:Generate():load({ id = "test01" })
+-- result is the loaded data; err is set on failure
 ```
 
 ### Use a custom fetch function
@@ -188,17 +189,22 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return `(any, err)`. The first value is a
-`table` with these keys:
+Entity operations return `(value, err)`. The `value` is the operation's
+data **directly** — there is no wrapper:
 
-| Key | Type | Description |
-| --- | --- | --- |
-| `ok` | `boolean` | `true` if the HTTP status is 2xx. |
-| `status` | `number` | HTTP status code. |
-| `headers` | `table` | Response headers. |
-| `data` | `any` | Parsed JSON response body. |
+| Operation | `value` |
+| --- | --- |
+| `load` / `create` / `update` / `remove` | the entity record (a `table`) |
+| `list` | an array (`table`) of entity records |
 
-On error, `ok` is `false` and `err` contains the error value.
+Check `err` first (it is non-`nil` on failure), then use `value`:
+
+    local generate, err = client:Generate():load({ id = "example_id" })
+    if err then error(err) end
+    -- generate is the loaded record
+
+Only `direct()` returns a response envelope — a `table` with `ok`,
+`status`, `headers`, and `data` keys.
 
 ### Entities
 
@@ -248,7 +254,7 @@ API path: `/tasks/{task_id}`
 
 ### Generate
 
-Create an instance: `const generate = client.generate`
+Create an instance: `local generate = client:Generate(nil)`
 
 #### Operations
 
@@ -275,19 +281,19 @@ Create an instance: `const generate = client.generate`
 
 #### Example: Create
 
-```ts
-const generate = await client.generate.create({
-  model: /* `$STRING` */,
-  prompt: /* `$STRING` */,
-  status: /* `$STRING` */,
-  task_id: /* `$STRING` */,
+```lua
+local generate, err = client:Generate():create({
+  model = nil, -- `$STRING`
+  prompt = nil, -- `$STRING`
+  status = nil, -- `$STRING`
+  task_id = nil, -- `$STRING`
 })
 ```
 
 
 ### Task
 
-Create an instance: `const task = client.task`
+Create an instance: `local task = client:Task(nil)`
 
 #### Operations
 
@@ -311,8 +317,8 @@ Create an instance: `const task = client.task`
 
 #### Example: Load
 
-```ts
-const task = await client.task.load({ id: 'task_id' })
+```lua
+local task, err = client:Task():load({ id = "task_id" })
 ```
 
 
@@ -387,7 +393,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```lua
-local generate = client:generate()
+local generate = client:Generate()
 generate:load({ id = "example_id" })
 
 -- generate:data_get() now returns the loaded generate data

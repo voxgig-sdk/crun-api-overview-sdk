@@ -208,26 +208,14 @@ class CrunApiOverviewSDK
   end
 
 
-  # Idiomatic facade: client.generate.list / client.generate.load({ "id" => ... })
-  def generate
-    require_relative 'entity/generate_entity'
-    @generate ||= GenerateEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.generate instead.
+  # Canonical facade: client.Generate.list / client.Generate.load({ "id" => ... })
   def Generate(data = nil)
     require_relative 'entity/generate_entity'
     GenerateEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.task.list / client.task.load({ "id" => ... })
-  def task
-    require_relative 'entity/task_entity'
-    @task ||= TaskEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.task instead.
+  # Canonical facade: client.Task.list / client.Task.load({ "id" => ... })
   def Task(data = nil)
     require_relative 'entity/task_entity'
     TaskEntity.new(self, data)

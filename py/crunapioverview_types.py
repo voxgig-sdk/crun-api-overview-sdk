@@ -4,59 +4,65 @@
 # params (op.<name>.points[].args.params[]). Field/param types come from the
 # canonical type sentinels via @voxgig/sdkgen canonToType (source of truth:
 # @voxgig/apidef VALID_CANON). Do not edit by hand.
+#
+# These are TypedDicts, not dataclasses: the SDK ops return/accept plain dicts
+# at runtime, and a TypedDict IS a dict shape, so the types match the runtime.
+# Optional (req:false) keys are modelled as TypedDict key-optionality
+# (total=False), split into a required base + total=False subclass when a type
+# has both required and optional keys.
 
 from __future__ import annotations
 
-from dataclasses import dataclass
-from typing import Optional, Any
+from typing import TypedDict, Any
 
 
-@dataclass
-class Generate:
+class GenerateRequired(TypedDict):
     model: str
     prompt: str
     status: str
     task_id: str
-    aspect_ratio: Optional[str] = None
-    callback_url: Optional[str] = None
-    duration: Optional[float] = None
-    height: Optional[int] = None
-    image_url: Optional[str] = None
-    negative_prompt: Optional[str] = None
-    num_image: Optional[int] = None
-    width: Optional[int] = None
 
 
-@dataclass
-class GenerateCreateData:
-    aspect_ratio: Optional[str] = None
-    callback_url: Optional[str] = None
-    duration: Optional[float] = None
-    height: Optional[int] = None
-    image_url: Optional[str] = None
-    model: Optional[str] = None
-    negative_prompt: Optional[str] = None
-    num_image: Optional[int] = None
-    prompt: Optional[str] = None
-    status: Optional[str] = None
-    task_id: Optional[str] = None
-    width: Optional[int] = None
+class Generate(GenerateRequired, total=False):
+    aspect_ratio: str
+    callback_url: str
+    duration: float
+    height: int
+    image_url: str
+    negative_prompt: str
+    num_image: int
+    width: int
 
 
-@dataclass
-class Task:
+class GenerateCreateData(TypedDict, total=False):
+    aspect_ratio: str
+    callback_url: str
+    duration: float
+    height: int
+    image_url: str
+    model: str
+    negative_prompt: str
+    num_image: int
+    prompt: str
+    status: str
+    task_id: str
+    width: int
+
+
+class TaskRequired(TypedDict):
     created_at: str
     model: str
     status: str
     task_id: str
-    completed_at: Optional[str] = None
-    credit_consumption: Optional[float] = None
-    error: Optional[dict] = None
-    input_parameter: Optional[dict] = None
-    result: Optional[list] = None
 
 
-@dataclass
-class TaskLoadMatch:
+class Task(TaskRequired, total=False):
+    completed_at: str
+    credit_consumption: float
+    error: dict
+    input_parameter: dict
+    result: list
+
+
+class TaskLoadMatch(TypedDict):
     id: str
-

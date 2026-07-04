@@ -244,8 +244,9 @@ end
 
 
 
--- Idiomatic facade: client:generate():list() / client:generate():load({ id = ... })
-function CrunApiOverviewSDK:generate(data)
+-- Idiomatic facade: client:Generate():list() / client:Generate():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function CrunApiOverviewSDK:Generate(data)
   local EntityMod = require("entity.generate_entity")
   if data == nil then
     if self._generate == nil then
@@ -256,15 +257,10 @@ function CrunApiOverviewSDK:generate(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:generate() instead.
-function CrunApiOverviewSDK:Generate(data)
-  local EntityMod = require("entity.generate_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:task():list() / client:task():load({ id = ... })
-function CrunApiOverviewSDK:task(data)
+-- Idiomatic facade: client:Task():list() / client:Task():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function CrunApiOverviewSDK:Task(data)
   local EntityMod = require("entity.task_entity")
   if data == nil then
     if self._task == nil then
@@ -272,12 +268,6 @@ function CrunApiOverviewSDK:task(data)
     end
     return self._task
   end
-  return EntityMod.new(self, data)
-end
-
--- Deprecated: use client:task() instead.
-function CrunApiOverviewSDK:Task(data)
-  local EntityMod = require("entity.task_entity")
   return EntityMod.new(self, data)
 end
 

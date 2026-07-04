@@ -91,7 +91,7 @@ same parameters as `direct()`. Raises on error.
 ## GenerateEntity
 
 ```ruby
-generate = client.generate
+generate = client.Generate
 ```
 
 ### Fields
@@ -118,7 +118,7 @@ generate = client.generate
 Create a new entity with the given data. Raises on error.
 
 ```ruby
-result = client.generate.create({
+result = client.Generate.create({
   "model" => # `$STRING`,
   "prompt" => # `$STRING`,
   "status" => # `$STRING`,
@@ -159,7 +159,7 @@ Return the entity name.
 ## TaskEntity
 
 ```ruby
-task = client.task
+task = client.Task
 ```
 
 ### Fields
@@ -183,7 +183,7 @@ task = client.task
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.task.load({ "id" => "task_id" })
+result = client.Task.load({ "id" => "task_id" })
 ```
 
 ### Common Methods

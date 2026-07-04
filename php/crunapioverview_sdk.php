@@ -233,10 +233,10 @@ class CrunApiOverviewSDK
 
     private $_generate = null;
 
-    // Idiomatic facade: $client->generate()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Generate() (PHP method
-    // names are case-insensitive).
-    public function generate($data = null)
+    // Canonical facade: $client->Generate()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->generate()
+    // resolves here too.
+    public function Generate($data = null)
     {
         require_once __DIR__ . '/entity/generate_entity.php';
         if ($data === null) {
@@ -251,10 +251,10 @@ class CrunApiOverviewSDK
 
     private $_task = null;
 
-    // Idiomatic facade: $client->task()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Task() (PHP method
-    // names are case-insensitive).
-    public function task($data = null)
+    // Canonical facade: $client->Task()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->task()
+    // resolves here too.
+    public function Task($data = null)
     {
         require_once __DIR__ . '/entity/task_entity.php';
         if ($data === null) {

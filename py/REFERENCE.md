@@ -85,7 +85,7 @@ Prepare a fetch definition without sending. Returns the `fetchdef` and raises on
 ## GenerateEntity
 
 ```python
-generate = client.generate
+generate = client.Generate()
 ```
 
 ### Fields
@@ -112,11 +112,11 @@ generate = client.generate
 Create a new entity with the given data. Returns the created entity data and raises on error.
 
 ```python
-result = client.generate.create({
-    "model": # `$STRING`,
-    "prompt": # `$STRING`,
-    "status": # `$STRING`,
-    "task_id": # `$STRING`,
+result = client.Generate().create({
+    "model": ...,  # `$STRING`
+    "prompt": ...,  # `$STRING`
+    "status": ...,  # `$STRING`
+    "task_id": ...,  # `$STRING`
 })
 ```
 
@@ -152,7 +152,7 @@ Return the entity name.
 ## TaskEntity
 
 ```python
-task = client.task
+task = client.Task()
 ```
 
 ### Fields
@@ -176,7 +176,7 @@ task = client.task
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.task.load({"id": "task_id"})
+result = client.Task().load({"id": "task_id"})
 ```
 
 ### Common Methods

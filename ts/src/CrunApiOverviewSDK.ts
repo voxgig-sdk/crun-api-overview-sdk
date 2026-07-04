@@ -205,28 +205,14 @@ class CrunApiOverviewSDK {
 
 
 
-  _generate?: GenerateEntity
-
-  // Idiomatic facade: `client.generate.list()` / `client.generate.load({ id })`.
-  get generate(): GenerateEntity {
-    return (this._generate ??= new GenerateEntity(this, undefined))
-  }
-
-  /** @deprecated Use `client.generate` instead. */
+  // Entity access: `client.Generate().list()` / `client.Generate().load({ id })`.
   Generate(data?: any) {
     const self = this
     return new GenerateEntity(self,data)
   }
 
 
-  _task?: TaskEntity
-
-  // Idiomatic facade: `client.task.list()` / `client.task.load({ id })`.
-  get task(): TaskEntity {
-    return (this._task ??= new TaskEntity(this, undefined))
-  }
-
-  /** @deprecated Use `client.task` instead. */
+  // Entity access: `client.Task().list()` / `client.Task().load({ id })`.
   Task(data?: any) {
     const self = this
     return new TaskEntity(self,data)

@@ -220,41 +220,21 @@ class CrunApiOverviewSDK:
         }
 
 
-    @property
-    def generate(self):
-        """Idiomatic facade: client.generate.list() / client.generate.load({"id": ...})."""
-        from entity.generate_entity import GenerateEntity
-        cached = getattr(self, "_generate", None)
-        if cached is None:
-            cached = GenerateEntity(self, None)
-            self._generate = cached
-        return cached
-
-    def Generate(self, data=None):
-        # Deprecated: use client.generate instead.
+    def Generate(self, data=None) -> "GenerateEntity":
+        """Entity factory: client.Generate().list({}) / client.Generate().load({"id": ...})."""
         from entity.generate_entity import GenerateEntity
         return GenerateEntity(self, data)
 
 
-    @property
-    def task(self):
-        """Idiomatic facade: client.task.list() / client.task.load({"id": ...})."""
-        from entity.task_entity import TaskEntity
-        cached = getattr(self, "_task", None)
-        if cached is None:
-            cached = TaskEntity(self, None)
-            self._task = cached
-        return cached
-
-    def Task(self, data=None):
-        # Deprecated: use client.task instead.
+    def Task(self, data=None) -> "TaskEntity":
+        """Entity factory: client.Task().list({}) / client.Task().load({"id": ...})."""
         from entity.task_entity import TaskEntity
         return TaskEntity(self, data)
 
 
 
     @classmethod
-    def test(cls, testopts=None, sdkopts=None):
+    def test(cls, testopts=None, sdkopts=None) -> "CrunApiOverviewSDK":
         if sdkopts is None:
             sdkopts = {}
         sdkopts = vs.clone(sdkopts)
@@ -274,3 +254,10 @@ class CrunApiOverviewSDK:
         sdk.mode = "test"
 
         return sdk
+
+
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from entity.generate_entity import GenerateEntity
+    from entity.task_entity import TaskEntity

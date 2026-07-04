@@ -37,8 +37,8 @@ client = CrunApiOverviewSDK({
 ### 4. Create, update, and remove
 
 ```python
-# Create
-created = client.generate.create({"name": "Example"})
+# Create — returns the bare created record (a dict)
+created = client.Generate().create({"name": "Example"})
 
 ```
 
@@ -85,8 +85,9 @@ Create a mock client for unit testing — no server required:
 ```python
 client = CrunApiOverviewSDK.test()
 
-result = client.generate.load({"id": "test01"})
-# result contains mock response data
+# Entity ops return the bare record and raise on error.
+generate = client.Generate().load({"id": "test01"})
+# generate contains the mock response record
 ```
 
 ### Use a custom fetch function
@@ -251,7 +252,7 @@ API path: `/tasks/{task_id}`
 
 ### Generate
 
-Create an instance: `const generate = client.generate`
+Create an instance: `generate = client.Generate()`
 
 #### Operations
 
@@ -278,19 +279,19 @@ Create an instance: `const generate = client.generate`
 
 #### Example: Create
 
-```ts
-const generate = await client.generate.create({
-  model: /* `$STRING` */,
-  prompt: /* `$STRING` */,
-  status: /* `$STRING` */,
-  task_id: /* `$STRING` */,
+```python
+generate = client.Generate().create({
+    "model": ...,  # `$STRING`
+    "prompt": ...,  # `$STRING`
+    "status": ...,  # `$STRING`
+    "task_id": ...,  # `$STRING`
 })
 ```
 
 
 ### Task
 
-Create an instance: `const task = client.task`
+Create an instance: `task = client.Task()`
 
 #### Operations
 
@@ -314,8 +315,8 @@ Create an instance: `const task = client.task`
 
 #### Example: Load
 
-```ts
-const task = await client.task.load({ id: 'task_id' })
+```python
+task = client.Task().load({"id": "task_id"})
 ```
 
 
@@ -389,7 +390,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```python
-generate = client.generate
+generate = client.Generate()
 generate.load({"id": "example_id"})
 
 # generate.data_get() now returns the loaded generate data

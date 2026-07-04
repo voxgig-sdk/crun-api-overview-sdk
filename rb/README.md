@@ -33,8 +33,8 @@ client = CrunApiOverviewSDK.new({
 ### 4. Create, update, and remove
 
 ```ruby
-# Create
-created = client.generate.create({ "name" => "Example" })
+# create returns the bare created Generate record.
+created = client.Generate.create({ "name" => "Example" })
 
 ```
 
@@ -79,13 +79,17 @@ end
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required:
+Create a mock client for unit testing — no server required. Seed fixture
+data via the `entity` option so offline calls resolve without a live server:
 
 ```ruby
-client = CrunApiOverviewSDK.test
+client = CrunApiOverviewSDK.test({
+  "entity" => { "generate" => { "test01" => { "id" => "test01" } } },
+})
 
-result = client.generate.load({ "id" => "test01" })
-# result contains mock response data
+# load returns the bare mock record (raises on error).
+generate = client.Generate.load({ "id" => "test01" })
+puts generate
 ```
 
 ### Use a custom fetch function
@@ -249,7 +253,7 @@ API path: `/tasks/{task_id}`
 
 ### Generate
 
-Create an instance: `const generate = client.generate`
+Create an instance: `generate = client.Generate`
 
 #### Operations
 
@@ -276,19 +280,19 @@ Create an instance: `const generate = client.generate`
 
 #### Example: Create
 
-```ts
-const generate = await client.generate.create({
-  model: /* `$STRING` */,
-  prompt: /* `$STRING` */,
-  status: /* `$STRING` */,
-  task_id: /* `$STRING` */,
+```ruby
+generate = client.Generate.create({
+  "model" => nil, # `$STRING`
+  "prompt" => nil, # `$STRING`
+  "status" => nil, # `$STRING`
+  "task_id" => nil, # `$STRING`
 })
 ```
 
 
 ### Task
 
-Create an instance: `const task = client.task`
+Create an instance: `task = client.Task`
 
 #### Operations
 
@@ -312,8 +316,9 @@ Create an instance: `const task = client.task`
 
 #### Example: Load
 
-```ts
-const task = await client.task.load({ id: 'task_id' })
+```ruby
+# load returns the bare Task record (raises on error).
+task = client.Task.load({ "id" => "task_id" })
 ```
 
 
@@ -388,7 +393,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```ruby
-generate = client.generate
+generate = client.Generate
 generate.load({ "id" => "example_id" })
 
 # generate.data_get now returns the loaded generate data

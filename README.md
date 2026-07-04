@@ -142,22 +142,27 @@ in-memory mock, so unit tests run offline.
 
 ```ts
 const client = CrunApiOverviewSDK.test()
-const result = await client.generate.load({ id: 'test01' })
-// result.ok === true, result.data contains mock data
+const generate = await client.Generate().load({ id: 'test01' })
+// generate is a bare Generate populated with mock data
+console.log(generate)
 ```
 
 ### Python
 
 ```python
 client = CrunApiOverviewSDK.test()
-result = client.generate.load({"id": "test01"})
+generate = client.Generate().load({"id": "test01"})
+print(generate)
 ```
 
 ### PHP
 
 ```php
-$client = CrunApiOverviewSDK::test();
-$result = $client->generate()->load(["id" => "test01"]);
+// Seed fixture data so offline calls resolve without a live server.
+$client = CrunApiOverviewSDK::test([
+    "entity" => ["generate" => ["test01" => ["id" => "test01"]]],
+]);
+$generate = $client->Generate()->load(["id" => "test01"]);
 ```
 
 ### Golang
@@ -172,15 +177,18 @@ result, err := client.Generate(nil).Load(
 ### Ruby
 
 ```ruby
-client = CrunApiOverviewSDK.test
-result = client.generate.load({ "id" => "test01" })
+# Seed fixture data so offline calls resolve without a live server.
+client = CrunApiOverviewSDK.test({
+  "entity" => { "generate" => { "test01" => { "id" => "test01" } } },
+})
+generate = client.Generate.load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
 local client = sdk.test()
-local result, err = client:generate():load({ id = "test01" })
+local result, err = client:Generate():load({ id = "test01" })
 ```
 
 ## How it works
@@ -228,6 +236,9 @@ const result = await client.direct({
   method: 'GET',
   params: { id: 'example' },
 })
+if (result instanceof Error) {
+  throw result
+}
 console.log(result.data)
 ```
 

@@ -88,7 +88,7 @@ same parameters as `direct()`.
 ## GenerateEntity
 
 ```lua
-local generate = client:generate(nil)
+local generate = client:Generate(nil)
 ```
 
 ### Fields
@@ -115,7 +115,7 @@ local generate = client:generate(nil)
 Create a new entity with the given data.
 
 ```lua
-local result, err = client:generate():create({
+local result, err = client:Generate():create({
   model = --[[ `$STRING` ]],
   prompt = --[[ `$STRING` ]],
   status = --[[ `$STRING` ]],
@@ -156,7 +156,7 @@ Return the entity name.
 ## TaskEntity
 
 ```lua
-local task = client:task(nil)
+local task = client:Task(nil)
 ```
 
 ### Fields
@@ -180,7 +180,7 @@ local task = client:task(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:task():load({ id = "task_id" })
+local result, err = client:Task():load({ id = "task_id" })
 ```
 
 ### Common Methods
