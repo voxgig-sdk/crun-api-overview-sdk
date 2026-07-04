@@ -42,8 +42,7 @@ class TaskEntityTest < Minitest::Test
     # LOAD
     task_ref01_ent = client.Task(nil)
     task_ref01_match_dt0 = {}
-    task_ref01_data_dt0_loaded, err = task_ref01_ent.load(task_ref01_match_dt0, nil)
-    assert_nil err
+    task_ref01_data_dt0_loaded = task_ref01_ent.load(task_ref01_match_dt0, nil)
     assert !task_ref01_data_dt0_loaded.nil?
 
   end

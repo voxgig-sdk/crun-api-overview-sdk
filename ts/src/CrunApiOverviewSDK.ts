@@ -3,6 +3,8 @@
 import { GenerateEntity } from './entity/GenerateEntity'
 import { TaskEntity } from './entity/TaskEntity'
 
+export type * from './CrunApiOverviewTypes'
+
 
 import { inspect } from 'node:util'
 
@@ -203,12 +205,28 @@ class CrunApiOverviewSDK {
 
 
 
+  _generate?: GenerateEntity
+
+  // Idiomatic facade: `client.generate.list()` / `client.generate.load({ id })`.
+  get generate(): GenerateEntity {
+    return (this._generate ??= new GenerateEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.generate` instead. */
   Generate(data?: any) {
     const self = this
     return new GenerateEntity(self,data)
   }
 
 
+  _task?: TaskEntity
+
+  // Idiomatic facade: `client.task.list()` / `client.task.load({ id })`.
+  get task(): TaskEntity {
+    return (this._task ??= new TaskEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.task` instead. */
   Task(data?: any) {
     const self = this
     return new TaskEntity(self,data)

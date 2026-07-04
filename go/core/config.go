@@ -242,6 +242,7 @@ func MakeConfig() map[string]any {
 											"orig": "task_id",
 											"reqd": true,
 											"type": "`$STRING`",
+											"index$": 0,
 										},
 									},
 								},

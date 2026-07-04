@@ -248,6 +248,7 @@ class CrunApiOverviewConfig
                         'orig' => 'task_id',
                         'reqd' => true,
                         'type' => '`$STRING`',
+                        'index$' => 0,
                       ],
                     ],
                   ],

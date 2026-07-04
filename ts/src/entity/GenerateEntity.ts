@@ -14,9 +14,13 @@ import type {
   Control,
 } from '../types'
 
+import type {
+  Generate,
+  GenerateCreateData,
+} from '../CrunApiOverviewTypes'
 
 // TODO: needs Entity superclass
-class GenerateEntity extends CrunApiOverviewEntityBase {
+class GenerateEntity extends CrunApiOverviewEntityBase<Generate> {
 
   constructor(client: CrunApiOverviewSDK, entopts: any) {
     super(client, entopts)
@@ -34,7 +38,7 @@ class GenerateEntity extends CrunApiOverviewEntityBase {
 
 
 
-  async create(this: any, reqdata?: any, ctrl?: Control) {
+  async create(this: any, reqdata?: GenerateCreateData, ctrl?: Control): Promise<Generate> {
 
     const utility = this._utility
     const {
@@ -133,7 +137,9 @@ class GenerateEntity extends CrunApiOverviewEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<Generate> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }

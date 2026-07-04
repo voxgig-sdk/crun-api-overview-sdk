@@ -122,7 +122,7 @@ Alias for `CrunApiOverviewSDK.test()`.
 ## GenerateEntity
 
 ```ts
-const generate = client.Generate()
+const generate = client.generate
 ```
 
 ### Fields
@@ -149,7 +149,7 @@ const generate = client.Generate()
 Create a new entity with the given data.
 
 ```ts
-const result = await client.Generate().create({
+const result = await client.generate.create({
   model: /* `$STRING` */,
   prompt: /* `$STRING` */,
   status: /* `$STRING` */,
@@ -188,7 +188,7 @@ Return a copy of the entity options.
 ## TaskEntity
 
 ```ts
-const task = client.Task()
+const task = client.task
 ```
 
 ### Fields
@@ -212,7 +212,7 @@ const task = client.Task()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.Task().load({ id: 'task_id' })
+const result = await client.task.load({ id: 'task_id' })
 ```
 
 ### Common Methods

@@ -14,9 +14,13 @@ import type {
   Control,
 } from '../types'
 
+import type {
+  Task,
+  TaskLoadMatch,
+} from '../CrunApiOverviewTypes'
 
 // TODO: needs Entity superclass
-class TaskEntity extends CrunApiOverviewEntityBase {
+class TaskEntity extends CrunApiOverviewEntityBase<Task> {
 
   constructor(client: CrunApiOverviewSDK, entopts: any) {
     super(client, entopts)
@@ -32,7 +36,7 @@ class TaskEntity extends CrunApiOverviewEntityBase {
 
 
 
-  async load(this: any, reqmatch?: any, ctrl?: Control) {
+  async load(this: any, reqmatch?: TaskLoadMatch, ctrl?: Control): Promise<Task> {
 
     const utility = this._utility
 
@@ -136,7 +140,9 @@ class TaskEntity extends CrunApiOverviewEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<Task> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }

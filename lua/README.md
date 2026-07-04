@@ -9,12 +9,9 @@ The Lua SDK for the CrunApiOverview API — an entity-oriented client using Lua 
 
 
 ## Install
-```bash
-luarocks install voxgig-sdk-crun-api-overview
-```
-
-If the module is not yet published, add the source directory to
-your `LUA_PATH`:
+This package is not yet published to LuaRocks. Install it from the
+GitHub release tag (`lua/vX.Y.Z`, see [Releases](https://github.com/voxgig-sdk/crun-api-overview-sdk/releases)),
+or add the source directory to your `LUA_PATH`:
 
 ```bash
 export LUA_PATH="path/to/lua/?.lua;path/to/lua/?/init.lua;;"
@@ -32,7 +29,7 @@ loading a specific record.
 local sdk = require("crun-api-overview_sdk")
 
 local client = sdk.new({
-  apikey = os.getenv("CRUN-API-OVERVIEW_APIKEY"),
+  apikey = os.getenv("CRUN_API_OVERVIEW_APIKEY"),
 })
 ```
 
@@ -40,7 +37,7 @@ local client = sdk.new({
 
 ```lua
 -- Create
-local created, _ = client:Generate():create({ name = "Example" })
+local created, _ = client:generate():create({ name = "Example" })
 
 ```
 
@@ -87,7 +84,7 @@ Create a mock client for unit testing — no server required:
 ```lua
 local client = sdk.test()
 
-local result, err = client:CrunApiOverview():load({ id = "test01" })
+local result, err = client:generate():load({ id = "test01" })
 -- result contains mock response data
 ```
 
@@ -120,8 +117,8 @@ local client = sdk.new({
 Create a `.env.local` file at the project root:
 
 ```
-CRUN-API-OVERVIEW_TEST_LIVE=TRUE
-CRUN-API-OVERVIEW_APIKEY=<your-key>
+CRUN_API_OVERVIEW_TEST_LIVE=TRUE
+CRUN_API_OVERVIEW_APIKEY=<your-key>
 ```
 
 Then run:
@@ -251,7 +248,7 @@ API path: `/tasks/{task_id}`
 
 ### Generate
 
-Create an instance: `const generate = client.Generate()`
+Create an instance: `const generate = client.generate`
 
 #### Operations
 
@@ -279,7 +276,7 @@ Create an instance: `const generate = client.Generate()`
 #### Example: Create
 
 ```ts
-const generate = await client.Generate().create({
+const generate = await client.generate.create({
   model: /* `$STRING` */,
   prompt: /* `$STRING` */,
   status: /* `$STRING` */,
@@ -290,7 +287,7 @@ const generate = await client.Generate().create({
 
 ### Task
 
-Create an instance: `const task = client.Task()`
+Create an instance: `const task = client.task`
 
 #### Operations
 
@@ -315,7 +312,7 @@ Create an instance: `const task = client.Task()`
 #### Example: Load
 
 ```ts
-const task = await client.Task().load({ id: 'task_id' })
+const task = await client.task.load({ id: 'task_id' })
 ```
 
 
@@ -390,11 +387,11 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```lua
-local moon = client:Moon(nil)
-moon:load({ planet_id = "earth", id = "luna" }, nil)
+local generate = client:generate()
+generate:load({ id = "example_id" })
 
--- moon:data_get() now returns the loaded moon data
--- moon:match_get() returns the last match criteria
+-- generate:data_get() now returns the loaded generate data
+-- generate:match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

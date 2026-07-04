@@ -44,9 +44,7 @@ class TestGenerateEntity:
         generate_ref01_data = helpers.to_map(vs.getprop(
             vs.getpath(setup["data"], "new.generate"), "generate_ref01"))
 
-        generate_ref01_data_result, err = generate_ref01_ent.create(generate_ref01_data, None)
-        assert err is None
-        generate_ref01_data = helpers.to_map(generate_ref01_data_result)
+        generate_ref01_data = helpers.to_map(generate_ref01_ent.create(generate_ref01_data, None))
         assert generate_ref01_data is not None
 
 

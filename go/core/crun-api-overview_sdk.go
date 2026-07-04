@@ -245,11 +245,17 @@ func (sdk *CrunApiOverviewSDK) Direct(fetchargs map[string]any) (map[string]any,
 }
 
 
+// Generate returns a Generate entity bound to this client.
+// Idiomatic usage: client.Generate(nil).List(nil, nil) or
+// client.Generate(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *CrunApiOverviewSDK) Generate(data map[string]any) CrunApiOverviewEntity {
 	return NewGenerateEntityFunc(sdk, data)
 }
 
 
+// Task returns a Task entity bound to this client.
+// Idiomatic usage: client.Task(nil).List(nil, nil) or
+// client.Task(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *CrunApiOverviewSDK) Task(data map[string]any) CrunApiOverviewEntity {
 	return NewTaskEntityFunc(sdk, data)
 }

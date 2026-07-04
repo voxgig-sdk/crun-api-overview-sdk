@@ -49,8 +49,7 @@ class TestTaskEntity:
         # LOAD
         task_ref01_ent = client.Task(None)
         task_ref01_match_dt0 = {}
-        task_ref01_data_dt0_loaded, err = task_ref01_ent.load(task_ref01_match_dt0, None)
-        assert err is None
+        task_ref01_data_dt0_loaded = task_ref01_ent.load(task_ref01_match_dt0, None)
         assert task_ref01_data_dt0_loaded is not None
 
 

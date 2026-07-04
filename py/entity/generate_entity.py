@@ -1,7 +1,13 @@
 # CrunApiOverview SDK Generate entity
 
+from __future__ import annotations
+
 from utility.voxgig_struct import voxgig_struct as vs
 from core import helpers
+from crunapioverview_types import (
+    Generate,
+    GenerateCreateData,
+)
 
 
 class GenerateEntity:
@@ -44,7 +50,7 @@ class GenerateEntity:
             self._data = helpers.to_map(vs.clone(args)) or {}
             self._utility.feature_hook(self._entctx, "SetData")
 
-    def data_get(self):
+    def data_get(self) -> Generate:
         self._utility.feature_hook(self._entctx, "GetData")
         return vs.clone(self._data)
 
@@ -53,7 +59,7 @@ class GenerateEntity:
             self._match = helpers.to_map(vs.clone(args)) or {}
             self._utility.feature_hook(self._entctx, "SetMatch")
 
-    def match_get(self):
+    def match_get(self) -> Generate:
         self._utility.feature_hook(self._entctx, "GetMatch")
         return vs.clone(self._match)
 
@@ -62,7 +68,7 @@ class GenerateEntity:
     
 
     
-    def create(self, reqdata, ctrl=None):
+    def create(self, reqdata: GenerateCreateData, ctrl=None) -> Generate:
         utility = self._utility
         ctx = utility.make_context({
             "opname": "create",

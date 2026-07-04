@@ -43,8 +43,7 @@ class GenerateEntityTest extends TestCase
         $generate_ref01_data = Helpers::to_map(Vs::getprop(
             Vs::getpath($setup["data"], "new.generate"), "generate_ref01"));
 
-        [$generate_ref01_data_result, $err] = $generate_ref01_ent->create($generate_ref01_data, null);
-        $this->assertNull($err);
+        $generate_ref01_data_result = $generate_ref01_ent->create($generate_ref01_data, null);
         $generate_ref01_data = Helpers::to_map($generate_ref01_data_result);
         $this->assertNotNull($generate_ref01_data);
 

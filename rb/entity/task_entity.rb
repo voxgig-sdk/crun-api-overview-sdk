@@ -45,6 +45,7 @@ class TaskEntity
     end
   end
 
+  # @return [Task, Hash] the current Task data
   def data_get
     @_utility.feature_hook.call(@_entctx, "GetData")
     VoxgigStruct.clone(@_data)
@@ -57,12 +58,18 @@ class TaskEntity
     end
   end
 
+  # @return [Hash] the current match filter (any subset of Task fields)
   def match_get
     @_utility.feature_hook.call(@_entctx, "GetMatch")
     VoxgigStruct.clone(@_match)
   end
 
   
+  # Load a single Task.
+  #
+  # @param reqmatch [TaskLoadMatch, Hash, nil] match criteria (id/query fields)
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [Task, Hash] the loaded Task; raises CrunApiOverviewError on failure
   def load(reqmatch, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({

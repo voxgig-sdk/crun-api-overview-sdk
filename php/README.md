@@ -9,9 +9,10 @@ The PHP SDK for the CrunApiOverview API — an entity-oriented client using PHP 
 
 
 ## Install
-```bash
-composer require voxgig-sdk/crun-api-overview
-```
+This package is not yet published to Packagist. Install it from the
+GitHub release tag (`php/vX.Y.Z`):
+
+- Releases: [https://github.com/voxgig-sdk/crun-api-overview-sdk/releases](https://github.com/voxgig-sdk/crun-api-overview-sdk/releases)
 
 
 ## Tutorial: your first API call
@@ -26,7 +27,7 @@ loading a specific record.
 require_once 'crunapioverview_sdk.php';
 
 $client = new CrunApiOverviewSDK([
-    "apikey" => getenv("CRUN-API-OVERVIEW_APIKEY"),
+    "apikey" => getenv("CRUN_API_OVERVIEW_APIKEY"),
 ]);
 ```
 
@@ -34,7 +35,7 @@ $client = new CrunApiOverviewSDK([
 
 ```php
 // Create
-[$created, $_] = $client->Generate()->create(["name" => "Example"]);
+$created = $client->generate()->create(["name" => "Example"]);
 
 ```
 
@@ -46,28 +47,31 @@ $client = new CrunApiOverviewSDK([
 For endpoints not covered by entity methods:
 
 ```php
-[$result, $err] = $client->direct([
+// direct() is the raw-HTTP escape hatch: it returns a result array
+// (it does not throw). Branch on $result["ok"].
+$result = $client->direct([
     "path" => "/api/resource/{id}",
     "method" => "GET",
     "params" => ["id" => "example"],
 ]);
-if ($err) { throw new \Exception($err); }
 
 if ($result["ok"]) {
     echo $result["status"];  // 200
     print_r($result["data"]);  // response body
+} else {
+    echo "Error: " . $result["err"]->getMessage();
 }
 ```
 
 ### Prepare a request without sending it
 
 ```php
-[$fetchdef, $err] = $client->prepare([
+// prepare() throws on error and returns the fetch definition.
+$fetchdef = $client->prepare([
     "path" => "/api/resource/{id}",
     "method" => "DELETE",
     "params" => ["id" => "example"],
 ]);
-if ($err) { throw new \Exception($err); }
 
 echo $fetchdef["url"];
 echo $fetchdef["method"];
@@ -81,7 +85,7 @@ Create a mock client for unit testing — no server required:
 ```php
 $client = CrunApiOverviewSDK::test();
 
-[$result, $err] = $client->CrunApiOverview()->load(["id" => "test01"]);
+$result = $client->generate()->load(["id" => "test01"]);
 // $result contains mock response data
 ```
 
@@ -115,8 +119,8 @@ $client = new CrunApiOverviewSDK([
 Create a `.env.local` file at the project root:
 
 ```
-CRUN-API-OVERVIEW_TEST_LIVE=TRUE
-CRUN-API-OVERVIEW_APIKEY=<your-key>
+CRUN_API_OVERVIEW_TEST_LIVE=TRUE
+CRUN_API_OVERVIEW_APIKEY=<your-key>
 ```
 
 Then run:
@@ -186,8 +190,12 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return `[$result, $err]`. The first value is an
-`array` with these keys:
+Entity operations return the bare result data (an `array` for single-entity
+ops, a `list` for `list`) and throw on error. Wrap calls in
+`try`/`catch` to handle failures.
+
+The `direct()` escape hatch never throws — it returns a result `array`
+you branch on via `$result["ok"]`:
 
 | Key | Type | Description |
 | --- | --- | --- |
@@ -246,7 +254,7 @@ API path: `/tasks/{task_id}`
 
 ### Generate
 
-Create an instance: `const generate = client.Generate()`
+Create an instance: `const generate = client.generate`
 
 #### Operations
 
@@ -274,7 +282,7 @@ Create an instance: `const generate = client.Generate()`
 #### Example: Create
 
 ```ts
-const generate = await client.Generate().create({
+const generate = await client.generate.create({
   model: /* `$STRING` */,
   prompt: /* `$STRING` */,
   status: /* `$STRING` */,
@@ -285,7 +293,7 @@ const generate = await client.Generate().create({
 
 ### Task
 
-Create an instance: `const task = client.Task()`
+Create an instance: `const task = client.task`
 
 #### Operations
 
@@ -310,7 +318,7 @@ Create an instance: `const task = client.Task()`
 #### Example: Load
 
 ```ts
-const task = await client.Task().load({ id: 'task_id' })
+const task = await client.task.load({ id: 'task_id' })
 ```
 
 
@@ -385,11 +393,11 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```php
-$moon = $client->Moon();
-[$result, $err] = $moon->load(["planet_id" => "earth", "id" => "luna"]);
+$generate = $client->generate();
+$generate->load(["id" => "example_id"]);
 
-// $moon->dataGet() now returns the loaded moon data
-// $moon->matchGet() returns the last match criteria
+// $generate->dataGet() now returns the loaded generate data
+// $generate->matchGet() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

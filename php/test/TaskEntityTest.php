@@ -49,8 +49,7 @@ class TaskEntityTest extends TestCase
         // LOAD
         $task_ref01_ent = $client->Task(null);
         $task_ref01_match_dt0 = [];
-        [$task_ref01_data_dt0_loaded, $err] = $task_ref01_ent->load($task_ref01_match_dt0, null);
-        $this->assertNull($err);
+        $task_ref01_data_dt0_loaded = $task_ref01_ent->load($task_ref01_match_dt0, null);
         $this->assertNotNull($task_ref01_data_dt0_loaded);
 
     }

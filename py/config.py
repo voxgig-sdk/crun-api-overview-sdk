@@ -243,6 +243,7 @@ def make_config():
                       "orig": "task_id",
                       "reqd": True,
                       "type": "`$STRING`",
+                      "index$": 0,
                     },
                   ],
                 },

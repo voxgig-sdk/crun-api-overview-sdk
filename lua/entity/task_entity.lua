@@ -79,6 +79,10 @@ end
 
 
 
+---@param reqmatch TaskLoadMatch
+---@param ctrl? table
+---@return Task
+---@return string? err
 function TaskEntity:load(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

@@ -45,6 +45,7 @@ class GenerateEntity
     end
   end
 
+  # @return [Generate, Hash] the current Generate data
   def data_get
     @_utility.feature_hook.call(@_entctx, "GetData")
     VoxgigStruct.clone(@_data)
@@ -57,6 +58,7 @@ class GenerateEntity
     end
   end
 
+  # @return [Hash] the current match filter (any subset of Generate fields)
   def match_get
     @_utility.feature_hook.call(@_entctx, "GetMatch")
     VoxgigStruct.clone(@_match)
@@ -67,6 +69,11 @@ class GenerateEntity
   
 
   
+  # Create a new Generate.
+  #
+  # @param reqdata [GenerateCreateData, Hash, nil] body data
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [Generate, Hash] the created Generate; raises CrunApiOverviewError on failure
   def create(reqdata, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({
