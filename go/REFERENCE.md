@@ -102,18 +102,18 @@ generate := client.Generate(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `aspect_ratio` | ``$STRING`` | No |  |
-| `callback_url` | ``$STRING`` | No |  |
-| `duration` | ``$NUMBER`` | No |  |
-| `height` | ``$INTEGER`` | No |  |
-| `image_url` | ``$STRING`` | No |  |
-| `model` | ``$STRING`` | Yes |  |
-| `negative_prompt` | ``$STRING`` | No |  |
-| `num_image` | ``$INTEGER`` | No |  |
-| `prompt` | ``$STRING`` | Yes |  |
-| `status` | ``$STRING`` | Yes |  |
-| `task_id` | ``$STRING`` | Yes |  |
-| `width` | ``$INTEGER`` | No |  |
+| `aspect_ratio` | `string` | No |  |
+| `callback_url` | `string` | No |  |
+| `duration` | `float64` | No |  |
+| `height` | `int` | No |  |
+| `image_url` | `string` | No |  |
+| `model` | `string` | Yes |  |
+| `negative_prompt` | `string` | No |  |
+| `num_image` | `int` | No |  |
+| `prompt` | `string` | Yes |  |
+| `status` | `string` | Yes |  |
+| `task_id` | `string` | Yes |  |
+| `width` | `int` | No |  |
 
 ### Operations
 
@@ -123,10 +123,10 @@ Create a new entity with the given data.
 
 ```go
 result, err := client.Generate(nil).Create(map[string]any{
-    "model": /* `$STRING` */,
-    "prompt": /* `$STRING` */,
-    "status": /* `$STRING` */,
-    "task_id": /* `$STRING` */,
+    "model": /* string */,
+    "prompt": /* string */,
+    "status": /* string */,
+    "task_id": /* string */,
 }, nil)
 ```
 
@@ -164,15 +164,15 @@ task := client.Task(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `completed_at` | ``$STRING`` | No |  |
-| `created_at` | ``$STRING`` | Yes |  |
-| `credit_consumption` | ``$NUMBER`` | No |  |
-| `error` | ``$OBJECT`` | No |  |
-| `input_parameter` | ``$OBJECT`` | No |  |
-| `model` | ``$STRING`` | Yes |  |
-| `result` | ``$ARRAY`` | No |  |
-| `status` | ``$STRING`` | Yes |  |
-| `task_id` | ``$STRING`` | Yes |  |
+| `completed_at` | `string` | No |  |
+| `created_at` | `string` | Yes |  |
+| `credit_consumption` | `float64` | No |  |
+| `error` | `map[string]any` | No |  |
+| `input_parameter` | `map[string]any` | No |  |
+| `model` | `string` | Yes |  |
+| `result` | `[]any` | No |  |
+| `status` | `string` | Yes |  |
+| `task_id` | `string` | Yes |  |
 
 ### Operations
 

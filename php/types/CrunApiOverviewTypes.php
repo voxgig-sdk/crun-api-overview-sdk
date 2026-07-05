@@ -29,7 +29,7 @@ class Generate
     public ?int $width = null;
 }
 
-/** Match filter for Generate#create (any subset of Generate fields). */
+/** Request payload for Generate#create. */
 class GenerateCreateData
 {
     public ?string $aspect_ratio = null;
@@ -37,12 +37,12 @@ class GenerateCreateData
     public ?float $duration = null;
     public ?int $height = null;
     public ?string $image_url = null;
-    public ?string $model = null;
+    public string $model;
     public ?string $negative_prompt = null;
     public ?int $num_image = null;
-    public ?string $prompt = null;
-    public ?string $status = null;
-    public ?string $task_id = null;
+    public string $prompt;
+    public string $status;
+    public string $task_id;
     public ?int $width = null;
 }
 

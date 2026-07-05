@@ -61,7 +61,7 @@ Generate = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Generate#create (any subset of Generate fields).
+# Request payload for Generate#create.
 #
 # @!attribute [rw] aspect_ratio
 #   @return [String, nil]
@@ -79,7 +79,7 @@ Generate = Struct.new(
 #   @return [String, nil]
 #
 # @!attribute [rw] model
-#   @return [String, nil]
+#   @return [String]
 #
 # @!attribute [rw] negative_prompt
 #   @return [String, nil]
@@ -88,13 +88,13 @@ Generate = Struct.new(
 #   @return [Integer, nil]
 #
 # @!attribute [rw] prompt
-#   @return [String, nil]
+#   @return [String]
 #
 # @!attribute [rw] status
-#   @return [String, nil]
+#   @return [String]
 #
 # @!attribute [rw] task_id
-#   @return [String, nil]
+#   @return [String]
 #
 # @!attribute [rw] width
 #   @return [Integer, nil]

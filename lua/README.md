@@ -4,6 +4,8 @@
 
 The Lua SDK for the CrunApiOverview API — an entity-oriented client using Lua conventions.
 
+It exposes the API as capitalised, semantic **Entities** — e.g. `client:Generate()` — each with the same small set of operations (`load`, `create`) instead of raw URL paths and query strings. You call meaning, not endpoints, which keeps the cognitive load low.
+
 > Other languages, the CLI, and MCP server live alongside this one — see
 > the [top-level README](../README.md).
 
@@ -37,9 +39,31 @@ local client = sdk.new({
 
 ```lua
 -- Create
-local created, err = client:Generate():create({ name = "Example" })
+local created, err = client:Generate():create({ model = "example", prompt = "example", status = "example", task_id = "example" })
 if err then error(err) end
 
+```
+
+
+## Error handling
+
+Entity operations return `(value, err)`. Check `err` before using
+the value:
+
+```lua
+local generate, err = client:Generate():create({ model = "example", prompt = "example", status = "example", task_id = "example" })
+if err then error(err) end
+```
+
+`direct` follows the same `(value, err)` convention:
+
+```lua
+local result, err = client:direct({
+  path = "/api/resource/{id}",
+  method = "GET",
+  params = { id = "example_id" },
+})
+if err then error(err) end
 ```
 
 
@@ -85,8 +109,8 @@ Create a mock client for unit testing — no server required:
 ```lua
 local client = sdk.test()
 
-local result, err = client:Generate():load({ id = "test01" })
--- result is the loaded data; err is set on failure
+local result, err = client:Generate():create({ model = "example", prompt = "example", status = "example", task_id = "example" })
+-- result is the returned data; err is set on failure
 ```
 
 ### Use a custom fetch function
@@ -176,10 +200,7 @@ All entities share the same interface.
 | Method | Signature | Description |
 | --- | --- | --- |
 | `load` | `(reqmatch, ctrl) -> any, err` | Load a single entity by match criteria. |
-| `list` | `(reqmatch, ctrl) -> any, err` | List entities matching the criteria. |
 | `create` | `(reqdata, ctrl) -> any, err` | Create a new entity. |
-| `update` | `(reqdata, ctrl) -> any, err` | Update an existing entity. |
-| `remove` | `(reqmatch, ctrl) -> any, err` | Remove an entity. |
 | `data_get` | `() -> table` | Get entity data. |
 | `data_set` | `(data)` | Set entity data. |
 | `match_get` | `() -> table` | Get entity match criteria. |
@@ -194,12 +215,11 @@ data **directly** — there is no wrapper:
 
 | Operation | `value` |
 | --- | --- |
-| `load` / `create` / `update` / `remove` | the entity record (a `table`) |
-| `list` | an array (`table`) of entity records |
+| `load` / `create` | the entity record (a `table`) |
 
 Check `err` first (it is non-`nil` on failure), then use `value`:
 
-    local generate, err = client:Generate():load({ id = "example_id" })
+    local generate, err = client:Generate():load()
     if err then error(err) end
     -- generate is the loaded record
 
@@ -266,27 +286,27 @@ Create an instance: `local generate = client:Generate(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `aspect_ratio` | ``$STRING`` |  |
-| `callback_url` | ``$STRING`` |  |
-| `duration` | ``$NUMBER`` |  |
-| `height` | ``$INTEGER`` |  |
-| `image_url` | ``$STRING`` |  |
-| `model` | ``$STRING`` |  |
-| `negative_prompt` | ``$STRING`` |  |
-| `num_image` | ``$INTEGER`` |  |
-| `prompt` | ``$STRING`` |  |
-| `status` | ``$STRING`` |  |
-| `task_id` | ``$STRING`` |  |
-| `width` | ``$INTEGER`` |  |
+| `aspect_ratio` | `string` |  |
+| `callback_url` | `string` |  |
+| `duration` | `number` |  |
+| `height` | `number` |  |
+| `image_url` | `string` |  |
+| `model` | `string` |  |
+| `negative_prompt` | `string` |  |
+| `num_image` | `number` |  |
+| `prompt` | `string` |  |
+| `status` | `string` |  |
+| `task_id` | `string` |  |
+| `width` | `number` |  |
 
 #### Example: Create
 
 ```lua
 local generate, err = client:Generate():create({
-  model = nil, -- `$STRING`
-  prompt = nil, -- `$STRING`
-  status = nil, -- `$STRING`
-  task_id = nil, -- `$STRING`
+  model = nil, -- string
+  prompt = nil, -- string
+  status = nil, -- string
+  task_id = nil, -- string
 })
 ```
 
@@ -305,15 +325,15 @@ Create an instance: `local task = client:Task(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `completed_at` | ``$STRING`` |  |
-| `created_at` | ``$STRING`` |  |
-| `credit_consumption` | ``$NUMBER`` |  |
-| `error` | ``$OBJECT`` |  |
-| `input_parameter` | ``$OBJECT`` |  |
-| `model` | ``$STRING`` |  |
-| `result` | ``$ARRAY`` |  |
-| `status` | ``$STRING`` |  |
-| `task_id` | ``$STRING`` |  |
+| `completed_at` | `string` |  |
+| `created_at` | `string` |  |
+| `credit_consumption` | `number` |  |
+| `error` | `table` |  |
+| `input_parameter` | `table` |  |
+| `model` | `string` |  |
+| `result` | `table` |  |
+| `status` | `string` |  |
+| `task_id` | `string` |  |
 
 #### Example: Load
 
@@ -322,12 +342,16 @@ local task, err = client:Task():load({ id = "task_id" })
 ```
 
 
-## Explanation
+## Advanced
+
+> The sections above cover everyday use. The material below explains the
+> SDK's internals — useful when extending it with custom features, but not
+> needed for normal use.
 
 ### The operation pipeline
 
-Every entity operation (load, list, create, update, remove) follows a
-six-stage pipeline. Each stage fires a feature hook before executing:
+Every entity operation follows a six-stage pipeline. Each stage fires a
+feature hook before executing:
 
 ```
 PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
@@ -344,8 +368,9 @@ PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
 - **PreDone**: Final stage before returning to the caller. Entity
   state (match, data) is updated here.
 
-If any stage returns an error, the pipeline short-circuits and the
-error is returned to the caller as a second return value.
+If any stage errors, the pipeline short-circuits and the error surfaces
+to the caller — see [Error handling](#error-handling) for how that looks
+in this language.
 
 ### Features and hooks
 
@@ -389,14 +414,14 @@ when needed.
 
 ### Entity state
 
-Entity instances are stateful. After a successful `load`, the entity
+Entity instances are stateful. After a successful `create`, the entity
 stores the returned data and match criteria internally.
 
 ```lua
 local generate = client:Generate()
-generate:load({ id = "example_id" })
+generate:create({ model = "example", prompt = "example", status = "example", task_id = "example" })
 
--- generate:data_get() now returns the loaded generate data
+-- generate:data_get() now returns the generate data from the last create
 -- generate:match_get() returns the last match criteria
 ```
 

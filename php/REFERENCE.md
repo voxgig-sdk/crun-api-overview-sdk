@@ -8,7 +8,7 @@ Complete API reference for the CrunApiOverview PHP SDK.
 ### Constructor
 
 ```php
-require_once __DIR__ . '/crun-api-overview_sdk.php';
+require_once __DIR__ . '/crunapioverview_sdk.php';
 
 $client = new CrunApiOverviewSDK($options);
 ```
@@ -50,11 +50,11 @@ Create a new `GenerateEntity` instance. Pass `null` for no initial data.
 
 Create a new `TaskEntity` instance. Pass `null` for no initial data.
 
-#### `optionsMap(): array`
+#### `options_map(): array`
 
 Return a deep copy of the current SDK options.
 
-#### `getUtility(): ProjectNameUtility`
+#### `get_utility(): CrunApiOverviewUtility`
 
 Return a copy of the SDK utility object.
 
@@ -97,18 +97,18 @@ $generate = $client->Generate();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `aspect_ratio` | ``$STRING`` | No |  |
-| `callback_url` | ``$STRING`` | No |  |
-| `duration` | ``$NUMBER`` | No |  |
-| `height` | ``$INTEGER`` | No |  |
-| `image_url` | ``$STRING`` | No |  |
-| `model` | ``$STRING`` | Yes |  |
-| `negative_prompt` | ``$STRING`` | No |  |
-| `num_image` | ``$INTEGER`` | No |  |
-| `prompt` | ``$STRING`` | Yes |  |
-| `status` | ``$STRING`` | Yes |  |
-| `task_id` | ``$STRING`` | Yes |  |
-| `width` | ``$INTEGER`` | No |  |
+| `aspect_ratio` | `string` | No |  |
+| `callback_url` | `string` | No |  |
+| `duration` | `float` | No |  |
+| `height` | `int` | No |  |
+| `image_url` | `string` | No |  |
+| `model` | `string` | Yes |  |
+| `negative_prompt` | `string` | No |  |
+| `num_image` | `int` | No |  |
+| `prompt` | `string` | Yes |  |
+| `status` | `string` | Yes |  |
+| `task_id` | `string` | Yes |  |
+| `width` | `int` | No |  |
 
 ### Operations
 
@@ -118,28 +118,28 @@ Create a new entity with the given data. Throws on error.
 
 ```php
 $result = $client->Generate()->create([
-  "model" => /* `$STRING` */,
-  "prompt" => /* `$STRING` */,
-  "status" => /* `$STRING` */,
-  "task_id" => /* `$STRING` */,
+  "model" => null, // string
+  "prompt" => null, // string
+  "status" => null, // string
+  "task_id" => null, // string
 ]);
 ```
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -148,7 +148,7 @@ Set the entity match criteria.
 Create a new `GenerateEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 
@@ -165,15 +165,15 @@ $task = $client->Task();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `completed_at` | ``$STRING`` | No |  |
-| `created_at` | ``$STRING`` | Yes |  |
-| `credit_consumption` | ``$NUMBER`` | No |  |
-| `error` | ``$OBJECT`` | No |  |
-| `input_parameter` | ``$OBJECT`` | No |  |
-| `model` | ``$STRING`` | Yes |  |
-| `result` | ``$ARRAY`` | No |  |
-| `status` | ``$STRING`` | Yes |  |
-| `task_id` | ``$STRING`` | Yes |  |
+| `completed_at` | `string` | No |  |
+| `created_at` | `string` | Yes |  |
+| `credit_consumption` | `float` | No |  |
+| `error` | `array` | No |  |
+| `input_parameter` | `array` | No |  |
+| `model` | `string` | Yes |  |
+| `result` | `array` | No |  |
+| `status` | `string` | Yes |  |
+| `task_id` | `string` | Yes |  |
 
 ### Operations
 
@@ -187,19 +187,19 @@ $result = $client->Task()->load(["id" => "task_id"]);
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -208,7 +208,7 @@ Set the entity match criteria.
 Create a new `TaskEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 

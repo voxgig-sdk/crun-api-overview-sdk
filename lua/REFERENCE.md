@@ -95,18 +95,18 @@ local generate = client:Generate(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `aspect_ratio` | ``$STRING`` | No |  |
-| `callback_url` | ``$STRING`` | No |  |
-| `duration` | ``$NUMBER`` | No |  |
-| `height` | ``$INTEGER`` | No |  |
-| `image_url` | ``$STRING`` | No |  |
-| `model` | ``$STRING`` | Yes |  |
-| `negative_prompt` | ``$STRING`` | No |  |
-| `num_image` | ``$INTEGER`` | No |  |
-| `prompt` | ``$STRING`` | Yes |  |
-| `status` | ``$STRING`` | Yes |  |
-| `task_id` | ``$STRING`` | Yes |  |
-| `width` | ``$INTEGER`` | No |  |
+| `aspect_ratio` | `string` | No |  |
+| `callback_url` | `string` | No |  |
+| `duration` | `number` | No |  |
+| `height` | `number` | No |  |
+| `image_url` | `string` | No |  |
+| `model` | `string` | Yes |  |
+| `negative_prompt` | `string` | No |  |
+| `num_image` | `number` | No |  |
+| `prompt` | `string` | Yes |  |
+| `status` | `string` | Yes |  |
+| `task_id` | `string` | Yes |  |
+| `width` | `number` | No |  |
 
 ### Operations
 
@@ -116,10 +116,10 @@ Create a new entity with the given data.
 
 ```lua
 local result, err = client:Generate():create({
-  model = --[[ `$STRING` ]],
-  prompt = --[[ `$STRING` ]],
-  status = --[[ `$STRING` ]],
-  task_id = --[[ `$STRING` ]],
+  model = --[[ string ]],
+  prompt = --[[ string ]],
+  status = --[[ string ]],
+  task_id = --[[ string ]],
 })
 ```
 
@@ -163,15 +163,15 @@ local task = client:Task(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `completed_at` | ``$STRING`` | No |  |
-| `created_at` | ``$STRING`` | Yes |  |
-| `credit_consumption` | ``$NUMBER`` | No |  |
-| `error` | ``$OBJECT`` | No |  |
-| `input_parameter` | ``$OBJECT`` | No |  |
-| `model` | ``$STRING`` | Yes |  |
-| `result` | ``$ARRAY`` | No |  |
-| `status` | ``$STRING`` | Yes |  |
-| `task_id` | ``$STRING`` | Yes |  |
+| `completed_at` | `string` | No |  |
+| `created_at` | `string` | Yes |  |
+| `credit_consumption` | `number` | No |  |
+| `error` | `table` | No |  |
+| `input_parameter` | `table` | No |  |
+| `model` | `string` | Yes |  |
+| `result` | `table` | No |  |
+| `status` | `string` | Yes |  |
+| `task_id` | `string` | Yes |  |
 
 ### Operations
 

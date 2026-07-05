@@ -21,6 +21,18 @@
 ---@field width? number
 
 ---@class GenerateCreateData
+---@field aspect_ratio? string
+---@field callback_url? string
+---@field duration? number
+---@field height? number
+---@field image_url? string
+---@field model string
+---@field negative_prompt? string
+---@field num_image? number
+---@field prompt string
+---@field status string
+---@field task_id string
+---@field width? number
 
 ---@class Task
 ---@field completed_at? string

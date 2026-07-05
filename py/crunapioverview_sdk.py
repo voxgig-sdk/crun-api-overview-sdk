@@ -221,13 +221,13 @@ class CrunApiOverviewSDK:
 
 
     def Generate(self, data=None) -> "GenerateEntity":
-        """Entity factory: client.Generate().list({}) / client.Generate().load({"id": ...})."""
+        """Entity factory: client.Generate().list() / client.Generate().load({"id": ...})."""
         from entity.generate_entity import GenerateEntity
         return GenerateEntity(self, data)
 
 
     def Task(self, data=None) -> "TaskEntity":
-        """Entity factory: client.Task().list({}) / client.Task().load({"id": ...})."""
+        """Entity factory: client.Task().list() / client.Task().load({"id": ...})."""
         from entity.task_entity import TaskEntity
         return TaskEntity(self, data)
 

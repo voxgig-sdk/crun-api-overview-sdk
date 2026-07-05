@@ -8,7 +8,7 @@ Complete API reference for the CrunApiOverview Ruby SDK.
 ### Constructor
 
 ```ruby
-require_relative 'crun-api-overview_sdk'
+require_relative 'CrunApiOverview_sdk'
 
 client = CrunApiOverviewSDK.new(options)
 ```
@@ -98,18 +98,18 @@ generate = client.Generate
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `aspect_ratio` | ``$STRING`` | No |  |
-| `callback_url` | ``$STRING`` | No |  |
-| `duration` | ``$NUMBER`` | No |  |
-| `height` | ``$INTEGER`` | No |  |
-| `image_url` | ``$STRING`` | No |  |
-| `model` | ``$STRING`` | Yes |  |
-| `negative_prompt` | ``$STRING`` | No |  |
-| `num_image` | ``$INTEGER`` | No |  |
-| `prompt` | ``$STRING`` | Yes |  |
-| `status` | ``$STRING`` | Yes |  |
-| `task_id` | ``$STRING`` | Yes |  |
-| `width` | ``$INTEGER`` | No |  |
+| `aspect_ratio` | `String` | No |  |
+| `callback_url` | `String` | No |  |
+| `duration` | `Float` | No |  |
+| `height` | `Integer` | No |  |
+| `image_url` | `String` | No |  |
+| `model` | `String` | Yes |  |
+| `negative_prompt` | `String` | No |  |
+| `num_image` | `Integer` | No |  |
+| `prompt` | `String` | Yes |  |
+| `status` | `String` | Yes |  |
+| `task_id` | `String` | Yes |  |
+| `width` | `Integer` | No |  |
 
 ### Operations
 
@@ -119,10 +119,10 @@ Create a new entity with the given data. Raises on error.
 
 ```ruby
 result = client.Generate.create({
-  "model" => # `$STRING`,
-  "prompt" => # `$STRING`,
-  "status" => # `$STRING`,
-  "task_id" => # `$STRING`,
+  "model" => "example", # String
+  "prompt" => "example", # String
+  "status" => "example", # String
+  "task_id" => "example", # String
 })
 ```
 
@@ -166,15 +166,15 @@ task = client.Task
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `completed_at` | ``$STRING`` | No |  |
-| `created_at` | ``$STRING`` | Yes |  |
-| `credit_consumption` | ``$NUMBER`` | No |  |
-| `error` | ``$OBJECT`` | No |  |
-| `input_parameter` | ``$OBJECT`` | No |  |
-| `model` | ``$STRING`` | Yes |  |
-| `result` | ``$ARRAY`` | No |  |
-| `status` | ``$STRING`` | Yes |  |
-| `task_id` | ``$STRING`` | Yes |  |
+| `completed_at` | `String` | No |  |
+| `created_at` | `String` | Yes |  |
+| `credit_consumption` | `Float` | No |  |
+| `error` | `Hash` | No |  |
+| `input_parameter` | `Hash` | No |  |
+| `model` | `String` | Yes |  |
+| `result` | `Array` | No |  |
+| `status` | `String` | Yes |  |
+| `task_id` | `String` | Yes |  |
 
 ### Operations
 

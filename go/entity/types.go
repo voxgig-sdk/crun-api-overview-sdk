@@ -24,20 +24,19 @@ type Generate struct {
 	Width *int `json:"width,omitempty"`
 }
 
-// GenerateCreateData mirrors the generate fields as an all-optional match
-// filter (Go analog of Partial<Generate>).
+// GenerateCreateData is the typed request payload for Generate.CreateTyped.
 type GenerateCreateData struct {
 	AspectRatio *string `json:"aspect_ratio,omitempty"`
 	CallbackUrl *string `json:"callback_url,omitempty"`
 	Duration *float64 `json:"duration,omitempty"`
 	Height *int `json:"height,omitempty"`
 	ImageUrl *string `json:"image_url,omitempty"`
-	Model *string `json:"model,omitempty"`
+	Model string `json:"model"`
 	NegativePrompt *string `json:"negative_prompt,omitempty"`
 	NumImage *int `json:"num_image,omitempty"`
-	Prompt *string `json:"prompt,omitempty"`
-	Status *string `json:"status,omitempty"`
-	TaskId *string `json:"task_id,omitempty"`
+	Prompt string `json:"prompt"`
+	Status string `json:"status"`
+	TaskId string `json:"task_id"`
 	Width *int `json:"width,omitempty"`
 }
 

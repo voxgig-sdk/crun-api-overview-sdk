@@ -34,18 +34,21 @@ class Generate(GenerateRequired, total=False):
     width: int
 
 
-class GenerateCreateData(TypedDict, total=False):
+class GenerateCreateDataRequired(TypedDict):
+    model: str
+    prompt: str
+    status: str
+    task_id: str
+
+
+class GenerateCreateData(GenerateCreateDataRequired, total=False):
     aspect_ratio: str
     callback_url: str
     duration: float
     height: int
     image_url: str
-    model: str
     negative_prompt: str
     num_image: int
-    prompt: str
-    status: str
-    task_id: str
     width: int
 
 

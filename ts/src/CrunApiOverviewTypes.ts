@@ -20,7 +20,20 @@ export interface Generate {
   width?: number
 }
 
-export type GenerateCreateData = Partial<Generate>
+export interface GenerateCreateData {
+  aspect_ratio?: string
+  callback_url?: string
+  duration?: number
+  height?: number
+  image_url?: string
+  model: string
+  negative_prompt?: string
+  num_image?: number
+  prompt: string
+  status: string
+  task_id: string
+  width?: number
+}
 
 export interface Task {
   completed_at?: string

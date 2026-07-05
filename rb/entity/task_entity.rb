@@ -67,10 +67,12 @@ class TaskEntity
   
   # Load a single Task.
   #
-  # @param reqmatch [TaskLoadMatch, Hash, nil] match criteria (id/query fields)
+  # @param reqmatch [TaskLoadMatch, Hash, nil] match criteria (id/query fields);
+  #   optional — an entity with no id-like key loads with no match (nil is treated
+  #   as an empty match, so client.Task.load works with no args).
   # @param ctrl [Object, nil] optional per-call control
   # @return [Task, Hash] the loaded Task; raises CrunApiOverviewError on failure
-  def load(reqmatch, ctrl = nil)
+  def load(reqmatch = nil, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({
       "opname" => "load",
