@@ -6,9 +6,6 @@
     },
     "kit": {
       "config": {
-        "auth": {
-          "prefix": "Bearer"
-        },
         "docs_order": [
           "ts",
           "py",
@@ -408,15 +405,25 @@
           "url": "https://crun.ai"
         },
         "description": "The Crun API provides access to a wide range of AI models for tasks such as image generation, video creation, and audio processing through a unified platform. Developers can easily integrate these capabilities into their applications while benefiting from competitive pricing and robust support.",
+        "meta_source": "https://www.freepublicapis.com",
+        "security": {
+          "in": "header",
+          "name": "X-API-KEY",
+          "prefix": "",
+          "scheme": "ApiKeyAuth",
+          "type": "apiKey"
+        },
         "servers": [
           {
             "description": "Production server",
             "url": "https://api.crun.ai"
           }
         ],
+        "summary": "The Crun API provides access to a wide range of AI models for tasks such as image generation, video creation, and audio processing through a unified platform.",
         "termsOfService": "https://crun.ai/terms",
         "title": "Crun API",
-        "version": "1.0.0"
+        "version": "1.0.0",
+        "website": "https://docs.crun.ai/"
       },
       "option": {},
       "target": {
@@ -469,6 +476,9 @@
           },
           "name": "go-cli",
           "phase": {
+            "agentguide": {
+              "active": false
+            },
             "entity": {
               "active": false
             },
@@ -519,6 +529,9 @@
           },
           "name": "go-mcp",
           "phase": {
+            "agentguide": {
+              "active": false
+            },
             "entity": {
               "active": false
             },

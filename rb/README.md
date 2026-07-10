@@ -36,7 +36,7 @@ client = CrunApiOverviewSDK.new({
 
 ```ruby
 # create returns the bare created Generate record.
-created = client.Generate.create({ "model" => "example", "prompt" => "example", "status" => "example", "task_id" => "example" })
+created = client.Generate.create({ "model" => "example_model", "prompt" => "example_prompt", "status" => "example_status", "task_id" => "example_task_id" })
 
 ```
 
@@ -47,9 +47,9 @@ Entity operations raise on failure, so rescue them:
 
 ```ruby
 begin
-  generate = client.Generate.create({ "model" => "example", "prompt" => "example", "status" => "example", "task_id" => "example" })
+  task = client.Task.load({ "id" => "example_id" })
 rescue => err
-  warn "create failed: #{err}"
+  warn "load failed: #{err}"
 end
 ```
 
@@ -110,14 +110,17 @@ end
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required:
+Create a mock client for unit testing — no server required. Seed fixture
+data via the `entity` option so offline calls resolve without a live server:
 
 ```ruby
-client = CrunApiOverviewSDK.test
+client = CrunApiOverviewSDK.test({
+  "entity" => { "task" => { "test01" => { "id" => "test01" } } },
+})
 
 # Entity ops return the bare mock record (raises on error).
-generate = client.Generate.create({ "model" => "example", "prompt" => "example", "status" => "example", "task_id" => "example" })
-puts generate
+task = client.Task.load({ "id" => "test01" })
+puts task
 ```
 
 ### Use a custom fetch function
@@ -307,10 +310,10 @@ Create an instance: `generate = client.Generate`
 
 ```ruby
 generate = client.Generate.create({
-  "model" => "example", # String
-  "prompt" => "example", # String
-  "status" => "example", # String
-  "task_id" => "example", # String
+  "model" => "example_model", # String
+  "prompt" => "example_prompt", # String
+  "status" => "example_status", # String
+  "task_id" => "example_task_id", # String
 })
 ```
 
@@ -419,15 +422,15 @@ when needed.
 
 ### Entity state
 
-Entity instances are stateful. After a successful `create`, the entity
+Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```ruby
-generate = client.Generate
-generate.create({ "model" => "example", "prompt" => "example", "status" => "example", "task_id" => "example" })
+task = client.Task
+task.load({ "id" => "example_id" })
 
-# generate.data_get now returns the generate data from the last create
-# generate.match_get returns the last match criteria
+# task.data_get now returns the task data from the last load
+# task.match_get returns the last match criteria
 ```
 
 Call `make` to create a fresh instance with the same configuration

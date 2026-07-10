@@ -39,7 +39,7 @@ class Config {
     base: 'https://api.crun.ai',
 
     auth: {
-      prefix: 'Bearer',
+      prefix: '',
     },
 
     headers: {

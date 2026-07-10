@@ -119,10 +119,10 @@ Create a new entity with the given data. Raises on error.
 
 ```ruby
 result = client.Generate.create({
-  "model" => "example", # String
-  "prompt" => "example", # String
-  "status" => "example", # String
-  "task_id" => "example", # String
+  "model" => "example_model", # String
+  "prompt" => "example_prompt", # String
+  "status" => "example_status", # String
+  "task_id" => "example_task_id", # String
 })
 ```
 

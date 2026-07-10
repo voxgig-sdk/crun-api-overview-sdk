@@ -43,7 +43,7 @@ client = CrunApiOverviewSDK({
 
 ```python
 # Create — returns the bare created record (a dict)
-created = client.Generate().create({"model": "example", "prompt": "example", "status": "example", "task_id": "example"})
+created = client.Generate().create({"model": "example_model", "prompt": "example_prompt", "status": "example_status", "task_id": "example_task_id"})
 
 ```
 
@@ -54,10 +54,10 @@ Entity operations raise on failure, so wrap them in `try` / `except`:
 
 ```python
 try:
-    generate = client.Generate().create({ "model": "example", "prompt": "example", "status": "example", "task_id": "example" })
-    print(generate)
+    task = client.Task().load({"id": "example_id"})
+    print(task)
 except Exception as err:
-    print(f"create failed: {err}")
+    print(f"load failed: {err}")
 ```
 
 `direct()` does **not** raise — it returns the result envelope. Branch
@@ -122,8 +122,8 @@ Create a mock client for unit testing — no server required:
 client = CrunApiOverviewSDK.test()
 
 # Entity ops return the bare record and raise on error.
-generate = client.Generate().create({"model": "example", "prompt": "example", "status": "example", "task_id": "example"})
-# generate contains the mock response record
+task = client.Task().load({"id": "test01"})
+# task contains the mock response record
 ```
 
 ### Use a custom fetch function
@@ -314,10 +314,10 @@ Create an instance: `generate = client.Generate()`
 
 ```python
 generate = client.Generate().create({
-    "model": "example",  # str
-    "prompt": "example",  # str
-    "status": "example",  # str
-    "task_id": "example",  # str
+    "model": "example_model",  # str
+    "prompt": "example_prompt",  # str
+    "status": "example_status",  # str
+    "task_id": "example_task_id",  # str
 })
 ```
 
@@ -424,15 +424,15 @@ Import entity or utility modules directly only when needed.
 
 ### Entity state
 
-Entity instances are stateful. After a successful `create`, the entity
+Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```python
-generate = client.Generate()
-generate.create({ "model": "example", "prompt": "example", "status": "example", "task_id": "example" })
+task = client.Task()
+task.load({"id": "example_id"})
 
-# generate.data_get() now returns the generate data from the last create
-# generate.match_get() returns the last match criteria
+# task.data_get() now returns the task data from the last load
+# task.match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

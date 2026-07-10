@@ -39,7 +39,7 @@ local client = sdk.new({
 
 ```lua
 -- Create
-local created, err = client:Generate():create({ model = "example", prompt = "example", status = "example", task_id = "example" })
+local created, err = client:Generate():create({ model = "example_model", prompt = "example_prompt", status = "example_status", task_id = "example_task_id" })
 if err then error(err) end
 
 ```
@@ -51,7 +51,7 @@ Entity operations return `(value, err)`. Check `err` before using
 the value:
 
 ```lua
-local generate, err = client:Generate():create({ model = "example", prompt = "example", status = "example", task_id = "example" })
+local task, err = client:Task():load({ id = "example_id" })
 if err then error(err) end
 ```
 
@@ -109,7 +109,7 @@ Create a mock client for unit testing — no server required:
 ```lua
 local client = sdk.test()
 
-local result, err = client:Generate():create({ model = "example", prompt = "example", status = "example", task_id = "example" })
+local result, err = client:Task():load({ id = "test01" })
 -- result is the returned data; err is set on failure
 ```
 
@@ -303,10 +303,10 @@ Create an instance: `local generate = client:Generate(nil)`
 
 ```lua
 local generate, err = client:Generate():create({
-  model = nil, -- string
-  prompt = nil, -- string
-  status = nil, -- string
-  task_id = nil, -- string
+  model = "example_model", -- string
+  prompt = "example_prompt", -- string
+  status = "example_status", -- string
+  task_id = "example_task_id", -- string
 })
 ```
 
@@ -414,15 +414,15 @@ when needed.
 
 ### Entity state
 
-Entity instances are stateful. After a successful `create`, the entity
+Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```lua
-local generate = client:Generate()
-generate:create({ model = "example", prompt = "example", status = "example", task_id = "example" })
+local task = client:Task()
+task:load({ id = "example_id" })
 
--- generate:data_get() now returns the generate data from the last create
--- generate:match_get() returns the last match criteria
+-- task:data_get() now returns the task data from the last load
+-- task:match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

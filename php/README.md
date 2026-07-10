@@ -37,7 +37,7 @@ $client = new CrunApiOverviewSDK([
 
 ```php
 // create() returns the bare created Generate record.
-$created = $client->Generate()->create(["model" => "example", "prompt" => "example", "status" => "example", "task_id" => "example"]);
+$created = $client->Generate()->create(["model" => "example_model", "prompt" => "example_prompt", "status" => "example_status", "task_id" => "example_task_id"]);
 
 ```
 
@@ -49,7 +49,7 @@ Entity operations throw a `\Throwable` on failure, so wrap them in
 
 ```php
 try {
-    $generate = $client->Generate()->create(["model" => "example", "prompt" => "example", "status" => "example", "task_id" => "example"]);
+    $task = $client->Task()->load(["id" => "example_id"]);
 } catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
 }
@@ -116,14 +116,17 @@ print_r($fetchdef["headers"]);
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required:
+Create a mock client for unit testing — no server required. Seed fixture
+data via the `entity` option so offline calls resolve without a live server:
 
 ```php
-$client = CrunApiOverviewSDK::test();
+$client = CrunApiOverviewSDK::test([
+    "entity" => ["task" => ["test01" => ["id" => "test01"]]],
+]);
 
 // Entity ops return the bare mock record (throws on error).
-$generate = $client->Generate()->create(["model" => "example", "prompt" => "example", "status" => "example", "task_id" => "example"]);
-print_r($generate);
+$task = $client->Task()->load(["id" => "test01"]);
+print_r($task);
 ```
 
 ### Use a custom fetch function
@@ -429,15 +432,15 @@ when needed.
 
 ### Entity state
 
-Entity instances are stateful. After a successful `create`, the entity
+Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```php
-$generate = $client->Generate();
-$generate->create(["model" => "example", "prompt" => "example", "status" => "example", "task_id" => "example"]);
+$task = $client->Task();
+$task->load(["id" => "example_id"]);
 
-// $generate->data_get() now returns the generate data from the last create
-// $generate->match_get() returns the last match criteria
+// $task->data_get() now returns the task data from the last load
+// $task->match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

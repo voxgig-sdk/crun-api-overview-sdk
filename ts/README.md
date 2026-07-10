@@ -55,10 +55,10 @@ Entity operations reject on failure, so wrap them in `try` / `catch`:
 
 ```ts
 try {
-  const generate = await client.Generate().create({ model: "example", prompt: "example", status: "example", task_id: "example" })
-  console.log(generate)
+  const task = await client.Task().load({ id: "example_id" })
+  console.log(task)
 } catch (err) {
-  console.error('create failed:', err)
+  console.error('load failed:', err)
 }
 ```
 
@@ -122,9 +122,9 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = CrunApiOverviewSDK.test()
 
-const generate = await client.Generate().create({ model: 'example_model', prompt: 'example_prompt', status: 'example_status', task_id: 'example_task_id' })
-// generate is a bare entity populated with mock response data
-console.log(generate)
+const task = await client.Task().load({ id: 'test01' })
+// task is a bare entity populated with mock response data
+console.log(task)
 ```
 
 You can also use the instance method:
@@ -139,10 +139,10 @@ const testClient = client.tester()
 Entity instances remember their last match and data:
 
 ```ts
-const entity = client.Generate()
+const entity = client.Task()
 
 // First call runs the operation and stores its result
-await entity.create({ model: 'example_model', prompt: 'example_prompt', status: 'example_status', task_id: 'example_task_id' })
+await entity.load({ id: 'example' })
 
 // Subsequent calls reuse the stored state
 const data = entity.data()
@@ -363,10 +363,10 @@ Create an instance: `const generate = client.Generate()`
 
 ```ts
 const generate = await client.Generate().create({
-  model: /* string */,
-  prompt: /* string */,
-  status: /* string */,
-  task_id: /* string */,
+  model: 'example_model',
+  prompt: 'example_prompt',
+  status: 'example_status',
+  task_id: 'example_task_id',
 })
 ```
 
@@ -466,16 +466,16 @@ import { CrunApiOverviewSDK } from '@voxgig-sdk/crun-api-overview'
 
 ### Entity state
 
-Entity instances are stateful. After a successful `create`, the entity
+Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally. Subsequent
 calls on the same instance can rely on this state.
 
 ```ts
-const generate = client.Generate()
-await generate.create({ model: "example", prompt: "example", status: "example", task_id: "example" })
+const task = client.Task()
+await task.load({ id: "example_id" })
 
-// generate.data() now returns the generate data from the last `create`
-// generate.match() returns the last match criteria
+// task.data() now returns the task data from the last `load`
+// task.match() returns { id: "example_id" }
 ```
 
 Call `make()` to create a fresh instance with the same configuration

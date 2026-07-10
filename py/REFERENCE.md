@@ -113,10 +113,10 @@ Create a new entity with the given data. Returns the created entity data and rai
 
 ```python
 result = client.Generate().create({
-    "model": "example",  # str
-    "prompt": "example",  # str
-    "status": "example",  # str
-    "task_id": "example",  # str
+    "model": "example_model",  # str
+    "prompt": "example_prompt",  # str
+    "status": "example_status",  # str
+    "task_id": "example_task_id",  # str
 })
 ```
 

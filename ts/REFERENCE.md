@@ -150,10 +150,10 @@ Create a new entity with the given data.
 
 ```ts
 const result = await client.Generate().create({
-  model: /* string */,
-  prompt: /* string */,
-  status: /* string */,
-  task_id: /* string */,
+  model: 'example_model',
+  prompt: 'example_prompt',
+  status: 'example_status',
+  task_id: 'example_task_id',
 })
 ```
 

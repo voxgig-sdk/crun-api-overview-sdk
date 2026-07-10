@@ -54,7 +54,7 @@ func main() {
     })
 
     // Create a generate.
-    created, err := client.Generate(nil).Create(map[string]any{"model": "example", "prompt": "example", "status": "example", "task_id": "example"}, nil)
+    created, err := client.Generate(nil).Create(map[string]any{"model": "example_model", "prompt": "example_prompt", "status": "example_status", "task_id": "example_task_id"}, nil)
     if err != nil {
         panic(err)
     }
@@ -69,12 +69,12 @@ Every entity operation returns `(value, error)`. Check `err` before
 using the value — there is no exception to catch:
 
 ```go
-generate, err := client.Generate(nil).Create(map[string]any{"model": "example", "prompt": "example", "status": "example", "task_id": "example"}, nil)
+task, err := client.Task(nil).Load(map[string]any{"id": "example_id"}, nil)
 if err != nil {
     // handle err
     return
 }
-_ = generate
+_ = task
 ```
 
 `Direct` follows the same `(value, error)` convention:
@@ -138,13 +138,13 @@ Create a mock client for unit testing — no server required:
 ```go
 client := sdk.Test()
 
-generate, err := client.Generate(nil).Create(
-    map[string]any{"model": "example", "prompt": "example", "status": "example", "task_id": "example"}, nil,
+task, err := client.Task(nil).Load(
+    map[string]any{"id": "test01"}, nil,
 )
 if err != nil {
     panic(err)
 }
-fmt.Println(generate) // the returned mock data
+fmt.Println(task) // the returned mock data
 ```
 
 ### Use a custom fetch function
@@ -336,11 +336,15 @@ Create an instance: `generate := client.Generate(nil)`
 
 ```go
 result, err := client.Generate(nil).Create(map[string]any{
-    "model": /* string */,
-    "prompt": /* string */,
-    "status": /* string */,
-    "task_id": /* string */,
+    "model": "example_model",
+    "prompt": "example_prompt",
+    "status": "example_status",
+    "task_id": "example_task_id",
 }, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 
@@ -448,15 +452,15 @@ like `core.ToMapAny`.
 
 ### Entity state
 
-Entity instances are stateful. After a successful `Create`, the entity
+Entity instances are stateful. After a successful `Load`, the entity
 stores the returned data and match criteria internally.
 
 ```go
-generate := client.Generate(nil)
-generate.Create(map[string]any{"model": "example", "prompt": "example", "status": "example", "task_id": "example"}, nil)
+task := client.Task(nil)
+task.Load(map[string]any{"id": "example_id"}, nil)
 
-// generate.Data() now returns the generate data from the last create
-// generate.Match() returns the last match criteria
+// task.Data() now returns the task data from the last load
+// task.Match() returns the last match criteria
 ```
 
 Call `Make()` to create a fresh instance with the same configuration

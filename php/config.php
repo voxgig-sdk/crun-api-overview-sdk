@@ -21,7 +21,7 @@ class CrunApiOverviewConfig
             "options" => [
                 "base" => "https://api.crun.ai",
                 "auth" => [
-                    "prefix" => "Bearer",
+                    "prefix" => "",
                 ],
                 "headers" => [
           'content-type' => 'application/json',

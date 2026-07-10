@@ -96,6 +96,7 @@ same parameters as `Direct()`.
 
 ```go
 generate := client.Generate(nil)
+fmt.Println(generate.GetName()) // "generate"
 ```
 
 ### Fields
@@ -123,11 +124,15 @@ Create a new entity with the given data.
 
 ```go
 result, err := client.Generate(nil).Create(map[string]any{
-    "model": /* string */,
-    "prompt": /* string */,
-    "status": /* string */,
-    "task_id": /* string */,
+    "model": "example_model",
+    "prompt": "example_prompt",
+    "status": "example_status",
+    "task_id": "example_task_id",
 }, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods
@@ -158,6 +163,7 @@ Return the entity name.
 
 ```go
 task := client.Task(nil)
+fmt.Println(task.GetName()) // "task"
 ```
 
 ### Fields
@@ -182,6 +188,10 @@ Load a single entity matching the given criteria.
 
 ```go
 result, err := client.Task(nil).Load(map[string]any{"id": "task_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods
