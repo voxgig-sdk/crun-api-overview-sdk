@@ -1,4 +1,4 @@
--- ProjectName SDK exists test
+-- CrunApiOverview SDK exists test
 
 local sdk = require("crun-api-overview_sdk")
 
