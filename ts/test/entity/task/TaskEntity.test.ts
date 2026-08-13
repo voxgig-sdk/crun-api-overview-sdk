@@ -26,8 +26,8 @@ import {
 describe('TaskEntity', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when CRUNAPIOVERVIEW_TEST_LIVE=TRUE.
-  afterEach(liveDelay('CRUNAPIOVERVIEW_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when CRUN_API_OVERVIEW_TEST_LIVE=TRUE.
+  afterEach(liveDelay('CRUN_API_OVERVIEW_TEST_LIVE'))
 
   test('instance', async () => {
     const testsdk = CrunApiOverviewSDK.test()

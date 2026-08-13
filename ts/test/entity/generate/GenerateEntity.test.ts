@@ -26,8 +26,8 @@ import {
 describe('GenerateEntity', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when CRUNAPIOVERVIEW_TEST_LIVE=TRUE.
-  afterEach(liveDelay('CRUNAPIOVERVIEW_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when CRUN_API_OVERVIEW_TEST_LIVE=TRUE.
+  afterEach(liveDelay('CRUN_API_OVERVIEW_TEST_LIVE'))
 
   test('instance', async () => {
     const testsdk = CrunApiOverviewSDK.test()
@@ -62,7 +62,7 @@ describe('GenerateEntity', async () => {
     const generate_ref01_ent = client.Generate()
     let generate_ref01_data = setup.data.new.generate['generate_ref01']
 
-    generate_ref01_data = await generate_ref01_ent.create(generate_ref01_data)
+    generate_ref01_data = (await generate_ref01_ent.create(generate_ref01_data)).data()
     assert(null != generate_ref01_data)
 
 

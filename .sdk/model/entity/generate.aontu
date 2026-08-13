@@ -41,7 +41,7 @@ main: kit: entity: generate: {
       type: "`$STRING`"
     }
     {
-      name: "num_image"
+      name: "num_images"
       req: false
       type: "`$INTEGER`"
     }

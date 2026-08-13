@@ -14,12 +14,12 @@ from __future__ import annotations
 
 from urllib.parse import quote
 
-from config import make_config
-from features import _make_feature
-from core.control import CrunApiOverviewControl
-from core.error import CrunApiOverviewError
-from core.result import CrunApiOverviewResult
-from core.spec import CrunApiOverviewSpec
+from crunapioverview_sdk.config import make_config
+from crunapioverview_sdk.features import _make_feature
+from crunapioverview_sdk.core.control import CrunApiOverviewControl
+from crunapioverview_sdk.core.error import CrunApiOverviewError
+from crunapioverview_sdk.core.result import CrunApiOverviewResult
+from crunapioverview_sdk.core.spec import CrunApiOverviewSpec
 
 
 # True when this SDK was generated with the named feature.

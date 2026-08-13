@@ -6,9 +6,9 @@ import time
 
 import pytest
 
-from utility.voxgig_struct import voxgig_struct as vs
+from crunapioverview_sdk.utility.voxgig_struct import voxgig_struct as vs
 from crunapioverview_sdk import CrunApiOverviewSDK
-from core import helpers
+from crunapioverview_sdk.core import helpers
 
 _TEST_DIR = os.path.dirname(os.path.abspath(__file__))
 from test import runner
@@ -36,7 +36,7 @@ class TestGenerateEntity:
         # without an *_ENTID env override, those IDs hit the live API and 4xx.
         if setup.get("synthetic_only"):
             pytest.skip("live entity test uses synthetic IDs from fixture — "
-                        "set CRUNAPIOVERVIEW_TEST_GENERATE_ENTID JSON to run live")
+                        "set CRUN_API_OVERVIEW_TEST_GENERATE_ENTID JSON to run live")
         client = setup["client"]
 
         # CREATE
@@ -44,7 +44,7 @@ class TestGenerateEntity:
         generate_ref01_data = helpers.to_map(vs.getprop(
             vs.getpath(setup["data"], "new.generate"), "generate_ref01"))
 
-        generate_ref01_data = helpers.to_map(generate_ref01_ent.create(generate_ref01_data, None))
+        generate_ref01_data = helpers.to_map(runner.entity_data(generate_ref01_ent.create(generate_ref01_data, None)))
         assert generate_ref01_data is not None
 
 
@@ -78,37 +78,37 @@ def _generate_basic_setup(extra):
     # mode is on without a real override, the basic test runs against synthetic
     # IDs from the fixture and 4xx's. We surface this so the test can skip.
     _entid_env_raw = os.environ.get(
-        "CRUNAPIOVERVIEW_TEST_GENERATE_ENTID")
+        "CRUN_API_OVERVIEW_TEST_GENERATE_ENTID")
     _idmap_overridden = _entid_env_raw is not None and _entid_env_raw.strip().startswith("{")
 
     env = runner.env_override({
-        "CRUNAPIOVERVIEW_TEST_GENERATE_ENTID": idmap,
-        "CRUNAPIOVERVIEW_TEST_LIVE": "FALSE",
-        "CRUNAPIOVERVIEW_TEST_EXPLAIN": "FALSE",
-        "CRUNAPIOVERVIEW_APIKEY": "NONE",
+        "CRUN_API_OVERVIEW_TEST_GENERATE_ENTID": idmap,
+        "CRUN_API_OVERVIEW_TEST_LIVE": "FALSE",
+        "CRUN_API_OVERVIEW_TEST_EXPLAIN": "FALSE",
+        "CRUN_API_OVERVIEW_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
-        env.get("CRUNAPIOVERVIEW_TEST_GENERATE_ENTID"))
+        env.get("CRUN_API_OVERVIEW_TEST_GENERATE_ENTID"))
     if idmap_resolved is None:
         idmap_resolved = helpers.to_map(idmap)
 
-    if env.get("CRUNAPIOVERVIEW_TEST_LIVE") == "TRUE":
+    if env.get("CRUN_API_OVERVIEW_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("CRUNAPIOVERVIEW_APIKEY"),
+                "apikey": env.get("CRUN_API_OVERVIEW_APIKEY"),
             },
             extra or {},
         ])
         client = CrunApiOverviewSDK(helpers.to_map(merged_opts))
 
-    _live = env.get("CRUNAPIOVERVIEW_TEST_LIVE") == "TRUE"
+    _live = env.get("CRUN_API_OVERVIEW_TEST_LIVE") == "TRUE"
     return {
         "client": client,
         "data": entity_data,
         "idmap": idmap_resolved,
         "env": env,
-        "explain": env.get("CRUNAPIOVERVIEW_TEST_EXPLAIN") == "TRUE",
+        "explain": env.get("CRUN_API_OVERVIEW_TEST_EXPLAIN") == "TRUE",
         "live": _live,
         "synthetic_only": _live and not _idmap_overridden,
         "now": int(time.time() * 1000),

@@ -19,11 +19,15 @@ import {
 describe('TaskDirect', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when CRUNAPIOVERVIEW_TEST_LIVE=TRUE.
-  afterEach(liveDelay('CRUNAPIOVERVIEW_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when CRUN_API_OVERVIEW_TEST_LIVE=TRUE.
+  afterEach(liveDelay('CRUN_API_OVERVIEW_TEST_LIVE'))
 
   test('direct-exists', async () => {
     const sdk = new CrunApiOverviewSDK({
+      // Concrete base: a live construction must satisfy any server
+      // variables a templated base URL declares; overriding base with a
+      // literal (as the direct flow tests do) sidesteps the requirement.
+      base: 'http://localhost:8080',
       system: { fetch: async () => ({}) }
     })
     assert('function' === typeof sdk.direct)
@@ -78,19 +82,19 @@ function directSetup(mockres?: any) {
   const calls: any[] = []
 
   const env = envOverride({
-    'CRUNAPIOVERVIEW_TEST_TASK_ENTID': {},
-    'CRUNAPIOVERVIEW_TEST_LIVE': 'FALSE',
-    'CRUNAPIOVERVIEW_APIKEY': 'NONE',
+    'CRUN_API_OVERVIEW_TEST_TASK_ENTID': {},
+    'CRUN_API_OVERVIEW_TEST_LIVE': 'FALSE',
+    'CRUN_API_OVERVIEW_APIKEY': 'NONE',
   })
 
-  const live = 'TRUE' === env.CRUNAPIOVERVIEW_TEST_LIVE
+  const live = 'TRUE' === env.CRUN_API_OVERVIEW_TEST_LIVE
 
   if (live) {
     const client = new CrunApiOverviewSDK({
-      apikey: env.CRUNAPIOVERVIEW_APIKEY,
+      apikey: env.CRUN_API_OVERVIEW_APIKEY,
     })
 
-    let idmap: any = env['CRUNAPIOVERVIEW_TEST_TASK_ENTID']
+    let idmap: any = env['CRUN_API_OVERVIEW_TEST_TASK_ENTID']
     if ('string' === typeof idmap && idmap.startsWith('{')) {
       idmap = JSON.parse(idmap)
     }

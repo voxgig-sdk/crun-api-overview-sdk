@@ -43,8 +43,8 @@ class CrunApiOverviewTestRunner
 
     public static function env_override(array $m): array
     {
-        $live = self::getenv('CRUNAPIOVERVIEW_TEST_LIVE');
-        $override = self::getenv('CRUNAPIOVERVIEW_TEST_OVERRIDE');
+        $live = self::getenv('CRUN_API_OVERVIEW_TEST_LIVE');
+        $override = self::getenv('CRUN_API_OVERVIEW_TEST_OVERRIDE');
 
         if ($live === 'TRUE' || $override === 'TRUE') {
             foreach (array_keys($m) as $key) {
@@ -63,9 +63,9 @@ class CrunApiOverviewTestRunner
             }
         }
 
-        $explain = self::getenv('CRUNAPIOVERVIEW_TEST_EXPLAIN');
+        $explain = self::getenv('CRUN_API_OVERVIEW_TEST_EXPLAIN');
         if ($explain !== null && $explain !== '') {
-            $m['CRUNAPIOVERVIEW_TEST_EXPLAIN'] = $explain;
+            $m['CRUN_API_OVERVIEW_TEST_EXPLAIN'] = $explain;
         }
 
         return $m;

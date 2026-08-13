@@ -23,8 +23,8 @@ module CrunApiOverviewTestRunner
   end
 
   def self.env_override(m)
-    live = getenv("CRUNAPIOVERVIEW_TEST_LIVE")
-    override = getenv("CRUNAPIOVERVIEW_TEST_OVERRIDE")
+    live = getenv("CRUN_API_OVERVIEW_TEST_LIVE")
+    override = getenv("CRUN_API_OVERVIEW_TEST_OVERRIDE")
 
     if live == "TRUE" || override == "TRUE"
       m.each_key do |key|
@@ -44,8 +44,8 @@ module CrunApiOverviewTestRunner
       end
     end
 
-    explain = getenv("CRUNAPIOVERVIEW_TEST_EXPLAIN")
-    m["CRUNAPIOVERVIEW_TEST_EXPLAIN"] = explain if explain && !explain.empty?
+    explain = getenv("CRUN_API_OVERVIEW_TEST_EXPLAIN")
+    m["CRUN_API_OVERVIEW_TEST_EXPLAIN"] = explain if explain && !explain.empty?
 
     m
   end

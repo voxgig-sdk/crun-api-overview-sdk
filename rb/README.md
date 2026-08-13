@@ -35,7 +35,7 @@ client = CrunApiOverviewSDK.new({
 ### 4. Create, update, and remove
 
 ```ruby
-# create returns the bare created Generate record.
+# create returns the ENTITY — call data_get for the created Generate record.
 created = client.Generate.create({ "model" => "example_model", "prompt" => "example_prompt", "status" => "example_status", "task_id" => "example_task_id" })
 
 ```
@@ -118,7 +118,8 @@ client = CrunApiOverviewSDK.test({
   "entity" => { "task" => { "test01" => { "id" => "test01" } } },
 })
 
-# Entity ops return the bare mock record (raises on error).
+# Entity ops return the ENTITY (raises on error);
+# call data_get for the mock record.
 task = client.Task.load({ "id" => "test01" })
 puts task
 ```
@@ -246,7 +247,7 @@ returns a result `Hash` with these keys:
 | `image_url` |  |
 | `model` |  |
 | `negative_prompt` |  |
-| `num_image` |  |
+| `num_images` |  |
 | `prompt` |  |
 | `status` |  |
 | `task_id` |  |
@@ -264,9 +265,9 @@ API path: `/image/generate`
 | `created_at` |  |
 | `credit_consumption` |  |
 | `error` |  |
-| `input_parameter` |  |
+| `input_parameters` |  |
 | `model` |  |
-| `result` |  |
+| `results` |  |
 | `status` |  |
 | `task_id` |  |
 
@@ -300,7 +301,7 @@ Create an instance: `generate = client.Generate`
 | `image_url` | `String` |  |
 | `model` | `String` |  |
 | `negative_prompt` | `String` |  |
-| `num_image` | `Integer` |  |
+| `num_images` | `Integer` |  |
 | `prompt` | `String` |  |
 | `status` | `String` |  |
 | `task_id` | `String` |  |
@@ -336,16 +337,16 @@ Create an instance: `task = client.Task`
 | `created_at` | `String` |  |
 | `credit_consumption` | `Float` |  |
 | `error` | `Hash` |  |
-| `input_parameter` | `Hash` |  |
+| `input_parameters` | `Hash` |  |
 | `model` | `String` |  |
-| `result` | `Array` |  |
+| `results` | `Array` |  |
 | `status` | `String` |  |
 | `task_id` | `String` |  |
 
 #### Example: Load
 
 ```ruby
-# load returns the bare Task record (raises on error).
+# load returns the ENTITY — call data_get for the Task record (raises on error).
 task = client.Task.load({ "id" => "task_id" })
 ```
 

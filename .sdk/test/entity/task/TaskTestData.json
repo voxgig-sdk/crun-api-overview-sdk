@@ -6,9 +6,9 @@
         "created_at": "s5b",
         "credit_consumption": 92,
         "error": {},
-        "input_parameter": {},
+        "input_parameters": {},
         "model": "s5f",
-        "result": [],
+        "results": [],
         "status": "s61",
         "task_id": "TASK01",
         "id": "TASK00"
@@ -18,9 +18,9 @@
         "created_at": "sb5",
         "credit_consumption": 182,
         "error": {},
-        "input_parameter": {},
+        "input_parameters": {},
         "model": "sb9",
-        "result": [],
+        "results": [],
         "status": "sbb",
         "task_id": "TASK01",
         "id": "TASK01"
@@ -30,9 +30,9 @@
         "created_at": "s10f",
         "credit_consumption": 272,
         "error": {},
-        "input_parameter": {},
+        "input_parameters": {},
         "model": "s113",
-        "result": [],
+        "results": [],
         "status": "s115",
         "task_id": "TASK01",
         "id": "TASK02"
@@ -46,9 +46,9 @@
         "created_at": "s169",
         "credit_consumption": 362,
         "error": {},
-        "input_parameter": {},
+        "input_parameters": {},
         "model": "s16d",
-        "result": [],
+        "results": [],
         "status": "s16f",
         "task_id": "TASK01"
       }

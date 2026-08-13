@@ -22,7 +22,7 @@ class Generate
     public ?string $image_url = null;
     public string $model;
     public ?string $negative_prompt = null;
-    public ?int $num_image = null;
+    public ?int $num_images = null;
     public string $prompt;
     public string $status;
     public string $task_id;
@@ -39,7 +39,7 @@ class GenerateCreateData
     public ?string $image_url = null;
     public string $model;
     public ?string $negative_prompt = null;
-    public ?int $num_image = null;
+    public ?int $num_images = null;
     public string $prompt;
     public string $status;
     public string $task_id;
@@ -53,9 +53,9 @@ class Task
     public string $created_at;
     public ?float $credit_consumption = null;
     public ?array $error = null;
-    public ?array $input_parameter = null;
+    public ?array $input_parameters = null;
     public string $model;
-    public ?array $result = null;
+    public ?array $results = null;
     public string $status;
     public string $task_id;
 }

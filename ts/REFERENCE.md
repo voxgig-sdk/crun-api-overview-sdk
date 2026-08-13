@@ -136,7 +136,7 @@ const generate = client.Generate()
 | `image_url` | `string` | No |  |
 | `model` | `string` | Yes |  |
 | `negative_prompt` | `string` | No |  |
-| `num_image` | `number` | No |  |
+| `num_images` | `number` | No |  |
 | `prompt` | `string` | Yes |  |
 | `status` | `string` | Yes |  |
 | `task_id` | `string` | Yes |  |
@@ -199,9 +199,9 @@ const task = client.Task()
 | `created_at` | `string` | Yes |  |
 | `credit_consumption` | `number` | No |  |
 | `error` | `Record<string, any>` | No |  |
-| `input_parameter` | `Record<string, any>` | No |  |
+| `input_parameters` | `Record<string, any>` | No |  |
 | `model` | `string` | Yes |  |
-| `result` | `any[]` | No |  |
+| `results` | `any[]` | No |  |
 | `status` | `string` | Yes |  |
 | `task_id` | `string` | Yes |  |
 

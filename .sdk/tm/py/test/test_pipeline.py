@@ -16,11 +16,11 @@
 import pytest
 
 from projectname_sdk import CrunApiOverviewSDK
-from core.error import CrunApiOverviewError
-from core.result import CrunApiOverviewResult
-from core.response import CrunApiOverviewResponse
-from core.spec import CrunApiOverviewSpec
-from feature.base_feature import CrunApiOverviewBaseFeature
+from projectname_sdk.core.error import CrunApiOverviewError
+from projectname_sdk.core.result import CrunApiOverviewResult
+from projectname_sdk.core.response import CrunApiOverviewResponse
+from projectname_sdk.core.spec import CrunApiOverviewSpec
+from projectname_sdk.feature.base_feature import CrunApiOverviewBaseFeature
 
 
 def _client():

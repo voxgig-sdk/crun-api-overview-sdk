@@ -13,7 +13,7 @@ export interface Generate {
   image_url?: string
   model: string
   negative_prompt?: string
-  num_image?: number
+  num_images?: number
   prompt: string
   status: string
   task_id: string
@@ -28,7 +28,7 @@ export interface GenerateCreateData {
   image_url?: string
   model: string
   negative_prompt?: string
-  num_image?: number
+  num_images?: number
   prompt: string
   status: string
   task_id: string
@@ -40,9 +40,9 @@ export interface Task {
   created_at: string
   credit_consumption?: number
   error?: Record<string, any>
-  input_parameter?: Record<string, any>
+  input_parameters?: Record<string, any>
   model: string
-  result?: any[]
+  results?: any[]
   status: string
   task_id: string
 }

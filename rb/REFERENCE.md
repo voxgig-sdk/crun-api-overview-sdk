@@ -105,7 +105,7 @@ generate = client.Generate
 | `image_url` | `String` | No |  |
 | `model` | `String` | Yes |  |
 | `negative_prompt` | `String` | No |  |
-| `num_image` | `Integer` | No |  |
+| `num_images` | `Integer` | No |  |
 | `prompt` | `String` | Yes |  |
 | `status` | `String` | Yes |  |
 | `task_id` | `String` | Yes |  |
@@ -170,9 +170,9 @@ task = client.Task
 | `created_at` | `String` | Yes |  |
 | `credit_consumption` | `Float` | No |  |
 | `error` | `Hash` | No |  |
-| `input_parameter` | `Hash` | No |  |
+| `input_parameters` | `Hash` | No |  |
 | `model` | `String` | Yes |  |
-| `result` | `Array` | No |  |
+| `results` | `Array` | No |  |
 | `status` | `String` | Yes |  |
 | `task_id` | `String` | Yes |  |
 

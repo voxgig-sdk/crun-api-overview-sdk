@@ -80,7 +80,7 @@ module CrunApiOverviewConfig
             },
             {
               "active" => true,
-              "name" => "num_image",
+              "name" => "num_images",
               "req" => false,
               "type" => "`$INTEGER`",
               "index$" => 7,
@@ -123,6 +123,7 @@ module CrunApiOverviewConfig
                 {
                   "active" => true,
                   "args" => {},
+                  "kind" => "http",
                   "method" => "POST",
                   "orig" => "/image/generate",
                   "parts" => [
@@ -139,6 +140,7 @@ module CrunApiOverviewConfig
                 {
                   "active" => true,
                   "args" => {},
+                  "kind" => "http",
                   "method" => "POST",
                   "orig" => "/video/generate",
                   "parts" => [
@@ -192,7 +194,7 @@ module CrunApiOverviewConfig
             },
             {
               "active" => true,
-              "name" => "input_parameter",
+              "name" => "input_parameters",
               "req" => false,
               "type" => "`$OBJECT`",
               "index$" => 4,
@@ -206,7 +208,7 @@ module CrunApiOverviewConfig
             },
             {
               "active" => true,
-              "name" => "result",
+              "name" => "results",
               "req" => false,
               "type" => "`$ARRAY`",
               "index$" => 6,
@@ -247,6 +249,7 @@ module CrunApiOverviewConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/tasks/{task_id}",
                   "parts" => [

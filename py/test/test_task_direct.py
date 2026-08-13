@@ -3,9 +3,9 @@
 import json
 import pytest
 
-from utility.voxgig_struct import voxgig_struct as vs
+from crunapioverview_sdk.utility.voxgig_struct import voxgig_struct as vs
 from crunapioverview_sdk import CrunApiOverviewSDK
-from core import helpers
+from crunapioverview_sdk.core import helpers
 from test import runner
 
 
@@ -66,16 +66,16 @@ def _task_direct_setup(mockres):
     calls = []
 
     env = runner.env_override({
-        "CRUNAPIOVERVIEW_TEST_TASK_ENTID": {},
-        "CRUNAPIOVERVIEW_TEST_LIVE": "FALSE",
-        "CRUNAPIOVERVIEW_APIKEY": "NONE",
+        "CRUN_API_OVERVIEW_TEST_TASK_ENTID": {},
+        "CRUN_API_OVERVIEW_TEST_LIVE": "FALSE",
+        "CRUN_API_OVERVIEW_APIKEY": "NONE",
     })
 
-    live = env.get("CRUNAPIOVERVIEW_TEST_LIVE") == "TRUE"
+    live = env.get("CRUN_API_OVERVIEW_TEST_LIVE") == "TRUE"
 
     if live:
         merged_opts = {
-            "apikey": env.get("CRUNAPIOVERVIEW_APIKEY"),
+            "apikey": env.get("CRUN_API_OVERVIEW_APIKEY"),
         }
         client = CrunApiOverviewSDK(merged_opts)
         return {

@@ -272,7 +272,7 @@ Only `Direct()` returns a response envelope — a `map[string]any` with
 | `"image_url"` |  |
 | `"model"` |  |
 | `"negative_prompt"` |  |
-| `"num_image"` |  |
+| `"num_images"` |  |
 | `"prompt"` |  |
 | `"status"` |  |
 | `"task_id"` |  |
@@ -290,9 +290,9 @@ API path: `/image/generate`
 | `"created_at"` |  |
 | `"credit_consumption"` |  |
 | `"error"` |  |
-| `"input_parameter"` |  |
+| `"input_parameters"` |  |
 | `"model"` |  |
-| `"result"` |  |
+| `"results"` |  |
 | `"status"` |  |
 | `"task_id"` |  |
 
@@ -326,7 +326,7 @@ Create an instance: `generate := client.Generate(nil)`
 | `image_url` | `string` |  |
 | `model` | `string` |  |
 | `negative_prompt` | `string` |  |
-| `num_image` | `int` |  |
+| `num_images` | `int` |  |
 | `prompt` | `string` |  |
 | `status` | `string` |  |
 | `task_id` | `string` |  |
@@ -366,9 +366,9 @@ Create an instance: `task := client.Task(nil)`
 | `created_at` | `string` |  |
 | `credit_consumption` | `float64` |  |
 | `error` | `map[string]any` |  |
-| `input_parameter` | `map[string]any` |  |
+| `input_parameters` | `map[string]any` |  |
 | `model` | `string` |  |
-| `result` | `[]any` |  |
+| `results` | `[]any` |  |
 | `status` | `string` |  |
 | `task_id` | `string` |  |
 

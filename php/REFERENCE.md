@@ -104,7 +104,7 @@ $generate = $client->Generate();
 | `image_url` | `string` | No |  |
 | `model` | `string` | Yes |  |
 | `negative_prompt` | `string` | No |  |
-| `num_image` | `int` | No |  |
+| `num_images` | `int` | No |  |
 | `prompt` | `string` | Yes |  |
 | `status` | `string` | Yes |  |
 | `task_id` | `string` | Yes |  |
@@ -169,9 +169,9 @@ $task = $client->Task();
 | `created_at` | `string` | Yes |  |
 | `credit_consumption` | `float` | No |  |
 | `error` | `array` | No |  |
-| `input_parameter` | `array` | No |  |
+| `input_parameters` | `array` | No |  |
 | `model` | `string` | Yes |  |
-| `result` | `array` | No |  |
+| `results` | `array` | No |  |
 | `status` | `string` | Yes |  |
 | `task_id` | `string` | Yes |  |
 

@@ -21,7 +21,7 @@ class Config {
 
 
   main = {
-    name: 'ProjectName',
+    name: 'CrunApiOverview',
   }
 
 
@@ -112,7 +112,7 @@ class Config {
         },
         {
           "active": true,
-          "name": "num_image",
+          "name": "num_images",
           "req": false,
           "type": "`$INTEGER`",
           "index$": 7
@@ -155,6 +155,7 @@ class Config {
             {
               "active": true,
               "args": {},
+              "kind": "http",
               "method": "POST",
               "orig": "/image/generate",
               "parts": [
@@ -171,6 +172,7 @@ class Config {
             {
               "active": true,
               "args": {},
+              "kind": "http",
               "method": "POST",
               "orig": "/video/generate",
               "parts": [
@@ -224,7 +226,7 @@ class Config {
         },
         {
           "active": true,
-          "name": "input_parameter",
+          "name": "input_parameters",
           "req": false,
           "type": "`$OBJECT`",
           "index$": 4
@@ -238,7 +240,7 @@ class Config {
         },
         {
           "active": true,
-          "name": "result",
+          "name": "results",
           "req": false,
           "type": "`$ARRAY`",
           "index$": 6
@@ -279,6 +281,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/tasks/{task_id}",
               "parts": [

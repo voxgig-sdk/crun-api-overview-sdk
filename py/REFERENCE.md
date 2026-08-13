@@ -99,7 +99,7 @@ generate = client.Generate()
 | `image_url` | `str` | No |  |
 | `model` | `str` | Yes |  |
 | `negative_prompt` | `str` | No |  |
-| `num_image` | `int` | No |  |
+| `num_images` | `int` | No |  |
 | `prompt` | `str` | Yes |  |
 | `status` | `str` | Yes |  |
 | `task_id` | `str` | Yes |  |
@@ -163,9 +163,9 @@ task = client.Task()
 | `created_at` | `str` | Yes |  |
 | `credit_consumption` | `float` | No |  |
 | `error` | `dict` | No |  |
-| `input_parameter` | `dict` | No |  |
+| `input_parameters` | `dict` | No |  |
 | `model` | `str` | Yes |  |
-| `result` | `list` | No |  |
+| `results` | `list` | No |  |
 | `status` | `str` | Yes |  |
 | `task_id` | `str` | Yes |  |
 

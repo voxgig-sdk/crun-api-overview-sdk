@@ -110,7 +110,7 @@ fmt.Println(generate.GetName()) // "generate"
 | `image_url` | `string` | No |  |
 | `model` | `string` | Yes |  |
 | `negative_prompt` | `string` | No |  |
-| `num_image` | `int` | No |  |
+| `num_images` | `int` | No |  |
 | `prompt` | `string` | Yes |  |
 | `status` | `string` | Yes |  |
 | `task_id` | `string` | Yes |  |
@@ -174,9 +174,9 @@ fmt.Println(task.GetName()) // "task"
 | `created_at` | `string` | Yes |  |
 | `credit_consumption` | `float64` | No |  |
 | `error` | `map[string]any` | No |  |
-| `input_parameter` | `map[string]any` | No |  |
+| `input_parameters` | `map[string]any` | No |  |
 | `model` | `string` | Yes |  |
-| `result` | `[]any` | No |  |
+| `results` | `[]any` | No |  |
 | `status` | `string` | Yes |  |
 | `task_id` | `string` | Yes |  |
 

@@ -219,9 +219,9 @@ data **directly** — there is no wrapper:
 
 Check `err` first (it is non-`nil` on failure), then use `value`:
 
-    local generate, err = client:Generate():load()
+    local task, err = client:Task():load({ id = "example_id" })
     if err then error(err) end
-    -- generate is the loaded record
+    -- task is the loaded record
 
 Only `direct()` returns a response envelope — a `table` with `ok`,
 `status`, `headers`, and `data` keys.
@@ -239,7 +239,7 @@ Only `direct()` returns a response envelope — a `table` with `ok`,
 | `image_url` |  |
 | `model` |  |
 | `negative_prompt` |  |
-| `num_image` |  |
+| `num_images` |  |
 | `prompt` |  |
 | `status` |  |
 | `task_id` |  |
@@ -257,9 +257,9 @@ API path: `/image/generate`
 | `created_at` |  |
 | `credit_consumption` |  |
 | `error` |  |
-| `input_parameter` |  |
+| `input_parameters` |  |
 | `model` |  |
-| `result` |  |
+| `results` |  |
 | `status` |  |
 | `task_id` |  |
 
@@ -293,7 +293,7 @@ Create an instance: `local generate = client:Generate(nil)`
 | `image_url` | `string` |  |
 | `model` | `string` |  |
 | `negative_prompt` | `string` |  |
-| `num_image` | `number` |  |
+| `num_images` | `number` |  |
 | `prompt` | `string` |  |
 | `status` | `string` |  |
 | `task_id` | `string` |  |
@@ -329,9 +329,9 @@ Create an instance: `local task = client:Task(nil)`
 | `created_at` | `string` |  |
 | `credit_consumption` | `number` |  |
 | `error` | `table` |  |
-| `input_parameter` | `table` |  |
+| `input_parameters` | `table` |  |
 | `model` | `string` |  |
-| `result` | `table` |  |
+| `results` | `table` |  |
 | `status` | `string` |  |
 | `task_id` | `string` |  |
 

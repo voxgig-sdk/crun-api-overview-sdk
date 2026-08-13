@@ -38,7 +38,7 @@ const client = new CrunApiOverviewSDK({
 ### 4. Create, update, and remove
 
 ```ts
-// Create — returns the created Generate
+// Create — returns the created Generate ENTITY (.data() for the record)
 const created = await client.Generate().create({
   model: 'example_model',
   prompt: 'example_prompt',
@@ -123,7 +123,8 @@ Create a mock client for unit testing — no server required:
 const client = CrunApiOverviewSDK.test()
 
 const task = await client.Task().load({ id: 'test01' })
-// task is a bare entity populated with mock response data
+// task is the entity, populated with mock response data
+// — call task.data() for the record itself
 console.log(task)
 ```
 
@@ -299,7 +300,7 @@ The `prepare()` method returns:
 | `image_url` |  |
 | `model` |  |
 | `negative_prompt` |  |
-| `num_image` |  |
+| `num_images` |  |
 | `prompt` |  |
 | `status` |  |
 | `task_id` |  |
@@ -317,9 +318,9 @@ API path: `/image/generate`
 | `created_at` |  |
 | `credit_consumption` |  |
 | `error` |  |
-| `input_parameter` |  |
+| `input_parameters` |  |
 | `model` |  |
-| `result` |  |
+| `results` |  |
 | `status` |  |
 | `task_id` |  |
 
@@ -353,7 +354,7 @@ Create an instance: `const generate = client.Generate()`
 | `image_url` | `string` |  |
 | `model` | `string` |  |
 | `negative_prompt` | `string` |  |
-| `num_image` | `number` |  |
+| `num_images` | `number` |  |
 | `prompt` | `string` |  |
 | `status` | `string` |  |
 | `task_id` | `string` |  |
@@ -389,9 +390,9 @@ Create an instance: `const task = client.Task()`
 | `created_at` | `string` |  |
 | `credit_consumption` | `number` |  |
 | `error` | `Record<string, any>` |  |
-| `input_parameter` | `Record<string, any>` |  |
+| `input_parameters` | `Record<string, any>` |  |
 | `model` | `string` |  |
-| `result` | `any[]` |  |
+| `results` | `any[]` |  |
 | `status` | `string` |  |
 | `task_id` | `string` |  |
 

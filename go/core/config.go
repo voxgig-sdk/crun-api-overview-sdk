@@ -79,7 +79,7 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"active": true,
-						"name": "num_image",
+						"name": "num_images",
 						"req": false,
 						"type": "`$INTEGER`",
 						"index$": 7,
@@ -122,6 +122,7 @@ func MakeConfig() map[string]any {
 							map[string]any{
 								"active": true,
 								"args": map[string]any{},
+								"kind": "http",
 								"method": "POST",
 								"orig": "/image/generate",
 								"parts": []any{
@@ -138,6 +139,7 @@ func MakeConfig() map[string]any {
 							map[string]any{
 								"active": true,
 								"args": map[string]any{},
+								"kind": "http",
 								"method": "POST",
 								"orig": "/video/generate",
 								"parts": []any{
@@ -152,7 +154,6 @@ func MakeConfig() map[string]any {
 								"index$": 1,
 							},
 						},
-						"key$": "create",
 					},
 				},
 				"relations": map[string]any{
@@ -191,7 +192,7 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"active": true,
-						"name": "input_parameter",
+						"name": "input_parameters",
 						"req": false,
 						"type": "`$OBJECT`",
 						"index$": 4,
@@ -205,7 +206,7 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"active": true,
-						"name": "result",
+						"name": "results",
 						"req": false,
 						"type": "`$ARRAY`",
 						"index$": 6,
@@ -246,6 +247,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/tasks/{task_id}",
 								"parts": []any{
@@ -269,7 +271,6 @@ func MakeConfig() map[string]any {
 								"index$": 0,
 							},
 						},
-						"key$": "load",
 					},
 				},
 				"relations": map[string]any{

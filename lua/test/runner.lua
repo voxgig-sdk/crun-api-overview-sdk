@@ -35,8 +35,8 @@ end
 
 
 function runner.env_override(m)
-  local live = runner.getenv("CRUNAPIOVERVIEW_TEST_LIVE")
-  local override = runner.getenv("CRUNAPIOVERVIEW_TEST_OVERRIDE")
+  local live = runner.getenv("CRUN_API_OVERVIEW_TEST_LIVE")
+  local override = runner.getenv("CRUN_API_OVERVIEW_TEST_OVERRIDE")
 
   if live == "TRUE" or override == "TRUE" then
     for key, _ in pairs(m) do
@@ -56,9 +56,9 @@ function runner.env_override(m)
     end
   end
 
-  local explain = runner.getenv("CRUNAPIOVERVIEW_TEST_EXPLAIN")
+  local explain = runner.getenv("CRUN_API_OVERVIEW_TEST_EXPLAIN")
   if explain ~= nil and explain ~= "" then
-    m["CRUNAPIOVERVIEW_TEST_EXPLAIN"] = explain
+    m["CRUN_API_OVERVIEW_TEST_EXPLAIN"] = explain
   end
 
   return m

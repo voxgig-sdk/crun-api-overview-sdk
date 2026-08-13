@@ -44,7 +44,7 @@ func TestTaskEntity(t *testing.T) {
 		// The basic flow consumes synthetic IDs from the fixture. In live mode
 		// without an *_ENTID env override, those IDs hit the live API and 4xx.
 		if setup.syntheticOnly {
-			t.Skip("live entity test uses synthetic IDs from fixture — set CRUNAPIOVERVIEW_TEST_TASK_ENTID JSON to run live")
+			t.Skip("live entity test uses synthetic IDs from fixture — set CRUN_API_OVERVIEW_TEST_TASK_ENTID JSON to run live")
 			return
 		}
 		client := setup.client
@@ -110,38 +110,38 @@ func taskBasicSetup(extra map[string]any) *entityTestSetup {
 	// Detect ENTID env override before envOverride consumes it. When live
 	// mode is on without a real override, the basic test runs against synthetic
 	// IDs from the fixture and 4xx's. Surface this so the test can skip.
-	entidEnvRaw := os.Getenv("CRUNAPIOVERVIEW_TEST_TASK_ENTID")
+	entidEnvRaw := os.Getenv("CRUN_API_OVERVIEW_TEST_TASK_ENTID")
 	idmapOverridden := entidEnvRaw != "" && strings.HasPrefix(strings.TrimSpace(entidEnvRaw), "{")
 
 	env := envOverride(map[string]any{
-		"CRUNAPIOVERVIEW_TEST_TASK_ENTID": idmap,
-		"CRUNAPIOVERVIEW_TEST_LIVE":      "FALSE",
-		"CRUNAPIOVERVIEW_TEST_EXPLAIN":   "FALSE",
-		"CRUNAPIOVERVIEW_APIKEY":         "NONE",
+		"CRUN_API_OVERVIEW_TEST_TASK_ENTID": idmap,
+		"CRUN_API_OVERVIEW_TEST_LIVE":      "FALSE",
+		"CRUN_API_OVERVIEW_TEST_EXPLAIN":   "FALSE",
+		"CRUN_API_OVERVIEW_APIKEY":         "NONE",
 	})
 
-	idmapResolved := core.ToMapAny(env["CRUNAPIOVERVIEW_TEST_TASK_ENTID"])
+	idmapResolved := core.ToMapAny(env["CRUN_API_OVERVIEW_TEST_TASK_ENTID"])
 	if idmapResolved == nil {
 		idmapResolved = core.ToMapAny(idmap)
 	}
 
-	if env["CRUNAPIOVERVIEW_TEST_LIVE"] == "TRUE" {
+	if env["CRUN_API_OVERVIEW_TEST_LIVE"] == "TRUE" {
 		mergedOpts := vs.Merge([]any{
 			map[string]any{
-				"apikey": env["CRUNAPIOVERVIEW_APIKEY"],
+				"apikey": env["CRUN_API_OVERVIEW_APIKEY"],
 			},
 			extra,
 		})
 		client = sdk.NewCrunApiOverviewSDK(core.ToMapAny(mergedOpts))
 	}
 
-	live := env["CRUNAPIOVERVIEW_TEST_LIVE"] == "TRUE"
+	live := env["CRUN_API_OVERVIEW_TEST_LIVE"] == "TRUE"
 	return &entityTestSetup{
 		client:        client,
 		data:          entityData,
 		idmap:         idmapResolved,
 		env:           env,
-		explain:       env["CRUNAPIOVERVIEW_TEST_EXPLAIN"] == "TRUE",
+		explain:       env["CRUN_API_OVERVIEW_TEST_EXPLAIN"] == "TRUE",
 		live:          live,
 		syntheticOnly: live && !idmapOverridden,
 		now:           time.Now().UnixMilli(),

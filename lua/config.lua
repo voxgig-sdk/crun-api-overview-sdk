@@ -79,7 +79,7 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "num_image",
+            ["name"] = "num_images",
             ["req"] = false,
             ["type"] = "`$INTEGER`",
             ["index$"] = 7,
@@ -122,6 +122,7 @@ local function make_config()
               {
                 ["active"] = true,
                 ["args"] = {},
+                ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/image/generate",
                 ["parts"] = {
@@ -138,6 +139,7 @@ local function make_config()
               {
                 ["active"] = true,
                 ["args"] = {},
+                ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/video/generate",
                 ["parts"] = {
@@ -191,7 +193,7 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "input_parameter",
+            ["name"] = "input_parameters",
             ["req"] = false,
             ["type"] = "`$OBJECT`",
             ["index$"] = 4,
@@ -205,7 +207,7 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "result",
+            ["name"] = "results",
             ["req"] = false,
             ["type"] = "`$ARRAY`",
             ["index$"] = 6,
@@ -246,6 +248,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/tasks/{task_id}",
                 ["parts"] = {

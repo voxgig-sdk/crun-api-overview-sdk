@@ -42,7 +42,7 @@ client = CrunApiOverviewSDK({
 ### 4. Create, update, and remove
 
 ```python
-# Create — returns the bare created record (a dict)
+# Create — returns the ENTITY (call data_get() for the record)
 created = client.Generate().create({"model": "example_model", "prompt": "example_prompt", "status": "example_status", "task_id": "example_task_id"})
 
 ```
@@ -121,7 +121,8 @@ Create a mock client for unit testing — no server required:
 ```python
 client = CrunApiOverviewSDK.test()
 
-# Entity ops return the bare record and raise on error.
+# Entity ops return the ENTITY and raises on error;
+# call data_get() for the record.
 task = client.Task().load({"id": "test01"})
 # task contains the mock response record
 ```
@@ -221,7 +222,7 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return the bare result data (a `dict` for single-entity
+Entity operations return the ENTITY (call data_get() for the record) (a `dict` for single-entity
 ops, a `list` for `list`) and raise on error. Wrap calls in
 `try`/`except` to handle failures.
 
@@ -250,7 +251,7 @@ On error, `ok` is `False` and `err` contains the error value.
 | `image_url` |  |
 | `model` |  |
 | `negative_prompt` |  |
-| `num_image` |  |
+| `num_images` |  |
 | `prompt` |  |
 | `status` |  |
 | `task_id` |  |
@@ -268,9 +269,9 @@ API path: `/image/generate`
 | `created_at` |  |
 | `credit_consumption` |  |
 | `error` |  |
-| `input_parameter` |  |
+| `input_parameters` |  |
 | `model` |  |
-| `result` |  |
+| `results` |  |
 | `status` |  |
 | `task_id` |  |
 
@@ -304,7 +305,7 @@ Create an instance: `generate = client.Generate()`
 | `image_url` | `str` |  |
 | `model` | `str` |  |
 | `negative_prompt` | `str` |  |
-| `num_image` | `int` |  |
+| `num_images` | `int` |  |
 | `prompt` | `str` |  |
 | `status` | `str` |  |
 | `task_id` | `str` |  |
@@ -340,9 +341,9 @@ Create an instance: `task = client.Task()`
 | `created_at` | `str` |  |
 | `credit_consumption` | `float` |  |
 | `error` | `dict` |  |
-| `input_parameter` | `dict` |  |
+| `input_parameters` | `dict` |  |
 | `model` | `str` |  |
-| `result` | `list` |  |
+| `results` | `list` |  |
 | `status` | `str` |  |
 | `task_id` | `str` |  |
 

@@ -31,7 +31,7 @@
 # @!attribute [rw] negative_prompt
 #   @return [String, nil]
 #
-# @!attribute [rw] num_image
+# @!attribute [rw] num_images
 #   @return [Integer, nil]
 #
 # @!attribute [rw] prompt
@@ -53,7 +53,7 @@ Generate = Struct.new(
   :image_url,
   :model,
   :negative_prompt,
-  :num_image,
+  :num_images,
   :prompt,
   :status,
   :task_id,
@@ -84,7 +84,7 @@ Generate = Struct.new(
 # @!attribute [rw] negative_prompt
 #   @return [String, nil]
 #
-# @!attribute [rw] num_image
+# @!attribute [rw] num_images
 #   @return [Integer, nil]
 #
 # @!attribute [rw] prompt
@@ -106,7 +106,7 @@ GenerateCreateData = Struct.new(
   :image_url,
   :model,
   :negative_prompt,
-  :num_image,
+  :num_images,
   :prompt,
   :status,
   :task_id,
@@ -128,13 +128,13 @@ GenerateCreateData = Struct.new(
 # @!attribute [rw] error
 #   @return [Hash, nil]
 #
-# @!attribute [rw] input_parameter
+# @!attribute [rw] input_parameters
 #   @return [Hash, nil]
 #
 # @!attribute [rw] model
 #   @return [String]
 #
-# @!attribute [rw] result
+# @!attribute [rw] results
 #   @return [Array, nil]
 #
 # @!attribute [rw] status
@@ -147,9 +147,9 @@ Task = Struct.new(
   :created_at,
   :credit_consumption,
   :error,
-  :input_parameter,
+  :input_parameters,
   :model,
-  :result,
+  :results,
   :status,
   :task_id,
   keyword_init: true

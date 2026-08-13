@@ -14,7 +14,7 @@
 ---@field image_url? string
 ---@field model string
 ---@field negative_prompt? string
----@field num_image? number
+---@field num_images? number
 ---@field prompt string
 ---@field status string
 ---@field task_id string
@@ -28,7 +28,7 @@
 ---@field image_url? string
 ---@field model string
 ---@field negative_prompt? string
----@field num_image? number
+---@field num_images? number
 ---@field prompt string
 ---@field status string
 ---@field task_id string
@@ -39,9 +39,9 @@
 ---@field created_at string
 ---@field credit_consumption? number
 ---@field error? table
----@field input_parameter? table
+---@field input_parameters? table
 ---@field model string
----@field result? table
+---@field results? table
 ---@field status string
 ---@field task_id string
 

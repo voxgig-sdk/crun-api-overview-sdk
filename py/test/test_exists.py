@@ -1,4 +1,4 @@
-# ProjectName SDK exists test
+# CrunApiOverview SDK exists test
 
 import pytest
 from crunapioverview_sdk import CrunApiOverviewSDK

@@ -36,7 +36,7 @@ $client = new CrunApiOverviewSDK([
 ### 4. Create, update, and remove
 
 ```php
-// create() returns the bare created Generate record.
+// create() returns the ENTITY — call data_get() for the created Generate record.
 $created = $client->Generate()->create(["model" => "example_model", "prompt" => "example_prompt", "status" => "example_status", "task_id" => "example_task_id"]);
 
 ```
@@ -124,7 +124,8 @@ $client = CrunApiOverviewSDK::test([
     "entity" => ["task" => ["test01" => ["id" => "test01"]]],
 ]);
 
-// Entity ops return the bare mock record (throws on error).
+// Entity ops return the ENTITY (throws on error);
+// call data_get() for the mock record.
 $task = $client->Task()->load(["id" => "test01"]);
 print_r($task);
 ```
@@ -227,7 +228,7 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return the bare result data (an `array` for single-entity
+Entity operations return the ENTITY (call data_get() for the record) (an `array` for single-entity
 ops, a `list` for `list`) and throw on error. Wrap calls in
 `try`/`catch` to handle failures.
 
@@ -256,7 +257,7 @@ On error, `ok` is `false` and `$err` contains the error value.
 | `image_url` |  |
 | `model` |  |
 | `negative_prompt` |  |
-| `num_image` |  |
+| `num_images` |  |
 | `prompt` |  |
 | `status` |  |
 | `task_id` |  |
@@ -274,9 +275,9 @@ API path: `/image/generate`
 | `created_at` |  |
 | `credit_consumption` |  |
 | `error` |  |
-| `input_parameter` |  |
+| `input_parameters` |  |
 | `model` |  |
-| `result` |  |
+| `results` |  |
 | `status` |  |
 | `task_id` |  |
 
@@ -310,7 +311,7 @@ Create an instance: `$generate = $client->Generate();`
 | `image_url` | `string` |  |
 | `model` | `string` |  |
 | `negative_prompt` | `string` |  |
-| `num_image` | `int` |  |
+| `num_images` | `int` |  |
 | `prompt` | `string` |  |
 | `status` | `string` |  |
 | `task_id` | `string` |  |
@@ -346,16 +347,16 @@ Create an instance: `$task = $client->Task();`
 | `created_at` | `string` |  |
 | `credit_consumption` | `float` |  |
 | `error` | `array` |  |
-| `input_parameter` | `array` |  |
+| `input_parameters` | `array` |  |
 | `model` | `string` |  |
-| `result` | `array` |  |
+| `results` | `array` |  |
 | `status` | `string` |  |
 | `task_id` | `string` |  |
 
 #### Example: Load
 
 ```php
-// load() returns the bare Task record (throws on error).
+// load() returns the ENTITY — call data_get() for the Task record (throws on error).
 $task = $client->Task()->load(["id" => "task_id"]);
 ```
 
