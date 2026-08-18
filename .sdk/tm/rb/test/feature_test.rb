@@ -15,7 +15,7 @@ require_relative "../CrunApiOverview_sdk"
 module CrunApiOverviewFeatureHarness
   # True when this SDK was generated with the named feature.
   def self.has_feature?(name)
-    f = CrunApiOverviewConfig.make_config["feature"]
+    f = CrunApiOverviewConfig.shared_config["feature"]
     f.is_a?(Hash) && !f[name].nil?
   end
 

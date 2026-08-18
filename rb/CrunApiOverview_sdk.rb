@@ -28,7 +28,7 @@ class CrunApiOverviewSDK
     utility = CrunApiOverviewUtility.new
     @_utility = utility
 
-    config = CrunApiOverviewConfig.make_config
+    config = CrunApiOverviewConfig.shared_config
 
     @_rootctx = utility.make_context.call({
       "client" => self,

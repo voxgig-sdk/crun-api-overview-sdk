@@ -40,7 +40,7 @@ class CrunApiOverviewSDK
         $utility = new CrunApiOverviewUtility();
         $this->_utility = $utility;
 
-        $config = CrunApiOverviewConfig::make_config();
+        $config = CrunApiOverviewConfig::shared_config();
 
         $this->_rootctx = ($utility->make_context)([
             "client" => $this,
