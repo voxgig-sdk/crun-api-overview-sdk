@@ -98,18 +98,18 @@ generate = client.Generate
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `aspect_ratio` | `String` | No |  |
-| `callback_url` | `String` | No |  |
-| `duration` | `Float` | No |  |
-| `height` | `Integer` | No |  |
-| `image_url` | `String` | No |  |
-| `model` | `String` | Yes |  |
-| `negative_prompt` | `String` | No |  |
-| `num_images` | `Integer` | No |  |
-| `prompt` | `String` | Yes |  |
-| `status` | `String` | Yes |  |
-| `task_id` | `String` | Yes |  |
-| `width` | `Integer` | No |  |
+| `aspect_ratio` | `String` | No | Aspect ratio of the video (e.g., 16:9, 9:16, 1:1) |
+| `callback_url` | `String` | No | Optional webhook URL to receive task completion notification |
+| `duration` | `Float` | No | Duration of the video in seconds |
+| `height` | `Integer` | No | Height of the generated image in pixels |
+| `image_url` | `String` | No | Optional reference image URL for image-to-video generation |
+| `model` | `String` | Yes | Name of the image generation model to use (e.g., google-seedream, flux, qwen, z-image, wan, openai, grok, imagine) |
+| `negative_prompt` | `String` | No | Text description of what to avoid in the generated image |
+| `num_images` | `Integer` | No | Number of images to generate |
+| `prompt` | `String` | Yes | Text description of the image to generate |
+| `status` | `String` | Yes | Initial status of the task |
+| `task_id` | `String` | Yes | Unique identifier for the created task. |
+| `width` | `Integer` | No | Width of the generated image in pixels |
 
 ### Operations
 
@@ -166,15 +166,15 @@ task = client.Task
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `completed_at` | `String` | No |  |
-| `created_at` | `String` | Yes |  |
-| `credit_consumption` | `Float` | No |  |
-| `error` | `Hash` | No |  |
-| `input_parameters` | `Hash` | No |  |
-| `model` | `String` | Yes |  |
-| `results` | `Array` | No |  |
-| `status` | `String` | Yes |  |
-| `task_id` | `String` | Yes |  |
+| `completed_at` | `String` | No | Timestamp when the task was completed (if applicable) |
+| `created_at` | `String` | Yes | Timestamp when the task was created |
+| `credit_consumption` | `Float` | No | Number of credits consumed by this task |
+| `error` | `Hash` | No | Error details if the task failed |
+| `input_parameters` | `Hash` | No | The input parameters used to create the task |
+| `model` | `String` | Yes | Name of the AI model used for this task |
+| `results` | `Array` | No | Generated media files or output data. |
+| `status` | `String` | Yes | Current status of the task |
+| `task_id` | `String` | Yes | Unique identifier of the task |
 
 ### Operations
 

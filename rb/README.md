@@ -240,18 +240,18 @@ returns a result `Hash` with these keys:
 
 | Field | Description |
 | --- | --- |
-| `aspect_ratio` |  |
-| `callback_url` |  |
-| `duration` |  |
-| `height` |  |
-| `image_url` |  |
-| `model` |  |
-| `negative_prompt` |  |
-| `num_images` |  |
-| `prompt` |  |
-| `status` |  |
-| `task_id` |  |
-| `width` |  |
+| `aspect_ratio` | Aspect ratio of the video (e.g., 16:9, 9:16, 1:1) |
+| `callback_url` | Optional webhook URL to receive task completion notification |
+| `duration` | Duration of the video in seconds |
+| `height` | Height of the generated image in pixels |
+| `image_url` | Optional reference image URL for image-to-video generation |
+| `model` | Name of the image generation model to use (e.g., google-seedream, flux, qwen, z-image, wan, openai, grok, imagine) |
+| `negative_prompt` | Text description of what to avoid in the generated image |
+| `num_images` | Number of images to generate |
+| `prompt` | Text description of the image to generate |
+| `status` | Initial status of the task |
+| `task_id` | Unique identifier for the created task. |
+| `width` | Width of the generated image in pixels |
 
 Operations: Create.
 
@@ -261,15 +261,15 @@ API path: `/image/generate`
 
 | Field | Description |
 | --- | --- |
-| `completed_at` |  |
-| `created_at` |  |
-| `credit_consumption` |  |
-| `error` |  |
-| `input_parameters` |  |
-| `model` |  |
-| `results` |  |
-| `status` |  |
-| `task_id` |  |
+| `completed_at` | Timestamp when the task was completed (if applicable) |
+| `created_at` | Timestamp when the task was created |
+| `credit_consumption` | Number of credits consumed by this task |
+| `error` | Error details if the task failed |
+| `input_parameters` | The input parameters used to create the task |
+| `model` | Name of the AI model used for this task |
+| `results` | Generated media files or output data. |
+| `status` | Current status of the task |
+| `task_id` | Unique identifier of the task |
 
 Operations: Load.
 
@@ -294,18 +294,18 @@ Create an instance: `generate = client.Generate`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `aspect_ratio` | `String` |  |
-| `callback_url` | `String` |  |
-| `duration` | `Float` |  |
-| `height` | `Integer` |  |
-| `image_url` | `String` |  |
-| `model` | `String` |  |
-| `negative_prompt` | `String` |  |
-| `num_images` | `Integer` |  |
-| `prompt` | `String` |  |
-| `status` | `String` |  |
-| `task_id` | `String` |  |
-| `width` | `Integer` |  |
+| `aspect_ratio` | `String` | Aspect ratio of the video (e.g., 16:9, 9:16, 1:1) |
+| `callback_url` | `String` | Optional webhook URL to receive task completion notification |
+| `duration` | `Float` | Duration of the video in seconds |
+| `height` | `Integer` | Height of the generated image in pixels |
+| `image_url` | `String` | Optional reference image URL for image-to-video generation |
+| `model` | `String` | Name of the image generation model to use (e.g., google-seedream, flux, qwen, z-image, wan, openai, grok, imagine) |
+| `negative_prompt` | `String` | Text description of what to avoid in the generated image |
+| `num_images` | `Integer` | Number of images to generate |
+| `prompt` | `String` | Text description of the image to generate |
+| `status` | `String` | Initial status of the task |
+| `task_id` | `String` | Unique identifier for the created task. |
+| `width` | `Integer` | Width of the generated image in pixels |
 
 #### Example: Create
 
@@ -333,15 +333,15 @@ Create an instance: `task = client.Task`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `completed_at` | `String` |  |
-| `created_at` | `String` |  |
-| `credit_consumption` | `Float` |  |
-| `error` | `Hash` |  |
-| `input_parameters` | `Hash` |  |
-| `model` | `String` |  |
-| `results` | `Array` |  |
-| `status` | `String` |  |
-| `task_id` | `String` |  |
+| `completed_at` | `String` | Timestamp when the task was completed (if applicable) |
+| `created_at` | `String` | Timestamp when the task was created |
+| `credit_consumption` | `Float` | Number of credits consumed by this task |
+| `error` | `Hash` | Error details if the task failed |
+| `input_parameters` | `Hash` | The input parameters used to create the task |
+| `model` | `String` | Name of the AI model used for this task |
+| `results` | `Array` | Generated media files or output data. |
+| `status` | `String` | Current status of the task |
+| `task_id` | `String` | Unique identifier of the task |
 
 #### Example: Load
 

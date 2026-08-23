@@ -8,46 +8,55 @@ main: kit: entity: task: {
     {
       name: "completed_at"
       req: false
+      short: "Timestamp when the task was completed (if applicable)"
       type: "`$STRING`"
     }
     {
       name: "created_at"
       req: true
+      short: "Timestamp when the task was created"
       type: "`$STRING`"
     }
     {
       name: "credit_consumption"
       req: false
+      short: "Number of credits consumed by this task"
       type: "`$NUMBER`"
     }
     {
       name: "error"
       req: false
+      short: "Error details if the task failed"
       type: "`$OBJECT`"
     }
     {
       name: "input_parameters"
       req: false
+      short: "The input parameters used to create the task"
       type: "`$OBJECT`"
     }
     {
       name: "model"
       req: true
+      short: "Name of the AI model used for this task"
       type: "`$STRING`"
     }
     {
       name: "results"
       req: false
+      short: "Generated media files or output data."
       type: "`$ARRAY`"
     }
     {
       name: "status"
       req: true
+      short: "Current status of the task"
       type: "`$STRING`"
     }
     {
       name: "task_id"
       req: true
+      short: "Unique identifier of the task"
       type: "`$STRING`"
     }
   ]

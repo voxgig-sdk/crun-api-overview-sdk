@@ -8,61 +8,73 @@ main: kit: entity: generate: {
     {
       name: "aspect_ratio"
       req: false
+      short: "Aspect ratio of the video (e.g., 16:9, 9:16, 1:1)"
       type: "`$STRING`"
     }
     {
       name: "callback_url"
       req: false
+      short: "Optional webhook URL to receive task completion notification"
       type: "`$STRING`"
     }
     {
       name: "duration"
       req: false
+      short: "Duration of the video in seconds"
       type: "`$NUMBER`"
     }
     {
       name: "height"
       req: false
+      short: "Height of the generated image in pixels"
       type: "`$INTEGER`"
     }
     {
       name: "image_url"
       req: false
+      short: "Optional reference image URL for image-to-video generation"
       type: "`$STRING`"
     }
     {
       name: "model"
       req: true
+      short: "Name of the image generation model to use (e.g., google-seedream, flux, qwen, z-image, wan, openai, grok, imagine)"
       type: "`$STRING`"
     }
     {
       name: "negative_prompt"
       req: false
+      short: "Text description of what to avoid in the generated image"
       type: "`$STRING`"
     }
     {
       name: "num_images"
       req: false
+      short: "Number of images to generate"
       type: "`$INTEGER`"
     }
     {
       name: "prompt"
       req: true
+      short: "Text description of the image to generate"
       type: "`$STRING`"
     }
     {
       name: "status"
       req: true
+      short: "Initial status of the task"
       type: "`$STRING`"
     }
     {
       name: "task_id"
       req: true
+      short: "Unique identifier for the created task."
       type: "`$STRING`"
     }
     {
       name: "width"
       req: false
+      short: "Width of the generated image in pixels"
       type: "`$INTEGER`"
     }
   ]

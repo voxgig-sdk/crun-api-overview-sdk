@@ -95,18 +95,18 @@ local generate = client:Generate(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `aspect_ratio` | `string` | No |  |
-| `callback_url` | `string` | No |  |
-| `duration` | `number` | No |  |
-| `height` | `number` | No |  |
-| `image_url` | `string` | No |  |
-| `model` | `string` | Yes |  |
-| `negative_prompt` | `string` | No |  |
-| `num_images` | `number` | No |  |
-| `prompt` | `string` | Yes |  |
-| `status` | `string` | Yes |  |
-| `task_id` | `string` | Yes |  |
-| `width` | `number` | No |  |
+| `aspect_ratio` | `string` | No | Aspect ratio of the video (e.g., 16:9, 9:16, 1:1) |
+| `callback_url` | `string` | No | Optional webhook URL to receive task completion notification |
+| `duration` | `number` | No | Duration of the video in seconds |
+| `height` | `number` | No | Height of the generated image in pixels |
+| `image_url` | `string` | No | Optional reference image URL for image-to-video generation |
+| `model` | `string` | Yes | Name of the image generation model to use (e.g., google-seedream, flux, qwen, z-image, wan, openai, grok, imagine) |
+| `negative_prompt` | `string` | No | Text description of what to avoid in the generated image |
+| `num_images` | `number` | No | Number of images to generate |
+| `prompt` | `string` | Yes | Text description of the image to generate |
+| `status` | `string` | Yes | Initial status of the task |
+| `task_id` | `string` | Yes | Unique identifier for the created task. |
+| `width` | `number` | No | Width of the generated image in pixels |
 
 ### Operations
 
@@ -163,15 +163,15 @@ local task = client:Task(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `completed_at` | `string` | No |  |
-| `created_at` | `string` | Yes |  |
-| `credit_consumption` | `number` | No |  |
-| `error` | `table` | No |  |
-| `input_parameters` | `table` | No |  |
-| `model` | `string` | Yes |  |
-| `results` | `table` | No |  |
-| `status` | `string` | Yes |  |
-| `task_id` | `string` | Yes |  |
+| `completed_at` | `string` | No | Timestamp when the task was completed (if applicable) |
+| `created_at` | `string` | Yes | Timestamp when the task was created |
+| `credit_consumption` | `number` | No | Number of credits consumed by this task |
+| `error` | `table` | No | Error details if the task failed |
+| `input_parameters` | `table` | No | The input parameters used to create the task |
+| `model` | `string` | Yes | Name of the AI model used for this task |
+| `results` | `table` | No | Generated media files or output data. |
+| `status` | `string` | Yes | Current status of the task |
+| `task_id` | `string` | Yes | Unique identifier of the task |
 
 ### Operations
 

@@ -36,72 +36,84 @@
               "active": true,
               "name": "aspect_ratio",
               "req": false,
+              "short": "Aspect ratio of the video (e.g., 16:9, 9:16, 1:1)",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "callback_url",
               "req": false,
+              "short": "Optional webhook URL to receive task completion notification",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "duration",
               "req": false,
+              "short": "Duration of the video in seconds",
               "type": "`$NUMBER`"
             },
             {
               "active": true,
               "name": "height",
               "req": false,
+              "short": "Height of the generated image in pixels",
               "type": "`$INTEGER`"
             },
             {
               "active": true,
               "name": "image_url",
               "req": false,
+              "short": "Optional reference image URL for image-to-video generation",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "model",
               "req": true,
+              "short": "Name of the image generation model to use (e.g., google-seedream, flux, qwen, z-image, wan, openai, grok, imagine)",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "negative_prompt",
               "req": false,
+              "short": "Text description of what to avoid in the generated image",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "num_images",
               "req": false,
+              "short": "Number of images to generate",
               "type": "`$INTEGER`"
             },
             {
               "active": true,
               "name": "prompt",
               "req": true,
+              "short": "Text description of the image to generate",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "status",
               "req": true,
+              "short": "Initial status of the task",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "task_id",
               "req": true,
+              "short": "Unique identifier for the created task.",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "width",
               "req": false,
+              "short": "Width of the generated image in pixels",
               "type": "`$INTEGER`"
             }
           ],
@@ -160,54 +172,63 @@
               "active": true,
               "name": "completed_at",
               "req": false,
+              "short": "Timestamp when the task was completed (if applicable)",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "created_at",
               "req": true,
+              "short": "Timestamp when the task was created",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "credit_consumption",
               "req": false,
+              "short": "Number of credits consumed by this task",
               "type": "`$NUMBER`"
             },
             {
               "active": true,
               "name": "error",
               "req": false,
+              "short": "Error details if the task failed",
               "type": "`$OBJECT`"
             },
             {
               "active": true,
               "name": "input_parameters",
               "req": false,
+              "short": "The input parameters used to create the task",
               "type": "`$OBJECT`"
             },
             {
               "active": true,
               "name": "model",
               "req": true,
+              "short": "Name of the AI model used for this task",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "results",
               "req": false,
+              "short": "Generated media files or output data.",
               "type": "`$ARRAY`"
             },
             {
               "active": true,
               "name": "status",
               "req": true,
+              "short": "Current status of the task",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "task_id",
               "req": true,
+              "short": "Unique identifier of the task",
               "type": "`$STRING`"
             }
           ],

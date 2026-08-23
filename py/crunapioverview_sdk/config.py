@@ -28,6 +28,9 @@ def make_config():
     return {
         "main": {
             "name": "CrunApiOverview",
+            "slug": "crun-api-overview",
+            "version": "0.0.1",
+            "target": "py",
         },
         "feature": {
             "test": {
@@ -54,54 +57,66 @@ def make_config():
         "fields": [
           {
             "name": "aspect_ratio",
+            "short": "Aspect ratio of the video (e.g., 16:9, 9:16, 1:1)",
             "type": "`$STRING`",
           },
           {
             "name": "callback_url",
+            "short": "Optional webhook URL to receive task completion notification",
             "type": "`$STRING`",
           },
           {
             "name": "duration",
+            "short": "Duration of the video in seconds",
             "type": "`$NUMBER`",
           },
           {
             "name": "height",
+            "short": "Height of the generated image in pixels",
             "type": "`$INTEGER`",
           },
           {
             "name": "image_url",
+            "short": "Optional reference image URL for image-to-video generation",
             "type": "`$STRING`",
           },
           {
             "name": "model",
             "req": True,
+            "short": "Name of the image generation model to use (e.g., google-seedream, flux, qwen, z-image, wan, openai, grok, imagine)",
             "type": "`$STRING`",
           },
           {
             "name": "negative_prompt",
+            "short": "Text description of what to avoid in the generated image",
             "type": "`$STRING`",
           },
           {
             "name": "num_images",
+            "short": "Number of images to generate",
             "type": "`$INTEGER`",
           },
           {
             "name": "prompt",
             "req": True,
+            "short": "Text description of the image to generate",
             "type": "`$STRING`",
           },
           {
             "name": "status",
             "req": True,
+            "short": "Initial status of the task",
             "type": "`$STRING`",
           },
           {
             "name": "task_id",
             "req": True,
+            "short": "Unique identifier for the created task.",
             "type": "`$STRING`",
           },
           {
             "name": "width",
+            "short": "Width of the generated image in pixels",
             "type": "`$INTEGER`",
           },
         ],
@@ -152,42 +167,51 @@ def make_config():
         "fields": [
           {
             "name": "completed_at",
+            "short": "Timestamp when the task was completed (if applicable)",
             "type": "`$STRING`",
           },
           {
             "name": "created_at",
             "req": True,
+            "short": "Timestamp when the task was created",
             "type": "`$STRING`",
           },
           {
             "name": "credit_consumption",
+            "short": "Number of credits consumed by this task",
             "type": "`$NUMBER`",
           },
           {
             "name": "error",
+            "short": "Error details if the task failed",
             "type": "`$OBJECT`",
           },
           {
             "name": "input_parameters",
+            "short": "The input parameters used to create the task",
             "type": "`$OBJECT`",
           },
           {
             "name": "model",
             "req": True,
+            "short": "Name of the AI model used for this task",
             "type": "`$STRING`",
           },
           {
             "name": "results",
+            "short": "Generated media files or output data.",
             "type": "`$ARRAY`",
           },
           {
             "name": "status",
             "req": True,
+            "short": "Current status of the task",
             "type": "`$STRING`",
           },
           {
             "name": "task_id",
             "req": True,
+            "short": "Unique identifier of the task",
             "type": "`$STRING`",
           },
         ],

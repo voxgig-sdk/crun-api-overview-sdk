@@ -11,6 +11,9 @@ func MakeConfig() map[string]any {
 	return map[string]any{
 		"main": map[string]any{
 			"name": "CrunApiOverview",
+			"slug": "crun-api-overview",
+			"version": "0.0.1",
+			"target": "go",
 		},
 		"feature": map[string]any{
 			"test": map[string]any{
@@ -37,54 +40,66 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "aspect_ratio",
+						"short": "Aspect ratio of the video (e.g., 16:9, 9:16, 1:1)",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "callback_url",
+						"short": "Optional webhook URL to receive task completion notification",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "duration",
+						"short": "Duration of the video in seconds",
 						"type": "`$NUMBER`",
 					},
 					map[string]any{
 						"name": "height",
+						"short": "Height of the generated image in pixels",
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
 						"name": "image_url",
+						"short": "Optional reference image URL for image-to-video generation",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "model",
 						"req": true,
+						"short": "Name of the image generation model to use (e.g., google-seedream, flux, qwen, z-image, wan, openai, grok, imagine)",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "negative_prompt",
+						"short": "Text description of what to avoid in the generated image",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "num_images",
+						"short": "Number of images to generate",
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
 						"name": "prompt",
 						"req": true,
+						"short": "Text description of the image to generate",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "status",
 						"req": true,
+						"short": "Initial status of the task",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "task_id",
 						"req": true,
+						"short": "Unique identifier for the created task.",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "width",
+						"short": "Width of the generated image in pixels",
 						"type": "`$INTEGER`",
 					},
 				},
@@ -135,42 +150,51 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "completed_at",
+						"short": "Timestamp when the task was completed (if applicable)",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "created_at",
 						"req": true,
+						"short": "Timestamp when the task was created",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "credit_consumption",
+						"short": "Number of credits consumed by this task",
 						"type": "`$NUMBER`",
 					},
 					map[string]any{
 						"name": "error",
+						"short": "Error details if the task failed",
 						"type": "`$OBJECT`",
 					},
 					map[string]any{
 						"name": "input_parameters",
+						"short": "The input parameters used to create the task",
 						"type": "`$OBJECT`",
 					},
 					map[string]any{
 						"name": "model",
 						"req": true,
+						"short": "Name of the AI model used for this task",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "results",
+						"short": "Generated media files or output data.",
 						"type": "`$ARRAY`",
 					},
 					map[string]any{
 						"name": "status",
 						"req": true,
+						"short": "Current status of the task",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "task_id",
 						"req": true,
+						"short": "Unique identifier of the task",
 						"type": "`$STRING`",
 					},
 				},
