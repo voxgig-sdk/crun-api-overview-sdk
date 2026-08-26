@@ -167,6 +167,7 @@ local task = client:Task(nil)
 | `created_at` | `string` | Yes | Timestamp when the task was created |
 | `credit_consumption` | `number` | No | Number of credits consumed by this task |
 | `error` | `table` | No | Error details if the task failed |
+| `id` | `string` | No |  |
 | `input_parameters` | `table` | No | The input parameters used to create the task |
 | `model` | `string` | Yes | Name of the AI model used for this task |
 | `results` | `table` | No | Generated media files or output data. |

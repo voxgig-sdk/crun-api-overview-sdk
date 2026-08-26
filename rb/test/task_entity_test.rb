@@ -41,9 +41,13 @@ class TaskEntityTest < Minitest::Test
 
     # LOAD
     task_ref01_ent = client.Task(nil)
-    task_ref01_match_dt0 = {}
+    task_ref01_match_dt0 = {
+      "id" => task_ref01_data["id"],
+    }
     task_ref01_data_dt0_loaded = task_ref01_ent.load(task_ref01_match_dt0, nil)
-    assert !task_ref01_data_dt0_loaded.nil?
+    task_ref01_data_dt0_load_result = Helpers.to_map(task_ref01_data_dt0_loaded.respond_to?(:data_get) ? task_ref01_data_dt0_loaded.data_get : task_ref01_data_dt0_loaded)
+    assert !task_ref01_data_dt0_load_result.nil?
+    assert_equal task_ref01_data_dt0_load_result["id"], task_ref01_data["id"]
 
   end
 end

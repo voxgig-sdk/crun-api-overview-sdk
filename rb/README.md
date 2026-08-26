@@ -265,6 +265,7 @@ API path: `/image/generate`
 | `created_at` | Timestamp when the task was created |
 | `credit_consumption` | Number of credits consumed by this task |
 | `error` | Error details if the task failed |
+| `id` |  |
 | `input_parameters` | The input parameters used to create the task |
 | `model` | Name of the AI model used for this task |
 | `results` | Generated media files or output data. |
@@ -337,6 +338,7 @@ Create an instance: `task = client.Task`
 | `created_at` | `String` | Timestamp when the task was created |
 | `credit_consumption` | `Float` | Number of credits consumed by this task |
 | `error` | `Hash` | Error details if the task failed |
+| `id` | `String` |  |
 | `input_parameters` | `Hash` | The input parameters used to create the task |
 | `model` | `String` | Name of the AI model used for this task |
 | `results` | `Array` | Generated media files or output data. |

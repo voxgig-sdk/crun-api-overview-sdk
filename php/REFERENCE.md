@@ -169,6 +169,7 @@ $task = $client->Task();
 | `created_at` | `string` | Yes | Timestamp when the task was created |
 | `credit_consumption` | `float` | No | Number of credits consumed by this task |
 | `error` | `array` | No | Error details if the task failed |
+| `id` | `string` | No |  |
 | `input_parameters` | `array` | No | The input parameters used to create the task |
 | `model` | `string` | Yes | Name of the AI model used for this task |
 | `results` | `array` | No | Generated media files or output data. |

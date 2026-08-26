@@ -2,54 +2,54 @@
   "existing": {
     "task": {
       "TASK00": {
-        "completed_at": "s5a",
-        "created_at": "s5b",
-        "credit_consumption": 92,
+        "completed_at": "s64",
+        "created_at": "s65",
+        "credit_consumption": 102,
         "error": {},
+        "id": "TASK00",
         "input_parameters": {},
-        "model": "s5f",
+        "model": "s6a",
         "results": [],
-        "status": "s61",
-        "task_id": "TASK01",
-        "id": "TASK00"
+        "status": "s6c",
+        "task_id": "TASK01"
       },
       "TASK01": {
-        "completed_at": "sb4",
-        "created_at": "sb5",
-        "credit_consumption": 182,
+        "completed_at": "sc8",
+        "created_at": "sc9",
+        "credit_consumption": 202,
         "error": {},
+        "id": "TASK01",
         "input_parameters": {},
-        "model": "sb9",
+        "model": "sce",
         "results": [],
-        "status": "sbb",
-        "task_id": "TASK01",
-        "id": "TASK01"
+        "status": "sd0",
+        "task_id": "TASK01"
       },
       "TASK02": {
-        "completed_at": "s10e",
-        "created_at": "s10f",
-        "credit_consumption": 272,
+        "completed_at": "s12c",
+        "created_at": "s12d",
+        "credit_consumption": 302,
         "error": {},
+        "id": "TASK02",
         "input_parameters": {},
-        "model": "s113",
+        "model": "s132",
         "results": [],
-        "status": "s115",
-        "task_id": "TASK01",
-        "id": "TASK02"
+        "status": "s134",
+        "task_id": "TASK01"
       }
     }
   },
   "new": {
     "task": {
       "task_ref01": {
-        "completed_at": "s168",
-        "created_at": "s169",
-        "credit_consumption": 362,
+        "completed_at": "s190",
+        "created_at": "s191",
+        "credit_consumption": 402,
         "error": {},
         "input_parameters": {},
-        "model": "s16d",
+        "model": "s196",
         "results": [],
-        "status": "s16f",
+        "status": "s198",
         "task_id": "TASK01"
       }
     }

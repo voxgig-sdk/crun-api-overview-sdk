@@ -16,6 +16,7 @@ local function make_config()
         ["options"] = {
           ["active"] = false,
         },
+        ["transport"] = "base",
       },
     },
     options = {
@@ -164,6 +165,10 @@ local function make_config()
             ["name"] = "error",
             ["short"] = "Error details if the task failed",
             ["type"] = "`$OBJECT`",
+          },
+          {
+            ["name"] = "id",
+            ["type"] = "`$STRING`",
           },
           {
             ["name"] = "input_parameters",

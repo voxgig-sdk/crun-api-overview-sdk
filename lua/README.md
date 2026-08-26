@@ -257,6 +257,7 @@ API path: `/image/generate`
 | `created_at` | Timestamp when the task was created |
 | `credit_consumption` | Number of credits consumed by this task |
 | `error` | Error details if the task failed |
+| `id` |  |
 | `input_parameters` | The input parameters used to create the task |
 | `model` | Name of the AI model used for this task |
 | `results` | Generated media files or output data. |
@@ -329,6 +330,7 @@ Create an instance: `local task = client:Task(nil)`
 | `created_at` | `string` | Timestamp when the task was created |
 | `credit_consumption` | `number` | Number of credits consumed by this task |
 | `error` | `table` | Error details if the task failed |
+| `id` | `string` |  |
 | `input_parameters` | `table` | The input parameters used to create the task |
 | `model` | `string` | Name of the AI model used for this task |
 | `results` | `table` | Generated media files or output data. |

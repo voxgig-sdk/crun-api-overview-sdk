@@ -128,6 +128,9 @@ GenerateCreateData = Struct.new(
 # @!attribute [rw] error
 #   @return [Hash, nil]
 #
+# @!attribute [rw] id
+#   @return [String, nil]
+#
 # @!attribute [rw] input_parameters
 #   @return [Hash, nil]
 #
@@ -147,6 +150,7 @@ Task = Struct.new(
   :created_at,
   :credit_consumption,
   :error,
+  :id,
   :input_parameters,
   :model,
   :results,

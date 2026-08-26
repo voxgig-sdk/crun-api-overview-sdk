@@ -199,6 +199,7 @@ const task = client.Task()
 | `created_at` | `string` | Yes | Timestamp when the task was created |
 | `credit_consumption` | `number` | No | Number of credits consumed by this task |
 | `error` | `Record<string, any>` | No | Error details if the task failed |
+| `id` | `string` | No |  |
 | `input_parameters` | `Record<string, any>` | No | The input parameters used to create the task |
 | `model` | `string` | Yes | Name of the AI model used for this task |
 | `results` | `any[]` | No | Generated media files or output data. |

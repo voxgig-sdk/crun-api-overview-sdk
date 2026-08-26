@@ -20,6 +20,7 @@ func MakeConfig() map[string]any {
 				"options": map[string]any{
 					"active": false,
 				},
+				"transport": "base",
 			},
 		},
 		"options": map[string]any{
@@ -168,6 +169,10 @@ func MakeConfig() map[string]any {
 						"name": "error",
 						"short": "Error details if the task failed",
 						"type": "`$OBJECT`",
+					},
+					map[string]any{
+						"name": "id",
+						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "input_parameters",

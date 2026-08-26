@@ -39,6 +39,7 @@
 ---@field created_at string
 ---@field credit_consumption? number
 ---@field error? table
+---@field id? string
 ---@field input_parameters? table
 ---@field model string
 ---@field results? table

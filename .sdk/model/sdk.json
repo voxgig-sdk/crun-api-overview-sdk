@@ -198,6 +198,12 @@
             },
             {
               "active": true,
+              "name": "id",
+              "req": false,
+              "type": "`$STRING`"
+            },
+            {
+              "active": true,
               "name": "input_parameters",
               "req": false,
               "short": "The input parameters used to create the task",
@@ -232,6 +238,10 @@
               "type": "`$STRING`"
             }
           ],
+          "id": {
+            "field": "id",
+            "name": "id"
+          },
           "name": "task",
           "op": {
             "load": {
@@ -375,6 +385,7 @@
             }
           },
           "title": "In-memory mock transport for testing without a live server",
+          "transport": "base",
           "version": "0.0.1"
         }
       },
@@ -493,6 +504,7 @@
           "origname": "",
           "output": {
             "adopt": false,
+            "create": true,
             "path": "",
             "repo": "",
             "sdkrel": ""
@@ -551,6 +563,7 @@
           "origname": "",
           "output": {
             "adopt": false,
+            "create": true,
             "path": "",
             "repo": "",
             "sdkrel": ""
@@ -625,6 +638,7 @@
           "origname": "",
           "output": {
             "adopt": false,
+            "create": true,
             "path": "",
             "repo": "",
             "sdkrel": ""
@@ -705,6 +719,7 @@
           "origname": "",
           "output": {
             "adopt": false,
+            "create": true,
             "path": "",
             "repo": "",
             "sdkrel": ""
@@ -763,6 +778,7 @@
           "origname": "",
           "output": {
             "adopt": false,
+            "create": true,
             "path": "",
             "repo": "",
             "sdkrel": ""
@@ -827,6 +843,7 @@
           "origname": "",
           "output": {
             "adopt": false,
+            "create": true,
             "path": "",
             "repo": "",
             "sdkrel": ""
@@ -896,6 +913,7 @@
           "origname": "",
           "output": {
             "adopt": false,
+            "create": true,
             "path": "",
             "repo": "",
             "sdkrel": ""
@@ -970,6 +988,7 @@
           "origname": "",
           "output": {
             "adopt": false,
+            "create": true,
             "path": "",
             "repo": "",
             "sdkrel": ""

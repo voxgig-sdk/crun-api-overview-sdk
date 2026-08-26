@@ -37,6 +37,7 @@ def make_config():
         "options": {
           "active": False,
         },
+        "transport": "base",
       },
         },
         "options": {
@@ -185,6 +186,10 @@ def make_config():
             "name": "error",
             "short": "Error details if the task failed",
             "type": "`$OBJECT`",
+          },
+          {
+            "name": "id",
+            "type": "`$STRING`",
           },
           {
             "name": "input_parameters",

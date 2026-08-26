@@ -44,10 +44,14 @@ describe("TaskEntity", function()
 
     -- LOAD
     local task_ref01_ent = client:Task(nil)
-    local task_ref01_match_dt0 = {}
+    local task_ref01_match_dt0 = {
+      id = task_ref01_data["id"],
+    }
     local task_ref01_data_dt0_loaded, err = task_ref01_ent:load(task_ref01_match_dt0, nil)
     assert.is_nil(err)
-    assert.is_not_nil(task_ref01_data_dt0_loaded)
+    local task_ref01_data_dt0_load_result = helpers.to_map(type(task_ref01_data_dt0_loaded) == 'table' and task_ref01_data_dt0_loaded.data_get and task_ref01_data_dt0_loaded:data_get() or task_ref01_data_dt0_loaded)
+    assert.is_not_nil(task_ref01_data_dt0_load_result)
+    assert.are.equal(task_ref01_data_dt0_load_result["id"], task_ref01_data["id"])
 
   end)
 end)

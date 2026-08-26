@@ -53,6 +53,7 @@ class Task
     public string $created_at;
     public ?float $credit_consumption = null;
     public ?array $error = null;
+    public ?string $id = null;
     public ?array $input_parameters = null;
     public string $model;
     public ?array $results = null;

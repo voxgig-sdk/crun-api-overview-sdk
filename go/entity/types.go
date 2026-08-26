@@ -50,6 +50,7 @@ type Task struct {
 	CreatedAt string `json:"created_at"`
 	CreditConsumption *float64 `json:"credit_consumption,omitempty"`
 	Error *map[string]any `json:"error,omitempty"`
+	Id *string `json:"id,omitempty"`
 	InputParameters *map[string]any `json:"input_parameters,omitempty"`
 	Model string `json:"model"`
 	Results *[]any `json:"results,omitempty"`

@@ -163,6 +163,7 @@ task = client.Task()
 | `created_at` | `str` | Yes | Timestamp when the task was created |
 | `credit_consumption` | `float` | No | Number of credits consumed by this task |
 | `error` | `dict` | No | Error details if the task failed |
+| `id` | `str` | No |  |
 | `input_parameters` | `dict` | No | The input parameters used to create the task |
 | `model` | `str` | Yes | Name of the AI model used for this task |
 | `results` | `list` | No | Generated media files or output data. |

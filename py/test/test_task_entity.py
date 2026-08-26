@@ -48,9 +48,13 @@ class TestTaskEntity:
 
         # LOAD
         task_ref01_ent = client.Task(None)
-        task_ref01_match_dt0 = {}
+        task_ref01_match_dt0 = {
+            "id": task_ref01_data["id"],
+        }
         task_ref01_data_dt0_loaded = task_ref01_ent.load(task_ref01_match_dt0, None)
-        assert task_ref01_data_dt0_loaded is not None
+        task_ref01_data_dt0_load_result = helpers.to_map(runner.entity_data(task_ref01_data_dt0_loaded))
+        assert task_ref01_data_dt0_load_result is not None
+        assert task_ref01_data_dt0_load_result["id"] == task_ref01_data["id"]
 
 
 

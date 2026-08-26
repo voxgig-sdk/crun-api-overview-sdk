@@ -40,6 +40,7 @@ export interface Task {
   created_at: string
   credit_consumption?: number
   error?: Record<string, any>
+  id?: string
   input_parameters?: Record<string, any>
   model: string
   results?: any[]

@@ -170,6 +170,7 @@ task = client.Task
 | `created_at` | `String` | Yes | Timestamp when the task was created |
 | `credit_consumption` | `Float` | No | Number of credits consumed by this task |
 | `error` | `Hash` | No | Error details if the task failed |
+| `id` | `String` | No |  |
 | `input_parameters` | `Hash` | No | The input parameters used to create the task |
 | `model` | `String` | Yes | Name of the AI model used for this task |
 | `results` | `Array` | No | Generated media files or output data. |

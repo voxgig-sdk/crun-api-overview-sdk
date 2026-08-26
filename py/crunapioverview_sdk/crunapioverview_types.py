@@ -63,6 +63,7 @@ class Task(TaskRequired, total=False):
     completed_at: str
     credit_consumption: float
     error: dict
+    id: str
     input_parameters: dict
     results: list
 
