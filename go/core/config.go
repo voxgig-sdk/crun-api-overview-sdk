@@ -45,6 +45,7 @@ func MakeConfig() map[string]any {
 						"type": "`$STRING`",
 					},
 					map[string]any{
+						"format": "uri",
 						"name": "callback_url",
 						"short": "Optional webhook URL to receive task completion notification",
 						"type": "`$STRING`",
@@ -60,6 +61,7 @@ func MakeConfig() map[string]any {
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
+						"format": "uri",
 						"name": "image_url",
 						"short": "Optional reference image URL for image-to-video generation",
 						"type": "`$STRING`",
@@ -115,14 +117,22 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "POST",
 								"orig": "/image/generate",
-								"parts": []any{
-									"image",
-									"generate",
+								"segments": []any{
+									map[string]any{
+										"lit": "image",
+									},
+									map[string]any{
+										"lit": "generate",
+									},
 								},
 								"select": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
+								},
+								"parts": []any{
+									"image",
+									"generate",
 								},
 							},
 							map[string]any{
@@ -130,14 +140,22 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "POST",
 								"orig": "/video/generate",
-								"parts": []any{
-									"video",
-									"generate",
+								"segments": []any{
+									map[string]any{
+										"lit": "video",
+									},
+									map[string]any{
+										"lit": "generate",
+									},
 								},
 								"select": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
+								},
+								"parts": []any{
+									"video",
+									"generate",
 								},
 							},
 						},
@@ -150,11 +168,13 @@ func MakeConfig() map[string]any {
 			"task": map[string]any{
 				"fields": []any{
 					map[string]any{
+						"format": "date-time",
 						"name": "completed_at",
 						"short": "Timestamp when the task was completed (if applicable)",
 						"type": "`$STRING`",
 					},
 					map[string]any{
+						"format": "date-time",
 						"name": "created_at",
 						"req": true,
 						"short": "Timestamp when the task was created",
@@ -203,6 +223,10 @@ func MakeConfig() map[string]any {
 						"type": "`$STRING`",
 					},
 				},
+				"id": map[string]any{
+					"field": "id",
+					"name": "id",
+				},
 				"name": "task",
 				"op": map[string]any{
 					"load": map[string]any{
@@ -224,13 +248,17 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/tasks/{task_id}",
-								"parts": []any{
-									"tasks",
-									"{id}",
-								},
 								"rename": map[string]any{
 									"param": map[string]any{
 										"task_id": "id",
+									},
+								},
+								"segments": []any{
+									map[string]any{
+										"lit": "tasks",
+									},
+									map[string]any{
+										"var": "id",
 									},
 								},
 								"select": map[string]any{
@@ -242,6 +270,10 @@ func MakeConfig() map[string]any {
 									"req": "`reqdata`",
 									"res": "`body`",
 								},
+								"parts": []any{
+									"tasks",
+									"{id}",
+								},
 							},
 						},
 					},
@@ -252,6 +284,17 @@ func MakeConfig() map[string]any {
 			},
 		},
 	}
+}
+
+// The plugin definitions the model selected per feature, as []any so a
+// feature package can consume them without core naming its types. Empty
+// when no active feature declares active plugin groups for this target.
+var featurePlugins = map[string][]any{
+}
+
+// FeaturePlugins is the definitions list for one feature's chain.
+func FeaturePlugins(name string) []any {
+	return featurePlugins[name]
 }
 
 var (

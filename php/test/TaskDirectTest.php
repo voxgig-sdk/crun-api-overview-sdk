@@ -77,15 +77,17 @@ function task_direct_setup($mockres)
     $env = Runner::env_override([
         "CRUN_API_OVERVIEW_TEST_TASK_ENTID" => [],
         "CRUN_API_OVERVIEW_TEST_LIVE" => "FALSE",
-        "CRUN_API_OVERVIEW_APIKEY" => "NONE",
+        "CRUN_API_OVERVIEW_APIKEY" => "",
     ]);
 
     $live = $env["CRUN_API_OVERVIEW_TEST_LIVE"] === "TRUE";
 
     if ($live) {
-        $merged_opts = [
+        // Merged so the generated fields win: sdk-test-control.json's
+        // test.client.options adds to the live client, it does not redirect it.
+        $merged_opts = array_merge(Runner::live_client_options(), [
             "apikey" => $env["CRUN_API_OVERVIEW_APIKEY"],
-        ];
+        ]);
         $client = new CrunApiOverviewSDK($merged_opts);
         return [
             "client" => $client,

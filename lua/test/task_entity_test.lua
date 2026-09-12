@@ -95,7 +95,7 @@ function task_basic_setup(extra)
     ["CRUN_API_OVERVIEW_TEST_TASK_ENTID"] = idmap,
     ["CRUN_API_OVERVIEW_TEST_LIVE"] = "FALSE",
     ["CRUN_API_OVERVIEW_TEST_EXPLAIN"] = "FALSE",
-    ["CRUN_API_OVERVIEW_APIKEY"] = "NONE",
+    ["CRUN_API_OVERVIEW_APIKEY"] = "",
   })
 
   local idmap_resolved = helpers.to_map(
@@ -106,6 +106,9 @@ function task_basic_setup(extra)
 
   if env["CRUN_API_OVERVIEW_TEST_LIVE"] == "TRUE" then
     local merged_opts = vs.merge({
+      -- FIRST, so the generated fields below win: sdk-test-control.json's
+      -- test.client.options adds to the live client, it does not redirect it.
+      runner.live_client_options(),
       {
         apikey = env["CRUN_API_OVERVIEW_APIKEY"],
       },

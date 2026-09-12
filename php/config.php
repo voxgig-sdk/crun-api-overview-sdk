@@ -67,6 +67,7 @@ class CrunApiOverviewConfig
               'type' => '`$STRING`',
             ],
             [
+              'format' => 'uri',
               'name' => 'callback_url',
               'short' => 'Optional webhook URL to receive task completion notification',
               'type' => '`$STRING`',
@@ -82,6 +83,7 @@ class CrunApiOverviewConfig
               'type' => '`$INTEGER`',
             ],
             [
+              'format' => 'uri',
               'name' => 'image_url',
               'short' => 'Optional reference image URL for image-to-video generation',
               'type' => '`$STRING`',
@@ -137,14 +139,22 @@ class CrunApiOverviewConfig
                   'kind' => 'http',
                   'method' => 'POST',
                   'orig' => '/image/generate',
-                  'parts' => [
-                    'image',
-                    'generate',
+                  'segments' => [
+                    [
+                      'lit' => 'image',
+                    ],
+                    [
+                      'lit' => 'generate',
+                    ],
                   ],
                   'select' => [],
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    'image',
+                    'generate',
                   ],
                 ],
                 [
@@ -152,14 +162,22 @@ class CrunApiOverviewConfig
                   'kind' => 'http',
                   'method' => 'POST',
                   'orig' => '/video/generate',
-                  'parts' => [
-                    'video',
-                    'generate',
+                  'segments' => [
+                    [
+                      'lit' => 'video',
+                    ],
+                    [
+                      'lit' => 'generate',
+                    ],
                   ],
                   'select' => [],
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    'video',
+                    'generate',
                   ],
                 ],
               ],
@@ -172,11 +190,13 @@ class CrunApiOverviewConfig
         'task' => [
           'fields' => [
             [
+              'format' => 'date-time',
               'name' => 'completed_at',
               'short' => 'Timestamp when the task was completed (if applicable)',
               'type' => '`$STRING`',
             ],
             [
+              'format' => 'date-time',
               'name' => 'created_at',
               'req' => true,
               'short' => 'Timestamp when the task was created',
@@ -225,6 +245,10 @@ class CrunApiOverviewConfig
               'type' => '`$STRING`',
             ],
           ],
+          'id' => [
+            'field' => 'id',
+            'name' => 'id',
+          ],
           'name' => 'task',
           'op' => [
             'load' => [
@@ -246,13 +270,17 @@ class CrunApiOverviewConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/tasks/{task_id}',
-                  'parts' => [
-                    'tasks',
-                    '{id}',
-                  ],
                   'rename' => [
                     'param' => [
                       'task_id' => 'id',
+                    ],
+                  ],
+                  'segments' => [
+                    [
+                      'lit' => 'tasks',
+                    ],
+                    [
+                      'var' => 'id',
                     ],
                   ],
                   'select' => [
@@ -263,6 +291,10 @@ class CrunApiOverviewConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    'tasks',
+                    '{id}',
                   ],
                 ],
               ],

@@ -12,6 +12,7 @@ main: kit: entity: generate: {
       type: "`$STRING`"
     }
     {
+      format: "uri"
       name: "callback_url"
       req: false
       short: "Optional webhook URL to receive task completion notification"
@@ -30,6 +31,7 @@ main: kit: entity: generate: {
       type: "`$INTEGER`"
     }
     {
+      format: "uri"
       name: "image_url"
       req: false
       short: "Optional reference image URL for image-to-video generation"
@@ -87,9 +89,13 @@ main: kit: entity: generate: {
         {
           method: "POST"
           orig: "/image/generate"
-          parts: [
-            "image"
-            "generate"
+          segments: [
+            {
+              lit: "image"
+            }
+            {
+              lit: "generate"
+            }
           ]
           transform: {
             req: "`reqdata`"
@@ -99,9 +105,13 @@ main: kit: entity: generate: {
         {
           method: "POST"
           orig: "/video/generate"
-          parts: [
-            "video"
-            "generate"
+          segments: [
+            {
+              lit: "video"
+            }
+            {
+              lit: "generate"
+            }
           ]
           transform: {
             req: "`reqdata`"

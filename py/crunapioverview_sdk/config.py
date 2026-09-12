@@ -1,6 +1,14 @@
 # CrunApiOverview SDK configuration
 
 
+# The sekreto plugin DEFINITIONS the model selected per feature, imported
+# above by name from the modules the catalogue's active `plugin.def`
+# entries declare. Handed to each feature (secrets builds its Sekreto
+# with them): a provider kind not listed here is unknown to that SDK.
+FEATURE_PLUGINS = {
+}
+
+
 _shared_config = None
 
 
@@ -62,6 +70,7 @@ def make_config():
             "type": "`$STRING`",
           },
           {
+            "format": "uri",
             "name": "callback_url",
             "short": "Optional webhook URL to receive task completion notification",
             "type": "`$STRING`",
@@ -77,6 +86,7 @@ def make_config():
             "type": "`$INTEGER`",
           },
           {
+            "format": "uri",
             "name": "image_url",
             "short": "Optional reference image URL for image-to-video generation",
             "type": "`$STRING`",
@@ -132,30 +142,46 @@ def make_config():
                 "kind": "http",
                 "method": "POST",
                 "orig": "/image/generate",
-                "parts": [
-                  "image",
-                  "generate",
+                "segments": [
+                  {
+                    "lit": "image",
+                  },
+                  {
+                    "lit": "generate",
+                  },
                 ],
                 "select": {},
                 "transform": {
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "image",
+                  "generate",
+                ],
               },
               {
                 "args": {},
                 "kind": "http",
                 "method": "POST",
                 "orig": "/video/generate",
-                "parts": [
-                  "video",
-                  "generate",
+                "segments": [
+                  {
+                    "lit": "video",
+                  },
+                  {
+                    "lit": "generate",
+                  },
                 ],
                 "select": {},
                 "transform": {
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "video",
+                  "generate",
+                ],
               },
             ],
           },
@@ -167,11 +193,13 @@ def make_config():
       "task": {
         "fields": [
           {
+            "format": "date-time",
             "name": "completed_at",
             "short": "Timestamp when the task was completed (if applicable)",
             "type": "`$STRING`",
           },
           {
+            "format": "date-time",
             "name": "created_at",
             "req": True,
             "short": "Timestamp when the task was created",
@@ -220,6 +248,10 @@ def make_config():
             "type": "`$STRING`",
           },
         ],
+        "id": {
+          "field": "id",
+          "name": "id",
+        },
         "name": "task",
         "op": {
           "load": {
@@ -241,15 +273,19 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/tasks/{task_id}",
-                "parts": [
-                  "tasks",
-                  "{id}",
-                ],
                 "rename": {
                   "param": {
                     "task_id": "id",
                   },
                 },
+                "segments": [
+                  {
+                    "lit": "tasks",
+                  },
+                  {
+                    "var": "id",
+                  },
+                ],
                 "select": {
                   "exist": [
                     "id",
@@ -259,6 +295,10 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "tasks",
+                  "{id}",
+                ],
               },
             ],
           },
