@@ -28,7 +28,7 @@ loading a specific record.
 ### 1. Create a client
 
 ```ts
-import { CrunApiOverviewSDK } from '@voxgig-sdk/crun-api-overview'
+import { CrunApiOverviewSDK } from '@voxgig-sdk/crun-api-overview-sdk'
 
 const client = new CrunApiOverviewSDK({
   apikey: process.env.CRUN_API_OVERVIEW_APIKEY,
@@ -487,7 +487,7 @@ crun-api-overview/
 Import the SDK from the package root:
 
 ```ts
-import { CrunApiOverviewSDK } from '@voxgig-sdk/crun-api-overview'
+import { CrunApiOverviewSDK } from '@voxgig-sdk/crun-api-overview-sdk'
 ```
 
 ### Entity state

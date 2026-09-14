@@ -110,7 +110,7 @@ local result, err = client:Task():load({ id = "test01" })
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/crun-api-overview` | publish pending — [install from git tag](https://github.com/voxgig-sdk/crun-api-overview-sdk/releases) |
+| TypeScript | `@voxgig-sdk/crun-api-overview-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/crun-api-overview-sdk/releases) |
 | Python | `voxgig-sdk-crun-api-overview` | publish pending — [install from git tag](https://github.com/voxgig-sdk/crun-api-overview-sdk/releases) |
 | PHP | `voxgig-sdk/crun-api-overview` | publish pending — [install from git tag](https://github.com/voxgig-sdk/crun-api-overview-sdk/releases) |
 | Golang | `github.com/voxgig-sdk/crun-api-overview-sdk/go` | `go get github.com/voxgig-sdk/crun-api-overview-sdk/go@latest` |
@@ -124,7 +124,7 @@ local result, err = client:Task():load({ id = "test01" })
 ### TypeScript
 
 ```ts
-import { CrunApiOverviewSDK } from '@voxgig-sdk/crun-api-overview'
+import { CrunApiOverviewSDK } from '@voxgig-sdk/crun-api-overview-sdk'
 
 const client = new CrunApiOverviewSDK({
   apikey: process.env.CRUN_API_OVERVIEW_APIKEY,
