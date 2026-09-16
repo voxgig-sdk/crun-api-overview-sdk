@@ -1,12 +1,18 @@
 # CrunApiOverview SDK feature factory
 
 from crunapioverview_sdk.feature.base_feature import CrunApiOverviewBaseFeature
+from crunapioverview_sdk.feature.ratelimit_feature import CrunApiOverviewRatelimitFeature
+from crunapioverview_sdk.feature.retry_feature import CrunApiOverviewRetryFeature
 from crunapioverview_sdk.feature.test_feature import CrunApiOverviewTestFeature
+from crunapioverview_sdk.feature.timeout_feature import CrunApiOverviewTimeoutFeature
 
 
 _FEATURES = {
     "base": lambda: CrunApiOverviewBaseFeature(),
+    "ratelimit": lambda: CrunApiOverviewRatelimitFeature(),
+    "retry": lambda: CrunApiOverviewRetryFeature(),
     "test": lambda: CrunApiOverviewTestFeature(),
+    "timeout": lambda: CrunApiOverviewTimeoutFeature(),
 }
 
 

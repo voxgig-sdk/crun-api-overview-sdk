@@ -5,45 +5,45 @@
         "aspect_ratio": "s78",
         "callback_url": "s79",
         "duration": 122,
-        "height": "s7b",
+        "height": 123,
         "image_url": "s7c",
         "model": "s7d",
         "negative_prompt": "s7e",
-        "num_images": "s7f",
+        "num_images": 127,
         "prompt": "s80",
         "status": "s81",
         "task_id": "TASK01",
-        "width": "s83",
+        "width": 131,
         "id": "GENERATE00"
       },
       "GENERATE01": {
         "aspect_ratio": "sf0",
         "callback_url": "sf1",
         "duration": 242,
-        "height": "sf3",
+        "height": 243,
         "image_url": "sf4",
         "model": "sf5",
         "negative_prompt": "sf6",
-        "num_images": "sf7",
+        "num_images": 247,
         "prompt": "sf8",
         "status": "sf9",
         "task_id": "TASK01",
-        "width": "sfb",
+        "width": 251,
         "id": "GENERATE01"
       },
       "GENERATE02": {
         "aspect_ratio": "s168",
         "callback_url": "s169",
         "duration": 362,
-        "height": "s16b",
+        "height": 363,
         "image_url": "s16c",
         "model": "s16d",
         "negative_prompt": "s16e",
-        "num_images": "s16f",
+        "num_images": 367,
         "prompt": "s170",
         "status": "s171",
         "task_id": "TASK01",
-        "width": "s173",
+        "width": 371,
         "id": "GENERATE02"
       }
     }
@@ -54,15 +54,317 @@
         "aspect_ratio": "s1e0",
         "callback_url": "s1e1",
         "duration": 482,
-        "height": "s1e3",
+        "height": 483,
         "image_url": "s1e4",
         "model": "s1e5",
         "negative_prompt": "s1e6",
-        "num_images": "s1e7",
+        "num_images": 487,
         "prompt": "s1e8",
         "status": "s1e9",
         "task_id": "TASK01",
-        "width": "s1eb"
+        "width": 491
+      }
+    }
+  },
+  "requests": {
+    "POST /image/generate": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "generateImage",
+        "parameters": [],
+        "protocol": "http",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "callback_url": {
+                    "description": "Optional webhook URL to receive task completion notification",
+                    "format": "uri",
+                    "nullable": true,
+                    "type": "string"
+                  },
+                  "height": {
+                    "description": "Height of the generated image in pixels",
+                    "nullable": true,
+                    "type": "integer"
+                  },
+                  "model": {
+                    "description": "Name of the image generation model to use (e.g., google-seedream, flux, qwen, z-image, wan, openai, grok, imagine)",
+                    "example": "flux",
+                    "type": "string"
+                  },
+                  "negative_prompt": {
+                    "description": "Text description of what to avoid in the generated image",
+                    "nullable": true,
+                    "type": "string"
+                  },
+                  "num_images": {
+                    "default": 1,
+                    "description": "Number of images to generate",
+                    "minimum": 1,
+                    "nullable": true,
+                    "type": "integer"
+                  },
+                  "prompt": {
+                    "description": "Text description of the image to generate",
+                    "type": "string"
+                  },
+                  "width": {
+                    "description": "Width of the generated image in pixels",
+                    "nullable": true,
+                    "type": "integer"
+                  }
+                },
+                "required": [
+                  "model",
+                  "prompt"
+                ],
+                "type": "object"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "status": {
+                      "description": "Initial status of the task",
+                      "enum": [
+                        "pending",
+                        "processing"
+                      ],
+                      "type": "string"
+                    },
+                    "task_id": {
+                      "description": "Unique identifier for the created task. Use this to poll for task status and results.",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "task_id",
+                    "status"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Task created successfully"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "code": {
+                      "description": "Error code",
+                      "type": "integer"
+                    },
+                    "msg": {
+                      "description": "Error message",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "msg"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Authentication failed"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "code": {
+                      "description": "Error code",
+                      "type": "integer"
+                    },
+                    "msg": {
+                      "description": "Error message",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "msg"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Rate limit exceeded - more than 20 requests per 10 seconds"
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "securitySchemes": {
+          "ApiKeyAuth": {
+            "description": "API key for authentication. Create and manage your API keys at https://crun.ai/user-api-key",
+            "in": "header",
+            "name": "X-API-KEY",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "definition"
+      }
+    },
+    "POST /video/generate": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "generateVideo",
+        "parameters": [],
+        "protocol": "http",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "aspect_ratio": {
+                    "description": "Aspect ratio of the video (e.g., 16:9, 9:16, 1:1)",
+                    "nullable": true,
+                    "type": "string"
+                  },
+                  "callback_url": {
+                    "description": "Optional webhook URL to receive task completion notification",
+                    "format": "uri",
+                    "nullable": true,
+                    "type": "string"
+                  },
+                  "duration": {
+                    "description": "Duration of the video in seconds",
+                    "nullable": true,
+                    "type": "number"
+                  },
+                  "image_url": {
+                    "description": "Optional reference image URL for image-to-video generation",
+                    "format": "uri",
+                    "nullable": true,
+                    "type": "string"
+                  },
+                  "model": {
+                    "description": "Name of the video generation model to use (e.g., google, grok, imagine, kling, bytedance, sora2, wan, vidu, hailuo, runway)",
+                    "example": "kling",
+                    "type": "string"
+                  },
+                  "prompt": {
+                    "description": "Text description of the video to generate",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "model",
+                  "prompt"
+                ],
+                "type": "object"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "status": {
+                      "description": "Initial status of the task",
+                      "enum": [
+                        "pending",
+                        "processing"
+                      ],
+                      "type": "string"
+                    },
+                    "task_id": {
+                      "description": "Unique identifier for the created task. Use this to poll for task status and results.",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "task_id",
+                    "status"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Task created successfully"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "code": {
+                      "description": "Error code",
+                      "type": "integer"
+                    },
+                    "msg": {
+                      "description": "Error message",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "msg"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Authentication failed"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "code": {
+                      "description": "Error code",
+                      "type": "integer"
+                    },
+                    "msg": {
+                      "description": "Error message",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "msg"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Rate limit exceeded"
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "securitySchemes": {
+          "ApiKeyAuth": {
+            "description": "API key for authentication. Create and manage your API keys at https://crun.ai/user-api-key",
+            "in": "header",
+            "name": "X-API-KEY",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "definition"
       }
     }
   }

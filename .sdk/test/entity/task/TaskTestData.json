@@ -53,5 +53,203 @@
         "task_id": "TASK01"
       }
     }
+  },
+  "requests": {
+    "GET /tasks/{task_id}": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getTaskInfo",
+        "parameters": [
+          {
+            "description": "The unique identifier of the task to retrieve",
+            "in": "path",
+            "name": "task_id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "completed_at": {
+                      "description": "Timestamp when the task was completed (if applicable)",
+                      "format": "date-time",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "created_at": {
+                      "description": "Timestamp when the task was created",
+                      "format": "date-time",
+                      "type": "string"
+                    },
+                    "credit_consumption": {
+                      "description": "Number of credits consumed by this task",
+                      "type": "number"
+                    },
+                    "error": {
+                      "description": "Error details if the task failed",
+                      "nullable": true,
+                      "properties": {
+                        "code": {
+                          "type": "integer"
+                        },
+                        "message": {
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "input_parameters": {
+                      "description": "The input parameters used to create the task",
+                      "type": "object"
+                    },
+                    "model": {
+                      "description": "Name of the AI model used for this task",
+                      "type": "string"
+                    },
+                    "results": {
+                      "description": "Generated media files or output data. Available only when status is 'completed'. Files are stored for 14 days.",
+                      "items": {
+                        "properties": {
+                          "type": {
+                            "description": "Type of the generated file (e.g., image, video)",
+                            "type": "string"
+                          },
+                          "url": {
+                            "description": "URL to the generated media file",
+                            "format": "uri",
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "status": {
+                      "description": "Current status of the task",
+                      "enum": [
+                        "pending",
+                        "processing",
+                        "completed",
+                        "failed"
+                      ],
+                      "type": "string"
+                    },
+                    "task_id": {
+                      "description": "Unique identifier of the task",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "task_id",
+                    "status",
+                    "model",
+                    "created_at"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response with task details"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "code": 401,
+                  "msg": "API key missing"
+                },
+                "schema": {
+                  "properties": {
+                    "code": {
+                      "description": "Error code",
+                      "type": "integer"
+                    },
+                    "msg": {
+                      "description": "Error message",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "msg"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Authentication failed - API key missing or invalid"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "code": {
+                      "description": "Error code",
+                      "type": "integer"
+                    },
+                    "msg": {
+                      "description": "Error message",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "msg"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Task not found"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "code": {
+                      "description": "Error code",
+                      "type": "integer"
+                    },
+                    "msg": {
+                      "description": "Error message",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "msg"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Rate limit exceeded"
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "securitySchemes": {
+          "ApiKeyAuth": {
+            "description": "API key for authentication. Create and manage your API keys at https://crun.ai/user-api-key",
+            "in": "header",
+            "name": "X-API-KEY",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "definition"
+      }
+    }
   }
 }

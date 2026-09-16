@@ -4,7 +4,10 @@ declare(strict_types=1);
 // CrunApiOverview SDK feature factory
 
 require_once __DIR__ . '/feature/BaseFeature.php';
+require_once __DIR__ . '/feature/RatelimitFeature.php';
+require_once __DIR__ . '/feature/RetryFeature.php';
 require_once __DIR__ . '/feature/TestFeature.php';
+require_once __DIR__ . '/feature/TimeoutFeature.php';
 
 
 class CrunApiOverviewFeatures
@@ -14,8 +17,14 @@ class CrunApiOverviewFeatures
         switch ($name) {
             case "base":
                 return new CrunApiOverviewBaseFeature();
+            case "ratelimit":
+                return new CrunApiOverviewRatelimitFeature();
+            case "retry":
+                return new CrunApiOverviewRetryFeature();
             case "test":
                 return new CrunApiOverviewTestFeature();
+            case "timeout":
+                return new CrunApiOverviewTimeoutFeature();
             default:
                 return new CrunApiOverviewBaseFeature();
         }
@@ -31,7 +40,10 @@ class CrunApiOverviewFeatures
     {
         switch ($name) {
             case "base":
+            case "ratelimit":
+            case "retry":
             case "test":
+            case "timeout":
                 return true;
             default:
                 return false;
