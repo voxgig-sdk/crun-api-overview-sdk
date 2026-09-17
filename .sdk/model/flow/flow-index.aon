@@ -1,4 +1,4 @@
 # Flows
 
-@"BasicGenerateFlow.aon"
-@"BasicTaskFlow.aon"
+@"./BasicGenerateFlow.aon"
+@"./BasicTaskFlow.aon"

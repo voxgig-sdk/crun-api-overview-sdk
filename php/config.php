@@ -103,6 +103,7 @@ class CrunApiOverviewConfig
                 "base" => "https://api.crun.ai",
                 "auth" => [
                     "prefix" => "",
+                    "name" => "X-API-KEY",
                 ],
                 "headers" => [
           'content-type' => 'application/json',
