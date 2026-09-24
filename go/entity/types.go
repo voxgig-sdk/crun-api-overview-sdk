@@ -1,7 +1,7 @@
 // Typed models for the CrunApiOverview SDK.
 //
-// GENERATED from the API model: main.kit.entity.<e>.fields[] and per-op
-// params (op.<name>.points[].args.params[]). Field/param types come from the
+// GENERATED from the API model: main.kit.entity.<e>.fields{} and per-op
+// params (op.<name>.points[].g.params[]). Field/param types come from the
 // canonical type sentinels via @voxgig/sdkgen canonToType (source of truth:
 // @voxgig/apidef VALID_CANON). Do not edit by hand.
 package entity
@@ -14,18 +14,6 @@ import (
 
 // Generate is the typed data model for the generate entity.
 type Generate struct {
-	AspectRatio *string `json:"aspect_ratio,omitempty"`
-	CallbackUrl *string `json:"callback_url,omitempty"`
-	Duration *float64 `json:"duration,omitempty"`
-	Height *int `json:"height,omitempty"`
-	ImageUrl *string `json:"image_url,omitempty"`
-	Model string `json:"model"`
-	NegativePrompt *string `json:"negative_prompt,omitempty"`
-	NumImages *int `json:"num_images,omitempty"`
-	Prompt string `json:"prompt"`
-	Status string `json:"status"`
-	TaskId string `json:"task_id"`
-	Width *int `json:"width,omitempty"`
 }
 
 // GenerateCreateData is the typed request payload for Generate.CreateTyped.
@@ -46,16 +34,6 @@ type GenerateCreateData struct {
 
 // Task is the typed data model for the task entity.
 type Task struct {
-	CompletedAt *string `json:"completed_at,omitempty"`
-	CreatedAt string `json:"created_at"`
-	CreditConsumption *float64 `json:"credit_consumption,omitempty"`
-	Error *map[string]any `json:"error,omitempty"`
-	Id *string `json:"id,omitempty"`
-	InputParameters *map[string]any `json:"input_parameters,omitempty"`
-	Model string `json:"model"`
-	Results *[]any `json:"results,omitempty"`
-	Status string `json:"status"`
-	TaskId string `json:"task_id"`
 }
 
 // TaskLoadMatch is the typed request payload for Task.LoadTyped.

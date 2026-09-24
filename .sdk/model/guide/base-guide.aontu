@@ -1,0 +1,27 @@
+# Generated from the API definition and overwritten on every build: do not
+# edit this file. Put customizations in the guide entry file, which includes
+# this one and overrides its defaults:
+#   guide.aontu
+
+guide: {
+  metrics: count: entity: 2
+  metrics: count: path: 3
+  metrics: count: method: 3
+
+  entity: generate: {
+    path: "/image/generate": {
+      op: create: method: *POST
+    }
+    path: "/video/generate": {
+      op: create: method: *POST
+    }
+  }
+
+  entity: task: {
+    path: "/tasks/{task_id}": {
+      rename: param: "task_id": *"id"
+      op: load: method: *GET
+    }
+  }
+
+}

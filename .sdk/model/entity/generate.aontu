@@ -1,0 +1,149 @@
+# Entity: generate
+
+main: kit: entity: generate: {
+
+  alias: field: {}
+
+  fields: {
+    aspect_ratio: {
+      h: "Aspect Ratio"
+      n: "aspect_ratio"
+      r: false
+      sh: "Aspect ratio of the video (e.g., 16:9, 9:16, 1:1)"
+      t: "`$STRING`"
+    }
+    callback_url: {
+      fo: "uri"
+      h: "Callback Url"
+      n: "callback_url"
+      r: false
+      sh: "Optional webhook URL to receive task completion notification"
+      t: "`$STRING`"
+    }
+    duration: {
+      h: "Duration"
+      n: "duration"
+      r: false
+      sh: "Duration of the video in seconds"
+      t: "`$NUMBER`"
+    }
+    height: {
+      h: "Height"
+      n: "height"
+      r: false
+      sh: "Height of the generated image in pixels"
+      t: "`$INTEGER`"
+    }
+    image_url: {
+      fo: "uri"
+      h: "Image Url"
+      n: "image_url"
+      r: false
+      sh: "Optional reference image URL for image-to-video generation"
+      t: "`$STRING`"
+    }
+    model: {
+      h: "Model"
+      n: "model"
+      r: true
+      sh: "Name of the image generation model to use (e.g., google-seedream, flux, qwen, z-image, wan, openai, grok, imagine)"
+      t: "`$STRING`"
+    }
+    negative_prompt: {
+      h: "Negative Prompt"
+      n: "negative_prompt"
+      r: false
+      sh: "Text description of what to avoid in the generated image"
+      t: "`$STRING`"
+    }
+    num_images: {
+      h: "Num Images"
+      n: "num_images"
+      r: false
+      sh: "Number of images to generate"
+      t: "`$INTEGER`"
+    }
+    prompt: {
+      h: "Prompt"
+      n: "prompt"
+      r: true
+      sh: "Text description of the image to generate"
+      t: "`$STRING`"
+    }
+    status: {
+      h: "Status"
+      n: "status"
+      r: true
+      sh: "Initial status of the task"
+      t: "`$STRING`"
+    }
+    task_id: {
+      h: "Task Id"
+      n: "task_id"
+      r: true
+      sh: "Unique identifier for the created task."
+      t: "`$STRING`"
+    }
+    width: {
+      h: "Width"
+      n: "width"
+      r: false
+      sh: "Width of the generated image in pixels"
+      t: "`$INTEGER`"
+    }
+  }
+
+  name: "generate"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          co: {
+            id: "POST /image/generate"
+            source: "openapi3"
+            version: 2
+          }
+          m: "POST"
+          o: "/image/generate"
+          s: [
+            {
+              lit: "image"
+            }
+            {
+              lit: "generate"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "POST /video/generate"
+            source: "openapi3"
+            version: 2
+          }
+          m: "POST"
+          o: "/video/generate"
+          s: [
+            {
+              lit: "video"
+            }
+            {
+              lit: "generate"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

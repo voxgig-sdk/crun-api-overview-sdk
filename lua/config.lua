@@ -92,69 +92,81 @@ local function make_config()
         ["fields"] = {
           {
             ["name"] = "aspect_ratio",
-            ["short"] = "Aspect ratio of the video (e.g., 16:9, 9:16, 1:1)",
+            ["title"] = "Aspect Ratio",
             ["type"] = "`$STRING`",
+            ["short"] = "Aspect ratio of the video (e.g., 16:9, 9:16, 1:1)",
           },
           {
-            ["format"] = "uri",
             ["name"] = "callback_url",
-            ["short"] = "Optional webhook URL to receive task completion notification",
+            ["title"] = "Callback Url",
             ["type"] = "`$STRING`",
+            ["short"] = "Optional webhook URL to receive task completion notification",
+            ["format"] = "uri",
           },
           {
             ["name"] = "duration",
-            ["short"] = "Duration of the video in seconds",
+            ["title"] = "Duration",
             ["type"] = "`$NUMBER`",
+            ["short"] = "Duration of the video in seconds",
           },
           {
             ["name"] = "height",
-            ["short"] = "Height of the generated image in pixels",
+            ["title"] = "Height",
             ["type"] = "`$INTEGER`",
+            ["short"] = "Height of the generated image in pixels",
           },
           {
-            ["format"] = "uri",
             ["name"] = "image_url",
-            ["short"] = "Optional reference image URL for image-to-video generation",
+            ["title"] = "Image Url",
             ["type"] = "`$STRING`",
+            ["short"] = "Optional reference image URL for image-to-video generation",
+            ["format"] = "uri",
           },
           {
             ["name"] = "model",
+            ["title"] = "Model",
+            ["type"] = "`$STRING`",
             ["req"] = true,
             ["short"] = "Name of the image generation model to use (e.g., google-seedream, flux, qwen, z-image, wan, openai, grok, imagine)",
-            ["type"] = "`$STRING`",
           },
           {
             ["name"] = "negative_prompt",
-            ["short"] = "Text description of what to avoid in the generated image",
+            ["title"] = "Negative Prompt",
             ["type"] = "`$STRING`",
+            ["short"] = "Text description of what to avoid in the generated image",
           },
           {
             ["name"] = "num_images",
-            ["short"] = "Number of images to generate",
+            ["title"] = "Num Images",
             ["type"] = "`$INTEGER`",
+            ["short"] = "Number of images to generate",
           },
           {
             ["name"] = "prompt",
+            ["title"] = "Prompt",
+            ["type"] = "`$STRING`",
             ["req"] = true,
             ["short"] = "Text description of the image to generate",
-            ["type"] = "`$STRING`",
           },
           {
             ["name"] = "status",
+            ["title"] = "Status",
+            ["type"] = "`$STRING`",
             ["req"] = true,
             ["short"] = "Initial status of the task",
-            ["type"] = "`$STRING`",
           },
           {
             ["name"] = "task_id",
+            ["title"] = "Task Id",
+            ["type"] = "`$STRING`",
             ["req"] = true,
             ["short"] = "Unique identifier for the created task.",
-            ["type"] = "`$STRING`",
           },
           {
             ["name"] = "width",
-            ["short"] = "Width of the generated image in pixels",
+            ["title"] = "Width",
             ["type"] = "`$INTEGER`",
+            ["short"] = "Width of the generated image in pixels",
           },
         },
         ["name"] = "generate",
@@ -164,7 +176,6 @@ local function make_config()
             ["name"] = "create",
             ["points"] = {
               {
-                ["args"] = {},
                 ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/image/generate",
@@ -176,18 +187,19 @@ local function make_config()
                     ["lit"] = "generate",
                   },
                 },
-                ["select"] = {},
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
                 ["parts"] = {
                   "image",
                   "generate",
                 },
+                ["rename"] = {},
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
+                ["args"] = {},
+                ["select"] = {},
               },
               {
-                ["args"] = {},
                 ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/video/generate",
@@ -199,15 +211,17 @@ local function make_config()
                     ["lit"] = "generate",
                   },
                 },
-                ["select"] = {},
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
                 ["parts"] = {
                   "video",
                   "generate",
                 },
+                ["rename"] = {},
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
+                ["args"] = {},
+                ["select"] = {},
               },
             },
           },
@@ -219,59 +233,69 @@ local function make_config()
       ["task"] = {
         ["fields"] = {
           {
-            ["format"] = "date-time",
             ["name"] = "completed_at",
-            ["short"] = "Timestamp when the task was completed (if applicable)",
+            ["title"] = "Completed At",
             ["type"] = "`$STRING`",
+            ["short"] = "Timestamp when the task was completed (if applicable)",
+            ["format"] = "date-time",
           },
           {
-            ["format"] = "date-time",
             ["name"] = "created_at",
+            ["title"] = "Created At",
+            ["type"] = "`$STRING`",
             ["req"] = true,
             ["short"] = "Timestamp when the task was created",
-            ["type"] = "`$STRING`",
+            ["format"] = "date-time",
           },
           {
             ["name"] = "credit_consumption",
-            ["short"] = "Number of credits consumed by this task",
+            ["title"] = "Credit Consumption",
             ["type"] = "`$NUMBER`",
+            ["short"] = "Number of credits consumed by this task",
           },
           {
             ["name"] = "error",
-            ["short"] = "Error details if the task failed",
+            ["title"] = "Error",
             ["type"] = "`$OBJECT`",
+            ["short"] = "Error details if the task failed",
           },
           {
             ["name"] = "id",
+            ["title"] = "Id",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "input_parameters",
-            ["short"] = "The input parameters used to create the task",
+            ["title"] = "Input Parameters",
             ["type"] = "`$OBJECT`",
+            ["short"] = "The input parameters used to create the task",
           },
           {
             ["name"] = "model",
+            ["title"] = "Model",
+            ["type"] = "`$STRING`",
             ["req"] = true,
             ["short"] = "Name of the AI model used for this task",
-            ["type"] = "`$STRING`",
           },
           {
             ["name"] = "results",
-            ["short"] = "Generated media files or output data.",
+            ["title"] = "Results",
             ["type"] = "`$ARRAY`",
+            ["short"] = "Generated media files or output data.",
           },
           {
             ["name"] = "status",
+            ["title"] = "Status",
+            ["type"] = "`$STRING`",
             ["req"] = true,
             ["short"] = "Current status of the task",
-            ["type"] = "`$STRING`",
           },
           {
             ["name"] = "task_id",
+            ["title"] = "Task Id",
+            ["type"] = "`$STRING`",
             ["req"] = true,
             ["short"] = "Unique identifier of the task",
-            ["type"] = "`$STRING`",
           },
         },
         ["id"] = {
@@ -285,25 +309,9 @@ local function make_config()
             ["name"] = "load",
             ["points"] = {
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["kind"] = "param",
-                      ["name"] = "id",
-                      ["orig"] = "task_id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/tasks/{task_id}",
-                ["rename"] = {
-                  ["param"] = {
-                    ["task_id"] = "id",
-                  },
-                },
                 ["segments"] = {
                   {
                     ["lit"] = "tasks",
@@ -312,18 +320,34 @@ local function make_config()
                     ["var"] = "id",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "id",
+                ["parts"] = {
+                  "tasks",
+                  "{id}",
+                },
+                ["rename"] = {
+                  ["param"] = {
+                    ["task_id"] = "id",
                   },
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["parts"] = {
-                  "tasks",
-                  "{id}",
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "id",
+                      ["orig"] = "task_id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                    },
+                  },
+                },
+                ["select"] = {
+                  ["exist"] = {
+                    "id",
+                  },
                 },
               },
             },

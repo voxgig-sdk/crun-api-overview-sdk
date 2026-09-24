@@ -1,0 +1,139 @@
+# Entity: task
+
+main: kit: entity: task: {
+
+  alias: field: {}
+
+  fields: {
+    completed_at: {
+      fo: "date-time"
+      h: "Completed At"
+      n: "completed_at"
+      r: false
+      sh: "Timestamp when the task was completed (if applicable)"
+      t: "`$STRING`"
+    }
+    created_at: {
+      fo: "date-time"
+      h: "Created At"
+      n: "created_at"
+      r: true
+      sh: "Timestamp when the task was created"
+      t: "`$STRING`"
+    }
+    credit_consumption: {
+      h: "Credit Consumption"
+      n: "credit_consumption"
+      r: false
+      sh: "Number of credits consumed by this task"
+      t: "`$NUMBER`"
+    }
+    error: {
+      h: "Error"
+      n: "error"
+      r: false
+      sh: "Error details if the task failed"
+      t: "`$OBJECT`"
+    }
+    id: {
+      h: "Id"
+      n: "id"
+      r: false
+      t: "`$STRING`"
+    }
+    input_parameters: {
+      h: "Input Parameters"
+      n: "input_parameters"
+      r: false
+      sh: "The input parameters used to create the task"
+      t: "`$OBJECT`"
+    }
+    model: {
+      h: "Model"
+      n: "model"
+      r: true
+      sh: "Name of the AI model used for this task"
+      t: "`$STRING`"
+    }
+    results: {
+      h: "Results"
+      n: "results"
+      r: false
+      sh: "Generated media files or output data."
+      t: "`$ARRAY`"
+    }
+    status: {
+      h: "Status"
+      n: "status"
+      r: true
+      sh: "Current status of the task"
+      t: "`$STRING`"
+    }
+    task_id: {
+      h: "Task Id"
+      n: "task_id"
+      r: true
+      sh: "Unique identifier of the task"
+      t: "`$STRING`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "task"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /tasks/{task_id}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "id"
+                or: "task_id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/tasks/{task_id}"
+          q: {
+            exist: [
+              "id"
+            ]
+          }
+          r: {
+            param: {
+              task_id: "id"
+            }
+          }
+          s: [
+            {
+              lit: "tasks"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}
