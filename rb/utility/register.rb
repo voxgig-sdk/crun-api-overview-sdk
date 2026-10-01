@@ -33,6 +33,8 @@ require_relative 'transform_response'
 
 CrunApiOverviewUtility.registrar = ->(u) {
   u.clean = CrunApiOverviewUtilities::Clean
+  u.clean_add = CrunApiOverviewUtilities::CleanAdd
+  u.clean_explain = CrunApiOverviewUtilities::CleanExplain
   u.done = CrunApiOverviewUtilities::Done
   u.make_error = CrunApiOverviewUtilities::MakeError
   u.feature_add = CrunApiOverviewUtilities::FeatureAdd

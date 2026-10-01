@@ -37,6 +37,8 @@ require_once __DIR__ . '/TransformResponse.php';
 
 CrunApiOverviewUtility::setRegistrar(function (CrunApiOverviewUtility $u): void {
     $u->clean = [CrunApiOverviewClean::class, 'call'];
+    $u->clean_add = [CrunApiOverviewClean::class, 'add'];
+    $u->clean_explain = [CrunApiOverviewDone::class, 'clean_explain'];
     $u->done = [CrunApiOverviewDone::class, 'call'];
     $u->make_error = [CrunApiOverviewMakeError::class, 'call'];
     $u->feature_add = [CrunApiOverviewFeatureAdd::class, 'call'];
