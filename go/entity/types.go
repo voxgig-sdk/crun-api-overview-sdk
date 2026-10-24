@@ -27,8 +27,6 @@ type GenerateCreateData struct {
 	NegativePrompt *string `json:"negative_prompt,omitempty"`
 	NumImages *int `json:"num_images,omitempty"`
 	Prompt string `json:"prompt"`
-	Status string `json:"status"`
-	TaskId string `json:"task_id"`
 	Width *int `json:"width,omitempty"`
 }
 

@@ -22,8 +22,6 @@ export interface GenerateCreateData {
     negative_prompt?: string;
     num_images?: number;
     prompt: string;
-    status: string;
-    task_id: string;
     width?: number;
 }
 export interface Task {

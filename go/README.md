@@ -16,7 +16,7 @@ go get github.com/voxgig-sdk/crun-api-overview-sdk/go@latest
 ```
 
 The Go module proxy resolves the version from the `go/vX.Y.Z` GitHub
-release tag — see [Releases](https://github.com/voxgig-sdk/crun-api-overview-sdk/releases) for the available versions.
+release tag — see [Tags](https://github.com/voxgig-sdk/crun-api-overview-sdk/tags) for the available versions.
 
 To vendor from a local checkout instead, clone this repo alongside your
 project and add a `replace` directive pointing at the checked-out
@@ -30,14 +30,15 @@ go mod edit -replace github.com/voxgig-sdk/crun-api-overview-sdk/go=../crun-api-
 ## Tutorial: your first API call
 
 This tutorial walks through creating a client, listing entities, and
-loading a specific record.
+loading a specific record. The client sends the API key in the `X-API-KEY` header.
 
 ### Quickstart
 
 A complete program: create a client, then call the entity operations.
-Each operation returns `(value, error)` — the value is the data itself
-(there is no `{ok, data}` wrapper), so check `err` and use the value
-directly.
+Each operation returns `(value, error)` — the value is the entity, and for
+`List` a `[]any` of entities, one per record (there is no `{ok, data}`
+wrapper), so check `err` and read a record through the entity's
+`Data()`.
 
 ```go
 package main
@@ -54,11 +55,11 @@ func main() {
     })
 
     // Create a generate.
-    created, err := client.Generate(nil).Create(map[string]any{"model": "example_model", "prompt": "example_prompt", "status": "example_status", "task_id": "example_task_id"}, nil)
+    created, err := client.Generate(nil).Create(map[string]any{"model": "example_model", "prompt": "example_prompt"}, nil)
     if err != nil {
         panic(err)
     }
-    fmt.Println(created)
+    fmt.Println(created.(sdk.Entity).Data())
 }
 ```
 
@@ -144,7 +145,7 @@ task, err := client.Task(nil).Load(
 if err != nil {
     panic(err)
 }
-fmt.Println(task) // the returned mock data
+fmt.Println(task.(sdk.Entity).Data()) // the entity's mock record
 ```
 
 ### Use a custom fetch function
@@ -232,8 +233,8 @@ All entities implement the `CrunApiOverviewEntity` interface.
 
 | Method | Signature | Description |
 | --- | --- | --- |
-| `Load` | `(reqmatch, ctrl map[string]any) (any, error)` | Load a single entity by match criteria. |
-| `Create` | `(reqdata, ctrl map[string]any) (any, error)` | Create a new entity. |
+| `Load` | `(reqmatch, ctrl map[string]any) (any, error)` | Load a single entity by match criteria, and return it. |
+| `Create` | `(reqdata, ctrl map[string]any) (any, error)` | Create a new entity, and return it. |
 | `Data` | `(args ...any) any` | Get or set entity data. |
 | `Match` | `(args ...any) any` | Get or set entity match criteria. |
 | `Make` | `() Entity` | Create a new instance with the same options. |
@@ -241,12 +242,12 @@ All entities implement the `CrunApiOverviewEntity` interface.
 
 ### Result shape
 
-Entity operations return `(value, error)`. The `value` is the
-operation's data **directly** — there is no wrapper:
+Entity operations return `(value, error)`. The `value` is the entity
+itself — there is no wrapper:
 
 | Operation | `value` |
 | --- | --- |
-| `Load` / `Create` | the entity record (`map[string]any`) |
+| `Load` / `Create` | the entity, whose `Data()` reads its record (`map[string]any`) |
 
 Check `err` first, then use the value directly (or the typed
 `...Typed` variants, which return the entity's model struct and a typed
@@ -254,7 +255,7 @@ slice):
 
     generate, err := client.Generate(nil).Create(map[string]any{/* fields */}, nil)
     if err != nil { /* handle */ }
-    // generate is the returned record
+    // generate is the entity; generate.(sdk.Entity).Data() reads its record
 
 Only `Direct()` returns a response envelope — a `map[string]any` with
 `"ok"`, `"status"`, `"headers"`, and `"data"` keys.
@@ -339,13 +340,11 @@ Create an instance: `generate := client.Generate(nil)`
 result, err := client.Generate(nil).Create(map[string]any{
     "model": "example_model",
     "prompt": "example_prompt",
-    "status": "example_status",
-    "task_id": "example_task_id",
 }, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(result)
+fmt.Println(result.(sdk.Entity).Data()) // the created entity's record
 ```
 
 
@@ -381,7 +380,7 @@ task, err := client.Task(nil).Load(map[string]any{"id": "task_id"}, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(task) // the loaded record
+fmt.Println(task.(sdk.Entity).Data()) // the loaded entity's record
 ```
 
 ## Features
@@ -518,7 +517,9 @@ The Go SDK uses `map[string]any` throughout rather than typed structs.
 This mirrors the dynamic nature of the API and keeps the SDK
 flexible — no code generation is needed when the API schema changes.
 
-Use `core.ToMapAny()` to safely cast results and nested data.
+An operation returns the entity, and its `Data()` returns the record. Use
+`core.ToMapAny()` to safely cast that record, or data nested in it, to
+`map[string]any`: it returns `nil` for anything else, an entity included.
 
 ### Package structure
 

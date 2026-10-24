@@ -3,5 +3,24 @@
     "SUMMARY.md"
   ],
   "config": ".sdk/doc/qa/vale.ini",
-  "routes": {}
+  "routes": {},
+  "quoted": {
+    "SUMMARY.md": [
+      "API key for authentication. Create and manage your API keys at https://crun.ai/user-api-key",
+      "Aspect ratio of the video (for example, 16:9, 9:16, 1:1)",
+      "Duration of the video in seconds",
+      "Error details if the task failed",
+      "Height of the generated image in pixels",
+      "Number of credits consumed by this task",
+      "Optional reference image URL for image-to-video generation",
+      "Optional webhook URL to receive task completion notification",
+      "Production server",
+      "Successful response with task details",
+      "Task created successfully",
+      "The Crun API provides access to a wide range of AI models for tasks such as image generation, video creation, and audio processing through a unified platform. Developers can easily integrate these capabilities into their applications while benefiting from competitive pricing and robust support.",
+      "The input parameters used to create the task",
+      "Timestamp when the task was completed (if applicable)",
+      "Timestamp when the task was created"
+    ]
+  }
 }

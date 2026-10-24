@@ -1,0 +1,11 @@
+{
+  point: "warning"
+  note: "Points POST /image/generate and POST /video/generate on entity=generate op=create have the same selector (exist: none), so only POST /image/generate is ever chosen. An action or another entity in guide.aontu tells them apart."
+  entity: "generate"
+  op: "create"
+  points: [
+    "POST /image/generate"
+    "POST /video/generate"
+  ]
+
+}

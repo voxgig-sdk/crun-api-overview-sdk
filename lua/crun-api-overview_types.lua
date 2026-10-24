@@ -30,8 +30,6 @@
 ---@field negative_prompt? string
 ---@field num_images? number
 ---@field prompt string
----@field status string
----@field task_id string
 ---@field width? number
 
 ---@class Task

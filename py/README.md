@@ -15,7 +15,7 @@ keeps the cognitive load low.
 
 ## Install
 This package is not yet published to PyPI. Install it from the GitHub
-release tag (`py/vX.Y.Z`, see [Releases](https://github.com/voxgig-sdk/crun-api-overview-sdk/releases)) or
+release tag (`py/vX.Y.Z`, see [Tags](https://github.com/voxgig-sdk/crun-api-overview-sdk/tags)) or
 from a source checkout:
 
 ```bash
@@ -26,7 +26,7 @@ pip install -e .
 ## Tutorial: your first API call
 
 This tutorial walks through creating a client, listing entities, and
-loading a specific record.
+loading a specific record. The client sends the API key in the `X-API-KEY` header.
 
 ### 1. Create a client
 
@@ -43,7 +43,7 @@ client = CrunApiOverviewSDK({
 
 ```python
 # Create — returns the ENTITY (call data_get() for the record)
-created = client.Generate().create({"model": "example_model", "prompt": "example_prompt", "status": "example_status", "task_id": "example_task_id"})
+created = client.Generate().create({"model": "example_model", "prompt": "example_prompt"})
 
 ```
 
@@ -55,7 +55,7 @@ Entity operations raise on failure, so wrap them in `try` / `except`:
 ```python
 try:
     task = client.Task().load({"id": "example_id"})
-    print(task)
+    print(task.data_get())
 except Exception as err:
     print(f"load failed: {err}")
 ```
@@ -121,10 +121,9 @@ Create a mock client for unit testing — no server required:
 ```python
 client = CrunApiOverviewSDK.test()
 
-# Entity ops return the ENTITY and raises on error;
-# call data_get() for the record.
+# Entity ops return the entity, and list one per record; they raise on error.
 task = client.Task().load({"id": "test01"})
-# task contains the mock response record
+# data_get() on an entity reads its mock response record
 ```
 
 ### Use a custom fetch function
@@ -211,8 +210,8 @@ All entities share the same interface.
 
 | Method | Signature | Description |
 | --- | --- | --- |
-| `load` | `(reqmatch, ctrl) -> any` | Load a single entity by match criteria. Raises on error. |
-| `create` | `(reqdata, ctrl) -> any` | Create a new entity. Raises on error. |
+| `load` | `(reqmatch, ctrl) -> any` | Load a single entity by match criteria, and return it. Raises on error. |
+| `create` | `(reqdata, ctrl) -> any` | Create a new entity, and return it. Raises on error. |
 | `data_get` | `() -> dict` | Get entity data. |
 | `data_set` | `(data)` | Set entity data. |
 | `match_get` | `() -> dict` | Get entity match criteria. |
@@ -222,9 +221,9 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return the ENTITY (call data_get() for the record) (a `dict` for single-entity
-ops, a `list` for `list`) and raise on error. Wrap calls in
-`try`/`except` to handle failures.
+Entity operations return the entity, and `list` a `list` of entities, one
+per record; an entity's `data_get()` reads its record (a `dict`). They raise
+on error, so wrap calls in `try`/`except` to handle failures.
 
 The `direct()` escape hatch never raises — it returns a result `dict`
 you branch on via `result["ok"]`:
@@ -318,8 +317,6 @@ Create an instance: `generate = client.Generate()`
 generate = client.Generate().create({
     "model": "example_model",  # str
     "prompt": "example_prompt",  # str
-    "status": "example_status",  # str
-    "task_id": "example_task_id",  # str
 })
 ```
 

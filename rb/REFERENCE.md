@@ -115,14 +115,12 @@ generate = client.Generate
 
 #### `create(reqdata, ctrl = nil) -> result`
 
-Create a new entity with the given data. Raises on error.
+Create a new entity with the given data. Returns the created entity and raises on error.
 
 ```ruby
 result = client.Generate.create({
   "model" => "example_model", # String
   "prompt" => "example_prompt", # String
-  "status" => "example_status", # String
-  "task_id" => "example_task_id", # String
 })
 ```
 
@@ -181,7 +179,7 @@ task = client.Task
 
 #### `load(reqmatch, ctrl = nil) -> result`
 
-Load a single entity matching the given criteria. Raises on error.
+Load a single entity matching the given criteria. Returns the entity, whose record `data_get` reads, and raises on error.
 
 ```ruby
 result = client.Task.load({ "id" => "task_id" })
@@ -374,6 +372,7 @@ Timeout.
 | Option | Type |
 |---|---|
 | `clearTimer` | function |
+| `now` | function |
 | `setTimer` | function |
 
 These take no default: the feature behaves one way when you supply them and

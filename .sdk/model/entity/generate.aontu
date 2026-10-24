@@ -99,6 +99,15 @@ main: kit: entity: generate: {
       name: "create"
       points: [
         {
+          bf: [
+            "callback_url"
+            "height"
+            "model"
+            "negative_prompt"
+            "num_images"
+            "prompt"
+            "width"
+          ]
           co: {
             id: "POST /image/generate"
             source: "openapi3"
@@ -106,6 +115,10 @@ main: kit: entity: generate: {
           }
           m: "POST"
           o: "/image/generate"
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
           s: [
             {
               lit: "image"
@@ -120,6 +133,14 @@ main: kit: entity: generate: {
           }
         }
         {
+          bf: [
+            "aspect_ratio"
+            "callback_url"
+            "duration"
+            "image_url"
+            "model"
+            "prompt"
+          ]
           co: {
             id: "POST /video/generate"
             source: "openapi3"
@@ -127,6 +148,10 @@ main: kit: entity: generate: {
           }
           m: "POST"
           o: "/video/generate"
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
           s: [
             {
               lit: "video"

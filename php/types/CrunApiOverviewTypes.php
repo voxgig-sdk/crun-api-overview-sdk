@@ -41,8 +41,6 @@ class GenerateCreateData
     public ?string $negative_prompt = null;
     public ?int $num_images = null;
     public string $prompt;
-    public string $status;
-    public string $task_id;
     public ?int $width = null;
 }
 

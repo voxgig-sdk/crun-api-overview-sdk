@@ -90,12 +90,6 @@ Generate = Struct.new(
 # @!attribute [rw] prompt
 #   @return [String]
 #
-# @!attribute [rw] status
-#   @return [String]
-#
-# @!attribute [rw] task_id
-#   @return [String]
-#
 # @!attribute [rw] width
 #   @return [Integer, nil]
 GenerateCreateData = Struct.new(
@@ -108,8 +102,6 @@ GenerateCreateData = Struct.new(
   :negative_prompt,
   :num_images,
   :prompt,
-  :status,
-  :task_id,
   :width,
   keyword_init: true
 )

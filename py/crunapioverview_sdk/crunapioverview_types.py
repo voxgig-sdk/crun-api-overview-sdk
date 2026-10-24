@@ -37,8 +37,6 @@ class Generate(GenerateRequired, total=False):
 class GenerateCreateDataRequired(TypedDict):
     model: str
     prompt: str
-    status: str
-    task_id: str
 
 
 class GenerateCreateData(GenerateCreateDataRequired, total=False):
